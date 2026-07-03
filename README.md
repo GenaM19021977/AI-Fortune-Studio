@@ -108,7 +108,7 @@ AI-Fortune-Studio/
 ## Текущий статус разработки
 
 - [x] Шаг 0.1 — корень репозитория
-- [ ] Шаг 0.2 — Docker Compose (db + redis)
+- [x] Шаг 0.2 — Docker Compose (db + redis)
 - [ ] Шаг 0.3 — Django + DRF
 - [ ] …см. [DEVELOPMENT_GUIDE.md](./DEVELOPMENT_GUIDE.md)
 
