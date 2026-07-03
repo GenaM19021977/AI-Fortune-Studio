@@ -1,0 +1,45 @@
+---
+description: Django и DRF conventions для backend
+globs: backend/**/*.py
+alwaysApply: false
+---
+
+# Backend (Django + DRF)
+
+## Слои
+
+```
+views.py      → тонкий: permission, serializer, вызов service
+services/     → бизнес-логика (GenerationService, QuotaService)
+models.py     → только структура данных
+serializers.py → валидация ввода/вывода
+```
+
+## Комментарии в services (обязательно)
+
+```python
+class GenerationService:
+    """
+    Оркестрация создания контента: квота → промпт → LLM → сохранение.
+    Не вызывать LLM из views напрямую.
+    """
+
+    @staticmethod
+    def create(user: TelegramUser, data: dict) -> Generation:
+        # 1. Квота — до LLM, чтобы не тратить API при лимите
+        QuotaService.check_and_increment(user)
+        ...
+```
+
+## API
+
+- Префикс: `/api/v1/`
+- Auth: заголовок `Authorization: tma <initData>`
+- Ошибки: `{"detail": "..."}` с корректными HTTP-кодами (401, 429)
+
+## Apps
+
+- `users` — TelegramUser, auth
+- `content` — режимы, персонажи, генерации
+- `billing` — квоты, подписки
+- `ai` — LLM, image, tts (без Django models по возможности)

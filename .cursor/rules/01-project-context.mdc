@@ -1,0 +1,44 @@
+---
+description: Контекст проекта AI Fortune Studio для Cursor
+alwaysApply: true
+---
+
+# AI Fortune Studio — контекст
+
+Telegram Mini App + Django DRF + aiogram 3 + React TypeScript Tailwind.
+
+## Документы (читать перед работой)
+
+- `IMPLEMENTATION_PLAN.md` — архитектура, API, модели, roadmap
+- `DEVELOPMENT_GUIDE.md` — порядок шагов разработки
+
+## Структура
+
+- `backend/` — Django 5 + DRF
+- `bot/` — aiogram 3
+- `frontend/` — React Mini App
+
+## Режим разработки
+
+- **Только localhost** до завершения Фазы 4 (см. DEVELOPMENT_GUIDE.md)
+- Django: `config.settings.dev`, `runserver` на :8000
+- Frontend: Vite на :5173, proxy `/api` → backend
+- Docker: только PostgreSQL + Redis
+- Бот: polling, не webhook
+- Деплой, Nginx, SSL, prod settings — **Фаза 5**, не раньше
+- Dev bypass auth (`X-Dev-User-Id`) только при `DEBUG=True`
+
+## Не делать без запроса
+
+- Не пропускать шаги из DEVELOPMENT_GUIDE
+- Не писать логику генерации в боте
+- Не коммитить `.env`, ключи API
+- Не дублировать каталог персонажей/режимов на фронте — только API
+- Не настраивать production-инфраструктуру до Фазы 5
+
+## Стек AI (бесплатный старт)
+
+- Текст: Groq (Qwen/Llama), fallback шаблоны
+- Картинки: Pollinations / HF / SDXL
+- Голос: edge-tts
+- Видео: FFmpeg + MoviePy (не нейро-видео на старте)

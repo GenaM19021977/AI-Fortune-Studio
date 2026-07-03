@@ -1,0 +1,35 @@
+---
+description: aiogram 3 bot conventions
+globs: bot/**/*.py
+alwaysApply: false
+---
+
+# Telegram Bot (aiogram 3)
+
+## Роль бота
+
+Только:
+- `/start` + кнопка Web App
+- deep links (`/daily`, реферал `ref_`)
+- push-уведомления о готовности медиа
+- оплата Telegram Stars (фаза 3)
+
+## Не делать в боте
+
+- FSM-мастер генерации (это Mini App)
+- Прямые вызовы LLM
+- Хранение истории генераций (это DRF + PostgreSQL)
+
+## Комментарии
+
+```python
+@router.message(CommandStart())
+async def cmd_start(message: Message) -> None:
+    """Точка входа: приветствие и кнопка открытия Mini App."""
+    ...
+```
+
+## Конфиг
+
+- `BOT_TOKEN`, `WEBAPP_URL` из pydantic-settings / `.env`
+- Polling — dev; Webhook — production

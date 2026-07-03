@@ -1,0 +1,66 @@
+# --- Секреты и локальная конфигурация ---
+.env
+.env.local
+.env.*.local
+*.pem
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+.coverage.*
+
+# --- Django ---
+backend/media/
+backend/staticfiles/
+*.log
+local_settings.py
+db.sqlite3
+
+# --- Node / Frontend ---
+node_modules/
+frontend/dist/
+frontend/.vite/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Docker ---
+.docker/
+
+# --- IDE и ОС ---
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Временные файлы и туннели ---
+*.tmp
+.ngrok/
+ngrok.yml
+
+# --- Celery ---
+celerybeat-schedule
+celerybeat.pid

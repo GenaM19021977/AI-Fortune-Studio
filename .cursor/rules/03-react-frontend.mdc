@@ -1,0 +1,43 @@
+---
+description: React Mini App и TypeScript conventions
+globs: frontend/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Frontend (React + TypeScript + Tailwind)
+
+## Структура
+
+- `pages/` — экраны (роуты)
+- `components/ui/` — переиспользуемые UI
+- `components/{feature}/` — доменные компоненты
+- `api/` — HTTP-клиент, без бизнес-логики
+- `hooks/useTelegram.ts` — единственная точка TWA SDK
+- `store/` — Zustand только для мастера создания
+
+## Комментарии в компонентах
+
+```tsx
+/**
+ * Шаг 3 мастера: выбор персонажа.
+ * Данные с GET /api/v1/personas/, фильтр category — локально.
+ */
+export function StepPersona() {
+  // Премиум-персонажи: lock + navigate /premium
+  ...
+}
+```
+
+## Правила
+
+- Данные каталога — только с API (TanStack Query)
+- `initData` в каждом запросе через api client interceptor
+- HapticFeedback на важных действиях (генерация, share)
+- Минимальная высота кнопок 44px для touch
+- Дизайн-токены из `styles/tokens.css`, не хардкод цветов в компонентах
+
+## Telegram
+
+- `WebApp.ready()` + `expand()` в useTelegram
+- MainButton — только на финальном шаге мастера
+- В браузере вне Telegram — graceful mock для разработки
