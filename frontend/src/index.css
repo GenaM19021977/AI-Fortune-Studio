@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  --color-fortune-bg: #0d0618;
+  --color-fortune-surface: #1a0b2e;
+  --color-fortune-card: #241438;
+  --color-fortune-gold: #f5c542;
+  --color-fortune-purple: #7c3aed;
+  --color-fortune-accent: #a855f7;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--color-fortune-bg);
+  color: #f3e8ff;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+.fortune-gradient-bg {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(124, 58, 237, 0.35), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 50%, rgba(168, 85, 247, 0.15), transparent),
+    var(--color-fortune-bg);
+}
+
+.gold-text {
+  background: linear-gradient(135deg, #f5c542 0%, #ffe08a 50%, #f5c542 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

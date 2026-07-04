@@ -124,7 +124,8 @@ AI-Fortune-Studio/
 - [x] Шаг 0.2 — Docker Compose (db + redis)
 - [x] Шаг 0.3 — Django + DRF
 - [x] Шаг 0.4 — Health endpoint
-- [ ] Шаг 0.5 — Frontend
+- [x] Шаг 0.5 — Frontend (Vite + React + TS + Tailwind)
+- [ ] Шаг 0.6 — Telegram WebApp SDK
 - [ ] …см. [DEVELOPMENT_GUIDE.md](./DEVELOPMENT_GUIDE.md)
 
 ---
