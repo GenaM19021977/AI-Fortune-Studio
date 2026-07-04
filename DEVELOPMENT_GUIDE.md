@@ -44,7 +44,7 @@
 | Frontend | `http://localhost:5173` | `cd frontend && npm run dev` |
 | Backend API | `http://localhost:8000` | `cd backend && python manage.py runserver` |
 | API health | `http://localhost:8000/api/v1/health/` | — |
-| PostgreSQL | `localhost:5432` | `docker compose up -d db` |
+| PostgreSQL | `localhost:5433` | `docker compose up -d db` |
 | Redis | `localhost:6379` | `docker compose up -d redis` |
 | Django Admin | `http://localhost:8000/admin/` | после createsuperuser |
 
@@ -141,7 +141,7 @@ Django, бот, frontend, Celery — **обычные процессы** в те
 
 ```yaml
 # docker-compose.yml — только инфраструктура данных
-# db: postgres:16, ports 5432:5432, user/pass fortune/fortune
+# db: postgres:16, ports 5433:5432 (хост 5433 — не конфликтует с локальным PG Windows)
 # redis: redis:7-alpine, ports 6379:6379
 ```
 
@@ -151,7 +151,7 @@ docker compose up -d db redis
 docker compose ps   # оба healthy
 ```
 
-✅ **Готово когда:** PostgreSQL принимает подключение на `localhost:5432`, Redis на `6379`.
+✅ **Готово когда:** PostgreSQL принимает подключение на `localhost:5433`, Redis на `6379`.
 
 ---
 

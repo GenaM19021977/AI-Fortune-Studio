@@ -1,0 +1,131 @@
+"""
+Общие настройки Django для AI Fortune Studio.
+
+Используются и в dev, и (позже) в prod. Окружение выбирается через
+DJANGO_SETTINGS_MODULE в .env: config.settings.dev
+"""
+
+from pathlib import Path
+
+import environ
+
+# Корень backend/: backend/
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+# Читаем переменные из backend/.env или корневого .env
+env = environ.Env(
+    DEBUG=(bool, False),
+    ENABLE_DEV_AUTH=(bool, False),
+)
+environ.Env.read_env(BASE_DIR.parent / ".env")
+environ.Env.read_env(BASE_DIR / ".env")
+
+SECRET_KEY = env("SECRET_KEY", default="unsafe-dev-key-change-in-env")
+
+# Приложения Django и сторонние пакеты
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    # REST API
+    "rest_framework",
+    "corsheaders",
+    "drf_spectacular",
+    # Доменные приложения — добавим начиная с шага 1.1:
+    # "apps.users",
+    # "apps.content",
+    # "apps.billing",
+    # "apps.ai",
+]
+
+MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+]
+
+ROOT_URLCONF = "config.urls"
+
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
+    },
+]
+
+WSGI_APPLICATION = "config.wsgi.application"
+ASGI_APPLICATION = "config.asgi.application"
+
+# База данных — URL из .env (PostgreSQL в Docker на шаге 0.2)
+DATABASES = {
+    "default": env.db("DATABASE_URL", default="postgres://fortune:fortune@localhost:5433/fortune"),
+}
+
+AUTH_PASSWORD_VALIDATORS = [
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+]
+
+LANGUAGE_CODE = "ru-ru"
+TIME_ZONE = "Europe/Moscow"
+USE_I18N = True
+USE_TZ = True
+
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+MEDIA_URL = "/media/"
+# Локальные медиафайлы: backend/media/ (относительно BASE_DIR)
+MEDIA_ROOT = BASE_DIR / env("MEDIA_ROOT", default="media")
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Redis — для Celery и кэша (подключим в фазе 2)
+REDIS_URL = env("REDIS_URL", default="redis://localhost:6379/0")
+
+# --- Django REST Framework ---
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+    ],
+    "DEFAULT_PARSER_CLASSES": [
+        "rest_framework.parsers.JSONParser",
+    ],
+    # Аутентификация Telegram initData — шаг 1.4
+    # "DEFAULT_AUTHENTICATION_CLASSES": [...],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "AI Fortune Studio API",
+    "DESCRIPTION": "API для Telegram Mini App",
+    "VERSION": "0.1.0",
+}
+
+# CORS — конкретные origins задаются в dev.py / prod.py
+CORS_ALLOW_CREDENTIALS = True
+
+# Флаг dev-обхода Telegram auth (только при DEBUG=True, шаг 1.4)
+ENABLE_DEV_AUTH = env.bool("ENABLE_DEV_AUTH", default=False)

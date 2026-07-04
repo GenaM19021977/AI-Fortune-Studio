@@ -1,0 +1,7 @@
+# Базовые зависимости backend (prod и dev)
+Django>=5.1,<6
+djangorestframework>=3.15,<4
+django-cors-headers>=4.6,<5
+django-environ>=0.11,<1
+psycopg2-binary>=2.9,<3
+drf-spectacular>=0.28,<1

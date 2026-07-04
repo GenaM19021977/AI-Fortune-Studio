@@ -49,11 +49,19 @@ docker compose up -d db redis
 ```powershell
 cd backend
 python -m venv .venv
-.venv\Scripts\activate
 pip install -r requirements/dev.txt
 python manage.py migrate
 python manage.py runserver
 ```
+
+**Автоактивация venv в PowerShell** (один раз):
+
+```powershell
+.\scripts\Install-BackendAutoActivate.ps1
+# перезапустите терминал; затем cd backend — (.venv) появится сам
+```
+
+В терминале **Cursor** venv активируется через `.vscode/settings.json`.
 
 API: [http://localhost:8000/api/v1/health/](http://localhost:8000/api/v1/health/)
 
@@ -85,7 +93,7 @@ python main.py
 | Backend API | http://localhost:8000 |
 | Health check | http://localhost:8000/api/v1/health/ |
 | Django Admin | http://localhost:8000/admin/ |
-| PostgreSQL | localhost:5432 |
+| PostgreSQL | localhost:5433 |
 | Redis | localhost:6379 |
 
 ---
@@ -109,7 +117,8 @@ AI-Fortune-Studio/
 
 - [x] Шаг 0.1 — корень репозитория
 - [x] Шаг 0.2 — Docker Compose (db + redis)
-- [ ] Шаг 0.3 — Django + DRF
+- [x] Шаг 0.3 — Django + DRF
+- [ ] Шаг 0.4 — Health endpoint
 - [ ] …см. [DEVELOPMENT_GUIDE.md](./DEVELOPMENT_GUIDE.md)
 
 ---
