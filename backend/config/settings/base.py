@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "drf_spectacular",
-    # Доменные приложения — добавим начиная с шага 1.1:
+    # Доменные приложения
+    "apps.core",
     # "apps.users",
     # "apps.content",
     # "apps.billing",

@@ -40,9 +40,14 @@ copy .env.example .env
 
 ### 2. Инфраструктура (после шага 0.2)
 
+**Сначала запустите Docker Desktop**, затем:
+
 ```powershell
-docker compose up -d db redis
+.\scripts\Start-Infra.ps1
+# или: docker compose up -d db redis
 ```
+
+PostgreSQL слушает порт **5433** (не 5432 — чтобы не конфликтовать с локальным PG Windows).
 
 ### 3. Backend (после шага 0.3)
 
@@ -118,7 +123,8 @@ AI-Fortune-Studio/
 - [x] Шаг 0.1 — корень репозитория
 - [x] Шаг 0.2 — Docker Compose (db + redis)
 - [x] Шаг 0.3 — Django + DRF
-- [ ] Шаг 0.4 — Health endpoint
+- [x] Шаг 0.4 — Health endpoint
+- [ ] Шаг 0.5 — Frontend
 - [ ] …см. [DEVELOPMENT_GUIDE.md](./DEVELOPMENT_GUIDE.md)
 
 ---
