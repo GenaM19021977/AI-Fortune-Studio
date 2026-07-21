@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AI Fortune Studio - Welcome</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-variant": "#2d3449",
+                      "primary": "#d0bcff",
+                      "outline-variant": "#494454",
+                      "surface-container-highest": "#2d3449",
+                      "on-primary": "#3c0091",
+                      "surface-tint": "#d0bcff",
+                      "surface-dim": "#0b1326",
+                      "primary-fixed": "#e9ddff",
+                      "primary-container": "#a078ff",
+                      "outline": "#958ea0",
+                      "surface-container-low": "#131b2e",
+                      "on-secondary-fixed-variant": "#7c008e",
+                      "on-secondary-container": "#ffd8fd",
+                      "on-secondary": "#580065",
+                      "tertiary-container": "#009ada",
+                      "surface-container": "#171f33",
+                      "tertiary": "#89ceff",
+                      "primary-fixed-dim": "#d0bcff",
+                      "on-background": "#dae2fd",
+                      "inverse-on-surface": "#283044",
+                      "background": "#0b1326",
+                      "on-surface-variant": "#cbc3d7",
+                      "tertiary-fixed": "#c9e6ff",
+                      "surface-container-lowest": "#060e20",
+                      "on-primary-fixed": "#23005c",
+                      "error-container": "#93000a",
+                      "on-primary-fixed-variant": "#5516be",
+                      "on-tertiary": "#00344d",
+                      "on-secondary-fixed": "#36003e",
+                      "on-tertiary-fixed-variant": "#004c6e",
+                      "secondary": "#fbabff",
+                      "tertiary-fixed-dim": "#89ceff",
+                      "secondary-fixed": "#ffd6fd",
+                      "on-tertiary-container": "#002d43",
+                      "surface-bright": "#31394d",
+                      "error": "#ffb4ab",
+                      "on-tertiary-fixed": "#001e2f",
+                      "on-error-container": "#ffdad6",
+                      "secondary-fixed-dim": "#fbabff",
+                      "on-primary-container": "#340080",
+                      "surface-container-high": "#222a3d",
+                      "on-error": "#690005",
+                      "surface": "#0b1326",
+                      "secondary-container": "#ae05c6",
+                      "on-surface": "#dae2fd",
+                      "inverse-surface": "#dae2fd",
+                      "inverse-primary": "#6d3bd7"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-sm": "0.5rem",
+                      "stack-xl": "2.5rem",
+                      "stack-lg": "1.5rem",
+                      "margin-page": "1.25rem",
+                      "stack-md": "1rem",
+                      "gutter-grid": "1rem"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Inter", "sans-serif"],
+                      "body-sm": ["Inter", "sans-serif"],
+                      "mono-label": ["Geist", "monospace"],
+                      "headline-md": ["Inter", "sans-serif"],
+                      "body-lg": ["Inter", "sans-serif"],
+                      "label-caps": ["Geist", "sans-serif"],
+                      "headline-lg-mobile": ["Inter", "sans-serif"]
+              },
+              "fontSize": {
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "mono-label": ["13px", {"lineHeight": "18px", "fontWeight": "500"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["26px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+              }
+            }
+          }
+        }
+    </script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Ambient Effects */
+        .ambient-orb-primary {
+            background: radial-gradient(circle, rgba(208, 188, 255, 0.25) 0%, rgba(208, 188, 255, 0) 70%);
+        }
+        .ambient-orb-secondary {
+            background: radial-gradient(circle, rgba(251, 171, 255, 0.2) 0%, rgba(251, 171, 255, 0) 70%);
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+
+        .btn-glow {
+            box-shadow: 0 0 30px rgba(36, 161, 222, 0.4);
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background-size: 200% 100%;
+            animation: shimmerEffect 3s infinite linear;
+        }
+
+        @keyframes shimmerEffect {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen relative overflow-hidden flex flex-col font-body-lg">
+<!-- Background Canvas -->
+<div class="absolute inset-0 z-0">
+<!-- Assuming starry background placeholder if provided, otherwise CSS fallback -->
+<div class="absolute inset-0 bg-background">
+<div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 50% 50%, #ffffff 1px, transparent 1px); background-size: 40px 40px;"></div>
+</div>
+<div class="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] rounded-full ambient-orb-primary mix-blend-screen blur-3xl"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[70vw] h-[70vw] rounded-full ambient-orb-secondary mix-blend-screen blur-3xl"></div>
+</div>
+<!-- Main Content Canvas (No Nav Shell as it's a Login screen) -->
+<main class="relative z-10 flex-1 flex flex-col items-center justify-center px-margin-page py-stack-xl min-h-screen">
+<!-- Logo & Title Section -->
+<div class="flex flex-col items-center text-center space-y-stack-md w-full max-w-md mb-stack-xl">
+<!-- App Logo Icon -->
+<div class="w-24 h-24 rounded-full glass-panel flex items-center justify-center mb-stack-sm relative">
+<div class="absolute inset-0 rounded-full btn-glow opacity-50 blur-xl"></div>
+<span class="material-symbols-outlined text-[48px] text-primary" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+                AI Fortune Studio
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[80%] mx-auto">
+                Welcome to the Digital Ether.
+            </p>
+</div>
+<!-- Action Cards Container -->
+<div class="w-full max-w-md flex flex-col space-y-stack-md">
+<!-- Login Button -->
+<button class="w-full h-[56px] rounded-full bg-[#24A1DE] text-white font-headline-md text-headline-md flex items-center justify-center space-x-2 relative overflow-hidden btn-glow transition-transform active:scale-95 group">
+<div class="absolute inset-0 shimmer"></div>
+<!-- Simple SVG path for Telegram to avoid external icon dependency in button if Material doesn't have a good match -->
+<svg class="w-6 h-6 fill-current relative z-10" viewbox="0 0 24 24">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.98 1.25-5.59 3.69-.53.36-1.01.53-1.44.52-.47-.01-1.38-.27-2.05-.49-.83-.27-1.49-.41-1.43-.87.03-.24.33-.49.92-.76 3.6-1.56 6-2.6 7.21-3.1 3.43-1.43 4.14-1.68 4.6-1.69.1 0 .32.02.46.12.12.08.15.19.16.27-.01.03.01.12 0 .17z"></path>
+</svg>
+<span class="relative z-10">Login with Telegram</span>
+</button>
+<!-- Divider -->
+<div class="flex items-center w-full my-stack-md opacity-50">
+<div class="flex-grow border-t border-outline-variant"></div>
+<span class="mx-4 font-mono-label text-mono-label text-on-surface-variant uppercase tracking-widest">Or</span>
+<div class="flex-grow border-t border-outline-variant"></div>
+</div>
+<!-- Create Account Button -->
+<button class="w-full h-[56px] rounded-full glass-panel text-on-surface font-headline-md text-headline-md flex items-center justify-center transition-transform active:scale-95 hover:bg-white/10">
+<span>Create Account</span>
+</button>
+</div>
+<!-- Footer Links -->
+<div class="absolute bottom-safe pb-stack-lg w-full text-center px-margin-page">
+<p class="font-body-sm text-body-sm text-on-surface-variant/60">
+                By entering, you agree to our <a class="text-primary hover:underline" href="#">Terms</a> &amp; <a class="text-primary hover:underline" href="#">Privacy</a>
+</p>
+</div>
+</main>
+<script>
+        // Simple subtle parallax for background orbs on mouse move (if on desktop)
+        document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth > 768) {
+                const orbs = document.querySelectorAll('.mix-blend-screen');
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                orbs[0].style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+                orbs[1].style.transform = `translate(${x * -30}px, ${y * -30}px)`;
+            }
+        });
+    </script>
+</body></html>

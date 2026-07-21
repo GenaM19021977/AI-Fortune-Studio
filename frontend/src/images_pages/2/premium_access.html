@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Fortune Studio - Premium</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Sora:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#0e0e13",
+                        "outline": "#9d8ba0",
+                        "surface-tint": "#ecb2ff",
+                        "on-secondary-fixed": "#002022",
+                        "error-container": "#93000a",
+                        "primary": "#ecb2ff",
+                        "on-secondary-container": "#00686f",
+                        "surface-container-highest": "#35343a",
+                        "primary-fixed": "#f8d8ff",
+                        "surface-container-high": "#2a292f",
+                        "inverse-on-surface": "#303036",
+                        "on-primary-fixed-variant": "#74009f",
+                        "tertiary-container": "#e7006e",
+                        "surface-dim": "#131318",
+                        "on-surface": "#e4e1e9",
+                        "on-primary": "#520071",
+                        "on-error": "#690005",
+                        "on-surface-variant": "#d4c0d7",
+                        "secondary-fixed": "#7df4ff",
+                        "on-error-container": "#ffdad6",
+                        "background": "#131318",
+                        "secondary-fixed-dim": "#00dbe9",
+                        "on-secondary": "#00363a",
+                        "surface-variant": "#35343a",
+                        "primary-container": "#bd00ff",
+                        "surface-bright": "#39383e",
+                        "on-secondary-fixed-variant": "#004f54",
+                        "on-background": "#e4e1e9",
+                        "secondary": "#d3fbff",
+                        "on-tertiary-fixed": "#3f0019",
+                        "on-primary-fixed": "#320047",
+                        "tertiary-fixed": "#ffd9e0",
+                        "on-tertiary-container": "#ffffff",
+                        "inverse-primary": "#9900cf",
+                        "on-tertiary-fixed-variant": "#8f0041",
+                        "on-primary-container": "#ffffff",
+                        "inverse-surface": "#e4e1e9",
+                        "secondary-container": "#00eefc",
+                        "surface-container": "#1f1f25",
+                        "on-tertiary": "#66002c",
+                        "outline-variant": "#514255",
+                        "surface": "#131318",
+                        "primary-fixed-dim": "#ecb2ff",
+                        "surface-container-low": "#1b1b20",
+                        "tertiary-fixed-dim": "#ffb1c3",
+                        "tertiary": "#ffb1c3",
+                        "error": "#ffb4ab"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "container-padding": "20px",
+                        "stack-gap": "16px",
+                        "glass-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "label-mono": ["JetBrains Mono"],
+                        "headline-lg": ["Sora"],
+                        "display-xl": ["Sora"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Sora"]
+                    },
+                    "fontSize": {
+                        "label-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-xl": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "34px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Base animated background setup */
+        .premium-bg {
+            background: radial-gradient(circle at 50% 0%, rgba(189, 0, 255, 0.4) 0%, transparent 70%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 177, 195, 0.3) 0%, transparent 60%);
+            background-color: #0A0A0F; /* Enforcing base layer rule */
+        }
+
+        /* Glassmorphism utility classes */
+        .glass-panel {
+            background: rgba(31, 31, 37, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid transparent;
+            border-image: linear-gradient(to bottom, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%) 1;
+            /* Inner stroke simulation using box-shadow for rounded corners if border-image fails on some browsers */
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 8px 32px rgba(189, 0, 255, 0.1);
+        }
+
+        /* Floating action button glow */
+        .btn-glow {
+            box-shadow: 0 0 15px rgba(189, 0, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+        .btn-glow:active {
+            transform: scale(0.96);
+            box-shadow: 0 0 25px rgba(189, 0, 255, 0.6);
+        }
+
+        /* Animated gradient text for Premium title */
+        .text-gradient-premium {
+            background: linear-gradient(135deg, #ecb2ff 0%, #ffb1c3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Subtle pulse for the CTA */
+        @keyframes subtlePulse {
+            0% { box-shadow: 0 0 15px rgba(189, 0, 255, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(189, 0, 255, 0.7); }
+            100% { box-shadow: 0 0 15px rgba(189, 0, 255, 0.4); }
+        }
+        .animate-cta-pulse {
+            animation: subtlePulse 3s infinite;
+        }
+
+        /* Custom scrollbar for web view */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(236, 178, 255, 0.2); border-radius: 10px; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface antialiased min-h-screen relative overflow-x-hidden selection:bg-primary-container selection:text-white">
+<!-- Atmospheric Background Layer -->
+<div class="fixed inset-0 premium-bg z-0 pointer-events-none"></div>
+<!-- Main Content Container -->
+<main class="relative z-10 w-full max-w-[480px] mx-auto min-h-screen flex flex-col pt-10 pb-[120px] px-container-padding">
+<!-- Top Header Area (Not Nav Shell, just structural header for this specific page) -->
+<header class="flex justify-between items-center mb-8 relative z-20">
+<button class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">close</span>
+</button>
+<div class="glass-panel px-4 py-1.5 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[18px]" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="font-label-mono text-label-mono text-tertiary">PRO</span>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="flex flex-col items-center text-center mb-10 mt-4 relative">
+<div class="w-24 h-24 rounded-full bg-gradient-to-br from-primary-container to-tertiary-container flex items-center justify-center mb-6 shadow-[0_0_40px_rgba(189,0,255,0.3)] relative">
+<div class="absolute inset-0 rounded-full border border-white/20 backdrop-blur-md"></div>
+<span class="material-symbols-outlined text-[48px] text-white relative z-10" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<h1 class="font-display-xl text-display-xl text-gradient-premium mb-4">Limitless<br/>Creativity</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[280px]">
+                Unlock the full power of AI Fortune Studio. Create without boundaries.
+            </p>
+</section>
+<!-- Benefits Bento Grid -->
+<section class="grid grid-cols-2 gap-unit mb-10 w-full relative z-10">
+<!-- Benefit Card 1 (Full Width) -->
+<div class="col-span-2 glass-panel rounded-xl p-5 flex items-center gap-4 group hover:bg-surface-container/50 transition-colors">
+<div class="w-12 h-12 rounded-lg bg-primary-container/20 flex items-center justify-center border border-primary/20 shrink-0">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">all_inclusive</span>
+</div>
+<div>
+<h3 class="font-headline-lg-mobile text-[18px] leading-tight font-bold text-on-surface mb-1">Unlimited Generations</h3>
+<p class="font-body-md text-[14px] text-on-surface-variant">No daily limits. Generate as much as you want.</p>
+</div>
+</div>
+<!-- Benefit Card 2 -->
+<div class="glass-panel rounded-xl p-5 flex flex-col items-start gap-3 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-20 h-20 bg-secondary-container/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<span class="material-symbols-outlined text-secondary-fixed-dim" style="font-variation-settings: 'FILL' 1;">high_quality</span>
+<h3 class="font-headline-lg-mobile text-[16px] leading-tight font-bold text-on-surface">HD Assets</h3>
+<p class="font-body-md text-[13px] text-on-surface-variant leading-tight">Export in pristine 4K resolution.</p>
+</div>
+<!-- Benefit Card 3 -->
+<div class="glass-panel rounded-xl p-5 flex flex-col items-start gap-3 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-20 h-20 bg-tertiary-container/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">palette</span>
+<h3 class="font-headline-lg-mobile text-[16px] leading-tight font-bold text-on-surface">Exclusive Styles</h3>
+<p class="font-body-md text-[13px] text-on-surface-variant leading-tight">Access 50+ premium generation models.</p>
+</div>
+<!-- Benefit Card 4 (Full Width) -->
+<div class="col-span-2 glass-panel rounded-xl p-5 flex items-center gap-4 group hover:bg-surface-container/50 transition-colors">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center border border-white/10 shrink-0">
+<span class="material-symbols-outlined text-primary-fixed" style="font-variation-settings: 'FILL' 0;">bolt</span>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-lg-mobile text-[18px] leading-tight font-bold text-on-surface mb-1">Priority Queue</h3>
+<p class="font-body-md text-[14px] text-on-surface-variant">Skip the wait. Faster rendering times.</p>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</section>
+<!-- Pricing Toggle & Summary (Visual Only for UI) -->
+<section class="flex flex-col items-center mb-8 relative z-10 w-full">
+<div class="glass-panel p-1 rounded-full flex gap-1 mb-6 w-full max-w-[300px]">
+<button class="flex-1 py-2 rounded-full bg-primary-container text-white font-label-mono text-label-mono text-center">MONTHLY</button>
+<button class="flex-1 py-2 rounded-full text-on-surface-variant font-label-mono text-label-mono text-center">YEARLY <span class="text-tertiary">-20%</span></button>
+</div>
+<div class="text-center">
+<div class="flex items-baseline justify-center gap-1">
+<span class="font-display-xl text-[40px] font-extrabold text-on-surface">$9.99</span>
+<span class="font-body-md text-on-surface-variant">/ mo</span>
+</div>
+<p class="font-body-md text-[13px] text-on-surface-variant mt-1">Cancel anytime through Telegram settings.</p>
+</div>
+</section>
+<!-- Floating CTA Area -->
+<div class="fixed bottom-0 left-0 w-full p-container-padding pb-8 pt-10 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest to-transparent z-40 flex justify-center">
+<button class="w-full max-w-[440px] h-[56px] rounded-full bg-gradient-to-r from-primary-container to-tertiary-container text-white font-headline-lg-mobile text-[18px] flex items-center justify-center gap-2 btn-glow animate-cta-pulse relative overflow-hidden group">
+<div class="absolute inset-0 bg-white/20 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 rounded-full"></div>
+<span class="relative z-10">🚀 Перейти на Premium</span>
+</button>
+</div>
+</main>
+</body></html>

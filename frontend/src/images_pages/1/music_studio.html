@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Music Studio - Player</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#fbabff",
+                      "on-secondary-fixed-variant": "#7c008e",
+                      "background": "#0b1326",
+                      "secondary-fixed-dim": "#fbabff",
+                      "surface-dim": "#0b1326",
+                      "inverse-primary": "#6d3bd7",
+                      "inverse-on-surface": "#283044",
+                      "surface-container-highest": "#2d3449",
+                      "error": "#ffb4ab",
+                      "primary-fixed": "#e9ddff",
+                      "tertiary": "#89ceff",
+                      "on-secondary-fixed": "#36003e",
+                      "primary-fixed-dim": "#d0bcff",
+                      "surface-container-low": "#131b2e",
+                      "on-tertiary": "#00344d",
+                      "primary-container": "#a078ff",
+                      "surface-variant": "#2d3449",
+                      "on-tertiary-fixed": "#001e2f",
+                      "surface-tint": "#d0bcff",
+                      "on-primary-container": "#340080",
+                      "tertiary-fixed-dim": "#89ceff",
+                      "surface-bright": "#31394d",
+                      "surface-container-lowest": "#060e20",
+                      "on-background": "#dae2fd",
+                      "outline": "#958ea0",
+                      "surface-container-high": "#222a3d",
+                      "on-surface-variant": "#cbc3d7",
+                      "on-tertiary-container": "#002d43",
+                      "on-primary": "#3c0091",
+                      "error-container": "#93000a",
+                      "tertiary-container": "#009ada",
+                      "on-primary-fixed": "#23005c",
+                      "surface-container": "#171f33",
+                      "on-error": "#690005",
+                      "on-secondary-container": "#ffd8fd",
+                      "secondary-container": "#ae05c6",
+                      "primary": "#d0bcff",
+                      "outline-variant": "#494454",
+                      "on-surface": "#dae2fd",
+                      "tertiary-fixed": "#c9e6ff",
+                      "on-tertiary-fixed-variant": "#004c6e",
+                      "on-secondary": "#580065",
+                      "inverse-surface": "#dae2fd",
+                      "on-primary-fixed-variant": "#5516be",
+                      "secondary-fixed": "#ffd6fd",
+                      "on-error-container": "#ffdad6",
+                      "surface": "#0b1326"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-page": "1.25rem",
+                      "stack-sm": "0.5rem",
+                      "stack-lg": "1.5rem",
+                      "stack-md": "1rem",
+                      "gutter-grid": "1rem",
+                      "stack-xl": "2.5rem"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "label-caps": ["Geist"],
+                      "mono-label": ["Geist"]
+              },
+              "fontSize": {
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["26px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "mono-label": ["13px", {"lineHeight": "18px", "fontWeight": "500"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        /* Ambient Orb effect */
+        .ambient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        /* Glass Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* AI Action Button Glow */
+        .ai-glow-btn {
+            background: linear-gradient(135deg, theme('colors.primary'), theme('colors.secondary'));
+            box-shadow: 0 0 20px 0 rgba(208, 188, 255, 0.3);
+            color: theme('colors.on-primary-container');
+        }
+        
+        /* Lyrics Scrolling */
+        .lyrics-scroll {
+            mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+        }
+        
+        /* Progress Bar */
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: theme('colors.primary');
+            box-shadow: 0 0 10px theme('colors.primary');
+            cursor: pointer;
+            margin-top: -6px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen relative overflow-x-hidden pt-16 pb-24 font-body-lg">
+<!-- Ambient Background Orbs -->
+<div class="ambient-orb w-[300px] h-[300px] bg-primary top-0 left-0"></div>
+<div class="ambient-orb w-[400px] h-[400px] bg-secondary bottom-20 right-0"></div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] flex items-center justify-between px-margin-page h-16">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full object-cover border border-white/20" data-alt="A small, stylized circular avatar image for a user profile in a digital music application. The aesthetic is neon, futuristic, and glowing with primary and secondary color tones against a dark background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqB9od51Jikg-Lx1sL1Q8LaOLqfoobQXPeCLpZ25bEQJZAQagPQ8dF291ym9IKpuawdASp-H5PWs9dej9Xb3KFqyccyJSpdOTZcFS6bCwyyxzVXR_x2m5mLK639SV3K_inDWmSVsbM4-vZKfRhhVuJNIC4yGeZkc6YYhPpivM-p_tQYmBgO1uBSPXMxf2hoxHvb_mjhF6KzeCPRpyauT3ccy1wx-QrMAVugg-qD-RC8KhIRsnL8ItMlqN1UkXteH176eTtsFjqoIM"/>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">AI Fortune Studio</h1>
+</div>
+<button class="text-primary hover:opacity-80 transition-opacity active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">auto_awesome</span>
+</button>
+</header>
+<main class="px-margin-page relative z-10 flex flex-col gap-stack-lg max-w-lg mx-auto">
+<!-- Artwork & Title Section -->
+<section class="flex flex-col items-center mt-stack-md text-center gap-stack-sm">
+<div class="w-64 h-64 rounded-2xl glass-card overflow-hidden relative shadow-[0_8px_32px_0_rgba(208,188,255,0.15)] mb-4">
+<img class="w-full h-full object-cover mix-blend-screen opacity-90" data-alt="A mesmerizing album cover artwork featuring a glowing, ethereal abstract landscape bathed in neon pink and deep violet lights. The scene suggests a futuristic, digital mysticism aesthetic with high contrast and sharp, energetic lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0u_AkN5o9JpR93t9jpX8jwfJ-k3L7-IiKNvkCfb-1bru6gYtSIPrSz0kDLCJJniF9mNaCvhoND0cFnJ-iy5RmvFaxX42ezZohpoXU7PCgQL00taN94l9czSVeg35fF2D9Z7wMhDrWyo22achv-l9Kc_FpUxcG0HHijSB-W5UqGkKF33vBQ9fiDWnqh65dRFL3TurLqiK1UzftP_qGqFeIn_sdl6r__Ajwpup_EWAWBkTh1U0yGdtNRo9h2Ur3K359vMIWR18v7pg"/>
+</div>
+<div class="w-full flex justify-between items-center">
+<div class="text-left">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1">Neon Echoes of Fate</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">The Oracle Synth</p>
+</div>
+<button class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+</section>
+<!-- Lyrics Display -->
+<section class="glass-card rounded-xl p-4 h-48 relative overflow-hidden">
+<div class="absolute top-2 right-2 text-primary">
+<span class="material-symbols-outlined text-sm">lyrics</span>
+</div>
+<div class="lyrics-scroll h-full overflow-y-auto pr-2 pb-8 flex flex-col gap-4 items-center text-center pt-8">
+<p class="font-body-lg text-body-lg text-on-surface-variant opacity-50">In the circuits of the night</p>
+<p class="font-headline-md text-headline-md text-primary drop-shadow-[0_0_8px_rgba(208,188,255,0.5)]">We trace the neon glow</p>
+<p class="font-body-lg text-body-lg text-on-surface-variant opacity-80">Searching for a future bright</p>
+<p class="font-body-lg text-body-lg text-on-surface-variant opacity-50">Where the digital rivers flow</p>
+<p class="font-body-lg text-body-lg text-on-surface-variant opacity-30">Decoding dreams in the static</p>
+</div>
+</section>
+<!-- Player Controls -->
+<section class="flex flex-col gap-stack-md">
+<!-- Progress -->
+<div class="flex flex-col gap-2">
+<input class="w-full appearance-none bg-transparent" max="100" min="0" type="range" value="35"/>
+<div class="flex justify-between font-mono-label text-mono-label text-on-surface-variant">
+<span>1:24</span>
+<span>3:42</span>
+</div>
+</div>
+<!-- Main Controls -->
+<div class="flex justify-center items-center gap-6 my-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">shuffle</span>
+</button>
+<button class="text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">skip_previous</span>
+</button>
+<button class="w-16 h-16 rounded-full ai-glow-btn flex items-center justify-center active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">pause</span>
+</button>
+<button class="text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">skip_next</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">repeat</span>
+</button>
+</div>
+<!-- Volume -->
+<div class="flex items-center gap-3 px-4">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">volume_down</span>
+<input class="w-full appearance-none bg-transparent" max="100" min="0" type="range" value="70"/>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">volume_up</span>
+</div>
+</section>
+<!-- Studio Options -->
+<section class="grid grid-cols-3 gap-3 mt-4">
+<button class="glass-card rounded-lg p-3 flex flex-col items-center justify-center gap-2 border border-secondary/30 bg-secondary/10 hover:bg-secondary/20 transition-colors">
+<span class="material-symbols-outlined text-secondary">mic_external_on</span>
+<span class="font-label-caps text-label-caps text-on-surface">Karaoke</span>
+</button>
+<button class="glass-card rounded-lg p-3 flex flex-col items-center justify-center gap-2 hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">music_note</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Instr</span>
+</button>
+<button class="glass-card rounded-lg p-3 flex flex-col items-center justify-center gap-2 hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">tune</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Remix</span>
+</button>
+</section>
+<!-- Action Buttons -->
+<section class="flex gap-4 mt-2">
+<button class="flex-1 glass-card rounded-full py-3 px-4 flex items-center justify-center gap-2 hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-on-surface">download</span>
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Save</span>
+</button>
+<button class="flex-1 glass-card rounded-full py-3 px-4 flex items-center justify-center gap-2 hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-on-surface">share</span>
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Share</span>
+</button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container/60 dark:bg-surface-container/60 backdrop-blur-2xl border-t border-white/10 shadow-[0_-8px_32px_0_rgba(174,5,198,0.15)] flex justify-around items-center pt-2 pb-safe">
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-fixed shadow-[0_0_15px_rgba(251,171,255,0.4)] hover:text-primary-fixed transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="font-label-caps text-label-caps">Create</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1">auto_stories</span>
+<span class="font-label-caps text-label-caps">Gallery</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+</body></html>

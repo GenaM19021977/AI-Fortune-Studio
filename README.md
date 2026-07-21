@@ -82,10 +82,18 @@ Mini App (браузер): [http://localhost:5173](http://localhost:5173)
 
 ### 5. Telegram-бот (после шага 0.7)
 
+Можно использовать тот же `backend/.venv` или отдельный `bot/.venv`:
+
 ```powershell
 cd bot
+# если активен backend/.venv — достаточно:
 pip install -r requirements.txt
 python main.py
+
+# либо отдельное окружение бота:
+# .\.venv\Scripts\Activate.ps1
+# pip install -r requirements.txt
+# python main.py
 ```
 
 ---
@@ -125,7 +133,8 @@ AI-Fortune-Studio/
 - [x] Шаг 0.3 — Django + DRF
 - [x] Шаг 0.4 — Health endpoint
 - [x] Шаг 0.5 — Frontend (Vite + React + TS + Tailwind)
-- [ ] Шаг 0.6 — Telegram WebApp SDK
+- [x] Шаг 0.6 — Telegram WebApp SDK + dev/mock
+- [x] Шаг 0.7 — aiogram 3 (polling)
 - [ ] …см. [DEVELOPMENT_GUIDE.md](./DEVELOPMENT_GUIDE.md)
 
 ---

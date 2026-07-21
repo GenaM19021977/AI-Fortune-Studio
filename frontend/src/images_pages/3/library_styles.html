@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Style Library - AI Fortune Studio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#574500",
+                    "on-error-container": "#ffdad6",
+                    "surface-container": "#1f1e2a",
+                    "surface-container-lowest": "#0d0d18",
+                    "surface-tint": "#e9c349",
+                    "on-primary-container": "#554300",
+                    "inverse-on-surface": "#302f3b",
+                    "secondary-container": "#00eefc",
+                    "primary": "#f2ca50",
+                    "on-primary-fixed": "#241a00",
+                    "secondary": "#d3fbff",
+                    "surface-variant": "#343440",
+                    "primary-fixed-dim": "#e9c349",
+                    "on-surface-variant": "#d0c5af",
+                    "surface-container-low": "#1b1a26",
+                    "primary-fixed": "#ffe088",
+                    "on-primary": "#3c2f00",
+                    "background": "#12121d",
+                    "surface": "#12121d",
+                    "on-surface": "#e3e0f1",
+                    "on-secondary-fixed-variant": "#004f54",
+                    "on-background": "#e3e0f1",
+                    "on-tertiary-container": "#6500b1",
+                    "error-container": "#93000a",
+                    "on-error": "#690005",
+                    "on-secondary": "#00363a",
+                    "tertiary-container": "#ce9eff",
+                    "surface-container-high": "#292935",
+                    "surface-dim": "#12121d",
+                    "inverse-surface": "#e3e0f1",
+                    "secondary-fixed-dim": "#00dbe9",
+                    "outline": "#99907c",
+                    "tertiary": "#e1c2ff",
+                    "secondary-fixed": "#7df4ff",
+                    "tertiary-fixed": "#efdbff",
+                    "outline-variant": "#4d4635",
+                    "on-tertiary": "#480081",
+                    "primary-container": "#d4af37",
+                    "on-secondary-fixed": "#002022",
+                    "tertiary-fixed-dim": "#dcb8ff",
+                    "inverse-primary": "#735c00",
+                    "surface-container-highest": "#343440",
+                    "on-tertiary-fixed-variant": "#6700b5",
+                    "on-secondary-container": "#00686f",
+                    "surface-bright": "#383845",
+                    "error": "#ffb4ab",
+                    "on-tertiary-fixed": "#2c0051"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "card-padding": "24px",
+                    "stack-md": "16px",
+                    "safe-area": "20px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Inter"],
+                    "label-caps": ["Space Grotesk"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #12121d;
+            color: #e3e0f1;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .premium-border {
+            border: 1px solid #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+        .ai-glow {
+            filter: blur(40px);
+            background: radial-gradient(circle, #00f0ff33 0%, transparent 70%);
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10">
+<div class="flex items-center px-5 h-16 w-full max-w-md mx-auto">
+<span class="material-symbols-outlined text-primary mr-3" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim tracking-tight">AI Fortune Studio</h1>
+<div class="ml-auto">
+<button class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-all duration-300">search</button>
+</div>
+</div>
+</header>
+<main class="pt-20 px-5 max-w-md mx-auto">
+<!-- Background Orbs -->
+<div class="fixed inset-0 pointer-events-none z-0">
+<div class="absolute top-[20%] left-[-10%] w-64 h-64 bg-tertiary/10 rounded-full blur-[80px]"></div>
+<div class="absolute bottom-[30%] right-[-10%] w-80 h-80 bg-secondary-container/10 rounded-full blur-[100px]"></div>
+</div>
+<!-- Favorite Styles Section -->
+<section class="relative z-10 mb-stack-lg">
+<div class="flex items-center justify-between mb-stack-md">
+<h2 class="font-headline-md text-headline-md text-on-surface">Favorite Styles</h2>
+<span class="font-label-caps text-label-caps text-primary uppercase">See All</span>
+</div>
+<div class="flex space-x-gutter overflow-x-auto scrollbar-hide pb-4 -mx-5 px-5">
+<!-- Fav Card 1: Mystic -->
+<div class="flex-shrink-0 w-40">
+<div class="glass-card premium-border rounded-[24px] overflow-hidden aspect-[3/4] relative group">
+<img class="w-full h-full object-cover" data-alt="A cinematic, ultra-detailed digital portrait of a mystical fortune teller with glowing violet eyes, draped in intricate silk robes with golden embroidery. She is surrounded by floating tarot cards and celestial energy wisps in a dark, atmospheric chamber lit by flickering candlelight. The style is high-end techno-mysticism with a deep purple and gold color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLIgfHSe2wUdVeuAw_6KSXR1Hi_kkXREoSu35Y1uN1ALb0Pm6PA1CyIW_iMl8vbX808QbTjMXI7RFoFYmrrPwcoOJrR8A43igVyffNJHNKSMuOHNb3Fw6hoOFrniWx6VFiTO14bJBtBgVl_XCwk4dhOvcLqjrDCD1Pvdq507lPI36IPsLAP9PJwNsOniejpUjBI2T-M9cslWIVkgRUKLnv_LxnQpMpq6GZBFyB1EIUeeJUFi4ev6h91Ze3VZU_WlfbxbV2O_BlO_Zt"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3">
+<p class="font-label-caps text-label-caps text-primary mb-1">Mystic</p>
+<p class="text-xs text-on-surface-variant font-body-md truncate">Celestial Oracle</p>
+</div>
+<div class="absolute top-2 right-2">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<!-- Fav Card 2: Cyberpunk -->
+<div class="flex-shrink-0 w-40">
+<div class="glass-card rounded-[24px] overflow-hidden aspect-[3/4] relative group">
+<img class="w-full h-full object-cover" data-alt="A high-tech cyberpunk character with neon cyan cybernetic implants and glowing fiber-optic hair. The setting is a rainy Tokyo-inspired street at night with vibrant holographic signs reflecting in puddles. The character wears a sleek black chrome jacket. The visual style is sharp, energetic, and futuristic with neon cyan and electric blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfgkAPkwxhAaKLXE3wHuyuCG3-85LrrwDTQ83BvWu2mcWDs7WqeDtjEV0xiVIzHHrzQ_tSUd5_68PgZXQjpjbchA2S5kgFj6Q2cKVUXweGP6nw-FThVFWvYVJJ6ZVJXKGiKFAQY9x0PZPFZu-3ybDLVu4dbZI-Z1DdMhAAbFprj0C0hXTpcMGUnF0qDLi5xJvos-X2OxiQjh7LQtno4gA19MP3tMxrqkMst6tTwRfwu-Mz50FuhcoBFQWQwtXsrqEO5ej-KpfvcL-t"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3">
+<p class="font-label-caps text-label-caps text-secondary mb-1">Cyberpunk</p>
+<p class="text-xs text-on-surface-variant font-body-md truncate">Neon Prophet</p>
+</div>
+</div>
+</div>
+<!-- Fav Card 3: Fantasy -->
+<div class="flex-shrink-0 w-40">
+<div class="glass-card rounded-[24px] overflow-hidden aspect-[3/4] relative group">
+<img class="w-full h-full object-cover" data-alt="An ethereal high-fantasy elf sage with long silver hair and ornate mithril armor, standing in a luminous ancient forest filled with giant glowing mushrooms and floating pollen. Soft golden morning light filters through the canopy. The style is painterly and majestic, utilizing a palette of emerald green, silver, and soft gold." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEYxxJskvCios6cGMBgbbBVFsoUu8ZjiuvVB1iweRrJBqpPw_AhjxdlDpTzglkH2-eJ3vQmoLEAnARZulG4pFgAQJbSAWbUUIo88A6KZ3BpYQSdz8MFURpvDUw0-nu0mgnauG6fT2EpCa7OWpWdshZwLu_cwq5zOLBQQlOwbX8g7E6Qh98Wsg9Cnl7Jb4uE1qEwLi_oEBDPov-H4MkkPy2avYHqr-hg-eeeSmN3fW2BKl2XmwweWUTk2hBMFL9eZ3A1LVax8XwlQUC"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3">
+<p class="font-label-caps text-label-caps text-tertiary mb-1">Fantasy</p>
+<p class="text-xs text-on-surface-variant font-body-md truncate">Ancient Druid</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Style Categories Grid -->
+<section class="relative z-10">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-stack-md">Explore Styles</h2>
+<div class="grid grid-cols-2 gap-4">
+<!-- Humor Style -->
+<div class="glass-card rounded-[24px] p-stack-sm flex flex-col items-center text-center group cursor-pointer transition-transform active:scale-95">
+<div class="w-full aspect-square rounded-[18px] overflow-hidden mb-3">
+<img class="w-full h-full object-cover" data-alt="A humorous, stylized caricature of a wise-cracking digital genie popping out of a holographic lamp. The character has an expressive, comical face and wears a tiny gold monocle. The background is a playful mix of floating emojis and colorful digital glitches in a bright, vibrant techno-mystic style with popping oranges and purples." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgTY7CcZnYjzAR_GSM2du4jIPZ0KPFkXg8u93NOsAKfQZ713vJbKkodxFE2S74f7DoMw-DEXeKDlTyHq8Z_N1Bx7dHZph2GwIPs00vfXLTzor7N6yuHRWJEtvq4DCk7StTgghYQF4kpF6A9pZqDs1XqK-ODIlQ5Py6knG7N1UxWrgOMytNtIL-i-kx6oh5Rm_jZMrJHQUMXGJiqiBBZiKrbMXT8-GJ9-N1FDVgbGu7ioq6d9Wktx8kl312L6zkGAHkQZVlDB7SuwkB"/>
+</div>
+<span class="font-label-caps text-label-caps text-primary uppercase">Humor</span>
+<p class="text-xs text-on-surface-variant mt-1 font-body-md">Witty &amp; Sarcastic</p>
+</div>
+<!-- Sages Style -->
+<div class="glass-card rounded-[24px] p-stack-sm flex flex-col items-center text-center group cursor-pointer transition-transform active:scale-95">
+<div class="w-full aspect-square rounded-[18px] overflow-hidden mb-3">
+<img class="w-full h-full object-cover" data-alt="A serene, elderly philosopher with a long flowing white beard, meditating in a digital void where mathematical equations float like stardust. He is surrounded by a halo of golden geometric patterns. The aesthetic is calm and intellectual, with a sophisticated palette of deep navy and bright gold highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuHccP2DbejoPnRNaJz5GDcpv3x_U-IOYe5OCRXtjN2LgLBv3KQSKRhtrYUOG68YPLybYNwIsbw9etMakRQMEXTe0Y1ob1b890zePzx0oxSotDcQUG0Biy6wBA0vphncw1SfSW4_nt2J2ZW3PIThrjN9QC65V5qUllLu9JYj2-HDNOwlWiS8vbC6YSg6VV0Tp2XaT9LdlnbB4uqMcqWlqflFnpYLG9VeVkwDqiea5RMnrb0vAvJqGEhpR_nE7S-CawwnDAMhPqveFL"/>
+</div>
+<span class="font-label-caps text-label-caps text-primary uppercase">Sages</span>
+<p class="text-xs text-on-surface-variant mt-1 font-body-md">Deep Wisdom</p>
+</div>
+<!-- Historical Style -->
+<div class="glass-card rounded-[24px] p-stack-sm flex flex-col items-center text-center group cursor-pointer transition-transform active:scale-95">
+<div class="w-full aspect-square rounded-[18px] overflow-hidden mb-3">
+<img class="w-full h-full object-cover" data-alt="A noble Renaissance-era astronomer looking through a steampunk-infused brass telescope. The room is filled with ancient parchment maps and glowing holographic star charts. The lighting is warm and classical, like an oil painting but with digital artifacts, using a rich palette of sepia, mahogany, and brass." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7X18nOHRsoIdbhSaJuVZw9tRBdRYGN4jZYaz19gXgtNK1uBUS9GupcyrQmpGrX-Oam_hrgBpgbUlV35HGwfY68nFvODDMMW6ixc9_7zzy6o5876I4XkBdqdNyAefb-VDgLTM25jpwh1-guq24ofSD4DMncrzNXDDZLxfPOc2DvcMUNAdAIE1gExGWMriOf3xkmKOFTIua_1ROwcK5GY-2K3hjuWvfgnNw6qdKS3sUqntIPZCzlTHBy8aYQoue2cLHGzG70jkDoJms"/>
+</div>
+<span class="font-label-caps text-label-caps text-primary uppercase">Historical</span>
+<p class="text-xs text-on-surface-variant mt-1 font-body-md">Ancient Archives</p>
+</div>
+<!-- Music Style -->
+<div class="glass-card rounded-[24px] p-stack-sm flex flex-col items-center text-center group cursor-pointer transition-transform active:scale-95">
+<div class="w-full aspect-square rounded-[18px] overflow-hidden mb-3 relative">
+<img class="w-full h-full object-cover" data-alt="An abstract visualization of sound waves manifesting as glowing neon ribbons that form a humanoid silhouette. The character is surrounded by floating musical notes and ethereal synthesizers in a dark space-like environment. The style is rhythmic and vibrant, featuring neon cyan, magenta, and electric violet glows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbeQC8ep4MotFgjsx8gjROyuL-8YI2Xx33srfnY28G_nAlRvVf1utcYof6cvI46xNGjfrq719I0trUVVc84WHWnihOtMdFNq2oXqxdXlTZ7fPWv0ykennFWtqOVS_7Gv3gClwsLF0_YUOBwwkn4v8SGEhRpdnxrQ5qZqqe1raaKYkW3iLAA2Z60gjSyvYHiqePIcLrN8J7ykbCTkYwa9DAqohsx1oy80tfxweeAGTiDYZ2X7ClZxZ8SALti2askXzH4gnrI1wIsiBu"/>
+<div class="absolute inset-0 bg-secondary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-4xl opacity-50">music_note</span>
+</div>
+</div>
+<span class="font-label-caps text-label-caps text-primary uppercase">Music</span>
+<p class="text-xs text-on-surface-variant mt-1 font-body-md">Harmonic Vibes</p>
+</div>
+<!-- Mystery Style (Full Width Feature) -->
+<div class="glass-card rounded-[24px] p-stack-md col-span-2 relative overflow-hidden group cursor-pointer border border-primary/20">
+<div class="flex items-center space-x-4">
+<div class="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A mysterious hooded figure whose face is replaced by a swirling galaxy of stars and nebulae. The figure holds a glowing obsidian orb that projects intricate digital constellations. The lighting is dramatic and low-key, emphasizing the cosmic elements against a deep velvet black background with violet and indigo accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYV2KRctMgq0f7vJ_LgFbd34rtIttOuo20CH9jjUF3hQunEBI2kCSfF1SmIrZzgTT_rreYvl15LobCCU9j3_hyz_RoxRWERlLjJg55kZATlZiaZWj35c1vjIj25133SmrlRzlldbFNfI_Cmk2Rd-_fxoykU11-JkVmpu0WSc4w1ndKOv8bbY9ERUhb3LNFvGAr2OWo88PLmdcqCuOeIp8G-MhxQyRijCBx82CDykxynzOGQLi8cmuGqK6QoxMHaBQLO4M41vjZsTty"/>
+</div>
+<div>
+<span class="font-label-caps text-label-caps text-primary uppercase block mb-1">Forbidden Arts</span>
+<p class="text-on-surface font-headline-md text-headline-md leading-tight">Dark Techno-Grimoire</p>
+<p class="text-xs text-on-surface-variant font-body-md mt-1">Unlock premium esoteric styles for advanced divination.</p>
+</div>
+</div>
+<div class="absolute right-4 top-1/2 -translate-y-1/2">
+<span class="material-symbols-outlined text-primary">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Progress Tracer Example (Invisible but logic ready) -->
+<div class="fixed inset-x-5 bottom-24 h-[1px] bg-secondary-container/30 overflow-hidden rounded-full" id="ai-tracer">
+<div class="h-full bg-secondary-container w-1/3 animate-[pulse_2s_infinite]" style="box-shadow: 0 0 10px #00f0ff;"></div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container/60 dark:bg-surface-container/60 backdrop-blur-2xl border-t border-white/5 shadow-[0_-4px_24px_rgba(0,0,0,0.4)]">
+<div class="flex justify-around items-center h-20 px-4 pb-safe w-full max-w-md mx-auto">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-primary-fixed active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-primary-fixed active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1">magic_button</span>
+<span class="font-label-caps text-label-caps">Create</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary drop-shadow-[0_0_8px_rgba(212,175,55,0.4)] active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<span class="font-label-caps text-label-caps">Gallery</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-primary-fixed active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</div>
+</nav>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Haptic feedback simulation
+                if (window.navigator.vibrate) {
+                    window.navigator.vibrate(10);
+                }
+                
+                // Subtle glow pulse on click
+                this.style.boxShadow = '0 0 30px rgba(0, 240, 255, 0.15)';
+                setTimeout(() => {
+                    this.style.boxShadow = '';
+                }, 400);
+            });
+        });
+
+        // Atmospheric background animation logic
+        const orbs = document.querySelectorAll('.bg-tertiary\\/10, .bg-secondary-container\\/10');
+        window.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            orbs.forEach((orb, i) => {
+                const factor = (i + 1) * 20;
+                orb.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+            });
+        });
+    </script>
+</body></html>

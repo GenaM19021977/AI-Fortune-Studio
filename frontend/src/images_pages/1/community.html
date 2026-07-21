@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Fortune Studio - Community</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#fbabff",
+                        "on-secondary-fixed-variant": "#7c008e",
+                        "background": "#0b1326",
+                        "secondary-fixed-dim": "#fbabff",
+                        "surface-dim": "#0b1326",
+                        "inverse-primary": "#6d3bd7",
+                        "inverse-on-surface": "#283044",
+                        "surface-container-highest": "#2d3449",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#e9ddff",
+                        "tertiary": "#89ceff",
+                        "on-secondary-fixed": "#36003e",
+                        "primary-fixed-dim": "#d0bcff",
+                        "surface-container-low": "#131b2e",
+                        "on-tertiary": "#00344d",
+                        "primary-container": "#a078ff",
+                        "surface-variant": "#2d3449",
+                        "on-tertiary-fixed": "#001e2f",
+                        "surface-tint": "#d0bcff",
+                        "on-primary-container": "#340080",
+                        "tertiary-fixed-dim": "#89ceff",
+                        "surface-bright": "#31394d",
+                        "surface-container-lowest": "#060e20",
+                        "on-background": "#dae2fd",
+                        "outline": "#958ea0",
+                        "surface-container-high": "#222a3d",
+                        "on-surface-variant": "#cbc3d7",
+                        "on-tertiary-container": "#002d43",
+                        "on-primary": "#3c0091",
+                        "error-container": "#93000a",
+                        "tertiary-container": "#009ada",
+                        "on-primary-fixed": "#23005c",
+                        "surface-container": "#171f33",
+                        "on-error": "#690005",
+                        "on-secondary-container": "#ffd8fd",
+                        "secondary-container": "#ae05c6",
+                        "primary": "#d0bcff",
+                        "outline-variant": "#494454",
+                        "on-surface": "#dae2fd",
+                        "tertiary-fixed": "#c9e6ff",
+                        "on-tertiary-fixed-variant": "#004c6e",
+                        "on-secondary": "#580065",
+                        "inverse-surface": "#dae2fd",
+                        "on-primary-fixed-variant": "#5516be",
+                        "secondary-fixed": "#ffd6fd",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#0b1326"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-page": "1.25rem",
+                        "stack-sm": "0.5rem",
+                        "stack-lg": "1.5rem",
+                        "stack-md": "1rem",
+                        "gutter-grid": "1rem",
+                        "stack-xl": "2.5rem"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter", "sans-serif"],
+                        "headline-md": ["Inter", "sans-serif"],
+                        "headline-lg-mobile": ["Inter", "sans-serif"],
+                        "body-sm": ["Inter", "sans-serif"],
+                        "headline-lg": ["Inter", "sans-serif"],
+                        "label-caps": ["Geist", "monospace"],
+                        "mono-label": ["Geist", "monospace"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "mono-label": ["13px", { "lineHeight": "18px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .ambient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .pb-safe { padding-bottom: calc(env(safe-area-inset-bottom) + 80px); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-lg min-h-screen overflow-x-hidden">
+<!-- Ambient Background Glows -->
+<div class="ambient-orb w-[300px] h-[300px] bg-primary top-0 left-[-100px]"></div>
+<div class="ambient-orb w-[250px] h-[250px] bg-secondary top-[40%] right-[-50px]"></div>
+<!-- TopAppBar -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] fixed top-0 w-full z-50 flex items-center justify-between px-margin-page h-16">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-white/20">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="A small, stylized avatar image of a mystic oracle or fortune teller in a dark cyber-spiritual setting. Subtle neon purple and magenta lighting. Intricate details, highly polished digital art." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSSfpMrbUOPCbS8FYo9274SU7ijB9QiRQMdPrCW9AQihbkcRmDkaRMmfAuDFhTlnjKnqIvf6kEXGHvI9k-kxY7b7AYL9tsdK5UHZTh3cyvscTsunm7jGIMKANFNlj_jPYWXi87khEAA8yS9lGltC17xINxxkj5ifyXySc1D-NDCfvZIzcZREXncN1Pjw4dfuUz8gvd8apxzvXX3Vy3DKVdFiLjZOhWKnnQHCLPqhJqywdZ3x05b4c98WS1UYShmiGE0vvWJ7aN6Nk"/>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">AI Fortune Studio</h1>
+</div>
+<button class="text-primary dark:text-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined">auto_awesome</span>
+</button>
+</header>
+<main class="pt-24 px-margin-page pb-safe flex flex-col gap-stack-xl">
+<!-- Daily Challenge Banner -->
+<section>
+<div class="glass-card rounded-xl p-4 relative overflow-hidden flex flex-col justify-between min-h-[140px]">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container/20 to-transparent pointer-events-none"></div>
+<div class="relative z-10">
+<span class="font-label-caps text-label-caps text-secondary mb-2 block uppercase tracking-widest">Daily Challenge</span>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1">Neon Zodiacs</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Create a cyber-astrology reading using only neon colors.</p>
+</div>
+<div class="relative z-10 mt-4 flex justify-between items-end">
+<div class="flex -space-x-2">
+<img alt="Participant" class="w-6 h-6 rounded-full border border-surface" data-alt="Tiny avatar portrait of a user in a dark mode setting with purple neon highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfQfdaympRM-lLhokFWKfbLO3sXH-pSjts2BqhTNW1Ijao5jCeG1NfYsMN7_UQDK0jBbWP012Q1uV8dY_MvCdt4A3hNnj4lMe6nD5_ayN4Ybe2mDcLXmLSQRqkvEzJKHsEJWWx8SOIGwryV69S_-AhRGfaiLOab483A3dBgSn0CujNLmJcVXWIk_wg1bvtwGCLWKD4f3ZVChIjH70ZroU56AjedKmNf_ZCCQJzjLRCJQ53qTKQJUzfdgIAtk2vrg4wR2rP9KeY9Rw"/>
+<img alt="Participant" class="w-6 h-6 rounded-full border border-surface" data-alt="Tiny avatar portrait of a user in a dark mode setting with blue neon highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-8xLJr-Q4Qw4FzNHrTdJy4DRVeROQo3lEMJ6VgxVGvo-0BOu3rKZ_6dQUlMVP9p4Yq5qCusrszRE3dYOdE0fbPwbZdPYSZRHS9ygjE4NMOQbVRXODkaFKDAem9zH-ZgRc-hJmfeGQZpdcV-a9h-jik8qmtbKfBTuj8fm-wz91DJxffDXbwZpW0cfF-Hnv8qB2lquMq4dlOiSqPveffTn0BOBCJasnSvkBXMRXG2ncouKJf0wIsL5_8otbOvRSYaRs28GfJVomBiU"/>
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant border border-surface">+42</div>
+</div>
+<button class="bg-gradient-to-r from-primary to-secondary text-on-primary-fixed font-mono-label text-mono-label px-4 py-1.5 rounded-full shadow-[0_0_20px_rgba(208,188,255,0.3)] active:scale-95 transition-transform">Join Now</button>
+</div>
+</div>
+</section>
+<!-- Templates Scroll -->
+<section>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-stack-sm">Mystic Templates</h3>
+<div class="flex gap-gutter-grid overflow-x-auto hide-scrollbar pb-2 -mx-margin-page px-margin-page">
+<div class="glass-card rounded-lg min-w-[120px] p-3 flex flex-col items-center justify-center gap-2 active:scale-95 transition-transform shrink-0">
+<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">style</span>
+</div>
+<span class="font-mono-label text-mono-label text-on-surface text-center">Tarot Spread</span>
+</div>
+<div class="glass-card rounded-lg min-w-[120px] p-3 flex flex-col items-center justify-center gap-2 active:scale-95 transition-transform shrink-0">
+<div class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">star</span>
+</div>
+<span class="font-mono-label text-mono-label text-on-surface text-center">Birth Chart</span>
+</div>
+<div class="glass-card rounded-lg min-w-[120px] p-3 flex flex-col items-center justify-center gap-2 active:scale-95 transition-transform shrink-0">
+<div class="w-12 h-12 rounded-full bg-tertiary/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">visibility</span>
+</div>
+<span class="font-mono-label text-mono-label text-on-surface text-center">Aura Reading</span>
+</div>
+<div class="glass-card rounded-lg min-w-[120px] p-3 flex flex-col items-center justify-center gap-2 active:scale-95 transition-transform shrink-0">
+<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">explore</span>
+</div>
+<span class="font-mono-label text-mono-label text-on-surface text-center">I Ching</span>
+</div>
+</div>
+</section>
+<!-- Leaderboard Snippet -->
+<section class="glass-card rounded-xl p-4">
+<div class="flex justify-between items-center mb-stack-md">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">emoji_events</span>
+                    Top Oracles
+                </h3>
+<button class="font-label-caps text-label-caps text-primary uppercase tracking-wider">View All</button>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-white/5 transition-colors">
+<div class="flex items-center gap-3">
+<span class="font-mono-label text-mono-label text-secondary w-4 text-center">1</span>
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Avatar of top user, ethereal glowing aura around a shadowed face, cyber-spiritual aesthetic, dark mode." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0KG2ncRKiXmFnVEufdPLTteKpTlGXmsJmkkHSlD0-4wAkJY1GFROPgz3tDD0tvB5mRIs0_tvfv7lx7BONg7DD65VR-pafM3b7n2Bk3JXpAQ9A0bGp30wdtnWKXXzM8ehlPYuxoMXS81ZIcR-DTEQdpT2H-T0TEZ_W7dI2tym8e1egZ1HiNus7VpvFuWNMIuQ3bF-wkTnz76-UKnkFbIFTZt3jTROsXDQjanaLRw2aUqlPXZpCw_ul-_4xGZp2cVqF5JY6xcN140U"/>
+<span class="font-body-lg text-body-lg text-on-surface">@Lumina</span>
+</div>
+<span class="font-mono-label text-mono-label text-primary">12.4k pt</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-white/5 transition-colors">
+<div class="flex items-center gap-3">
+<span class="font-mono-label text-mono-label text-on-surface-variant w-4 text-center">2</span>
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Avatar of second user, neon pink geometric shapes overlaid on a portrait, cyber-spiritual aesthetic, dark mode." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMRa1Jb8iYIEinMkFzVeGKDRMhFHrIBA7D7IyHNFGPvuogdbCXOwUYgi3-tr4Wa1kSA2924zZEsSf68JhflQc9imW8V8uwucUH2DLXoH81VPfPGQSVp0cw9fvaOWZDGKyj4u5CErQCIrrf9zYIH8EXeEw4diEsP3VQce3r7nJZT6KpnedCR_OL-Dj7ZAr-oyx076tdabl0whGwtk48yECU4hftj33IHjTv17Y7jHN2A4ni9UMvOOrOWJ-FLOJIz04UgxZZkz-Njo0"/>
+<span class="font-body-lg text-body-lg text-on-surface">@NeoSeer</span>
+</div>
+<span class="font-mono-label text-mono-label text-primary">9.8k pt</span>
+</div>
+</div>
+</section>
+<!-- Popular Works Feed -->
+<section>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-stack-md">Popular Visions</h3>
+<div class="flex flex-col gap-stack-lg">
+<!-- Card 1 -->
+<article class="glass-card rounded-xl overflow-hidden">
+<div class="h-48 w-full relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A breathtaking, wide-aspect digital painting of a futuristic tarot card reading. A glowing ethereal hand hovers over glowing holographic cards on a dark obsidian table. Vibrant magenta and electric violet neon lights reflect off the sleek surfaces. Deep atmospheric perspective, cyberpunk mysticism style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCMe0FZQ_eA5gHwNgpVshvQXmvT_VCXXBRpGEr4Qq8vURPf415EQ9wTkv7JDEHpmtZGbEDqDwGmMfq4DsqWHUbwo8Qcdmg-e7BG_z73fK9PWsKb0IBa-c0MKmL5onQJhBvCSupvAiumdkgoPqhlq6FAlIQqIbs64dCpvlBobZGFEGddKUD1ybnONmZG-dd9FURxVTaszMVJuIZ26tDHvD6Soj3l84cx1v4Pr64VCPIptKYfq82DdYLL2twFroX3y3K3OGDS2aj0Buk')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3 flex justify-between items-end">
+<div class="flex gap-2">
+<span class="bg-secondary/20 text-secondary border border-secondary/30 px-2 py-0.5 rounded-full font-label-caps text-label-caps backdrop-blur-md">Tarot</span>
+<span class="bg-primary/20 text-primary border border-primary/30 px-2 py-0.5 rounded-full font-label-caps text-label-caps backdrop-blur-md">Love</span>
+</div>
+</div>
+</div>
+<div class="p-4">
+<p class="font-body-sm text-body-sm text-on-surface mb-3 line-clamp-2">"The digital stars align in your favor tonight. The reversed Empress suggests finding nurturing energy in unexpected virtual spaces..."</p>
+<div class="flex justify-between items-center text-on-surface-variant font-mono-label text-mono-label">
+<div class="flex items-center gap-2">
+<img class="w-5 h-5 rounded-full" data-alt="Small avatar, mysterious silhouette with glowing eyes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAZGmWyRAzMlDoetUXLO1K_vJRXhs1x_0d6kByubMHlz2JavhSaxg-5Qr7sDhYeAYOG0rT10uEFpBPbECr34cEHaVb2j6vEngL_taehzotxiMkylys8LMeRts0EdurN12l91mGOFsDDn-SG9uCLhWs92Zsne4xcjtt9BY6NOdzUIjZJ2AYL89Cb55usNn9t6wvYBcWR4XhnTxJkSRxBudd6FVDH3ekuP05r0IHwveWT0QmQQfpeHh1IaGyD9_MbvI9_Ay869Ja02E"/>
+<span>@CyberMage</span>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-1 hover:text-secondary transition-colors"><span class="material-symbols-outlined text-[18px]">favorite</span> 1.2k</button>
+<button class="flex items-center gap-1 hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">visibility</span> 4.5k</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 2 (Text Heavy) -->
+<article class="glass-card rounded-xl overflow-hidden p-4 relative">
+<div class="absolute top-0 right-0 w-32 h-32 bg-tertiary/10 rounded-bl-full blur-2xl pointer-events-none"></div>
+<div class="flex gap-2 mb-3">
+<span class="bg-tertiary/20 text-tertiary border border-tertiary/30 px-2 py-0.5 rounded-full font-label-caps text-label-caps">Daily Horoscope</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">Scorpio's Code</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">A critical patch is deploying to your emotional subroutines today. Beware of hidden malware in casual conversations. Keep your firewall up, but allow verified connections through port 443.</p>
+<div class="flex justify-between items-center text-on-surface-variant font-mono-label text-mono-label border-t border-white/5 pt-3">
+<div class="flex items-center gap-2">
+<img class="w-5 h-5 rounded-full" data-alt="Small avatar, pixel art style third eye symbol." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAI6ubY4zM1zeY_pgdwIDYNb7O_WKUvtwOR5oeDbFNL9nfbqM9dZHeU5plRBouRhCRdLZWug20U5TFhOsO1aKbckb5Qac31_6zTNWMkAU_z1kPwCcT5fz1b7MhNSxEpZt98uXEF_OeYnu9DKNivnes5hgLqG_VklqUZXc8YAO6nLQiMnJUZFH5qRnjQKtPESjfzXMmKlo8DThDleinWmSexngf6t9ur4BtbMG1Jdo-5NeXl0fg-yixB2RRH0QfJoXTh3tCI8goZ7k8"/>
+<span>@AstroBot</span>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-1 hover:text-secondary transition-colors"><span class="material-symbols-outlined text-[18px]">favorite</span> 856</button>
+<button class="flex items-center gap-1 hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">chat_bubble</span> 42</button>
+</div>
+</div>
+</article>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-surface-container/60 dark:bg-surface-container/60 backdrop-blur-2xl border-t border-white/10 shadow-[0_-8px_32px_0_rgba(174,5,198,0.15)] fixed bottom-0 w-full z-50 rounded-t-xl flex justify-around items-center w-full pt-2 pb-safe">
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-caps text-label-caps mt-1">Create</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-fixed shadow-[0_0_15px_rgba(251,171,255,0.4)] hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<span class="font-label-caps text-label-caps mt-1">Gallery</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

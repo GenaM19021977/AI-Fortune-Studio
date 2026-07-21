@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AI Fortune Studio - Image Magic</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#574500",
+                    "on-error-container": "#ffdad6",
+                    "surface-container": "#1f1e2a",
+                    "surface-container-lowest": "#0d0d18",
+                    "surface-tint": "#e9c349",
+                    "on-primary-container": "#554300",
+                    "inverse-on-surface": "#302f3b",
+                    "secondary-container": "#00eefc",
+                    "primary": "#f2ca50",
+                    "on-primary-fixed": "#241a00",
+                    "secondary": "#d3fbff",
+                    "surface-variant": "#343440",
+                    "primary-fixed-dim": "#e9c349",
+                    "on-surface-variant": "#d0c5af",
+                    "surface-container-low": "#1b1a26",
+                    "primary-fixed": "#ffe088",
+                    "on-primary": "#3c2f00",
+                    "background": "#12121d",
+                    "surface": "#12121d",
+                    "on-surface": "#e3e0f1",
+                    "on-secondary-fixed-variant": "#004f54",
+                    "on-background": "#e3e0f1",
+                    "on-tertiary-container": "#6500b1",
+                    "error-container": "#93000a",
+                    "on-error": "#690005",
+                    "on-secondary": "#00363a",
+                    "tertiary-container": "#ce9eff",
+                    "surface-container-high": "#292935",
+                    "surface-dim": "#12121d",
+                    "inverse-surface": "#e3e0f1",
+                    "secondary-fixed-dim": "#00dbe9",
+                    "outline": "#99907c",
+                    "tertiary": "#e1c2ff",
+                    "secondary-fixed": "#7df4ff",
+                    "tertiary-fixed": "#efdbff",
+                    "outline-variant": "#4d4635",
+                    "on-tertiary": "#480081",
+                    "primary-container": "#d4af37",
+                    "on-secondary-fixed": "#002022",
+                    "tertiary-fixed-dim": "#dcb8ff",
+                    "inverse-primary": "#735c00",
+                    "surface-container-highest": "#343440",
+                    "on-tertiary-fixed-variant": "#6700b5",
+                    "on-secondary-container": "#00686f",
+                    "surface-bright": "#383845",
+                    "error": "#ffb4ab",
+                    "on-tertiary-fixed": "#2c0051"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "card-padding": "24px",
+                    "stack-md": "16px",
+                    "safe-area": "20px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Inter"],
+                    "label-caps": ["Space Grotesk"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #12121d;
+            color: #e3e0f1;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+        }
+        .premium-border {
+            border: 1px solid #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+        .ai-pulse {
+            animation: pulse-border 2s infinite;
+        }
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 240, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); }
+        }
+        .bg-orb {
+            position: fixed;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.4;
+            border-radius: 50%;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md selection:bg-primary/30">
+<!-- Background Atmospheric Orbs -->
+<div class="bg-orb w-96 h-96 bg-tertiary top-[-10%] left-[-10%] animate-pulse"></div>
+<div class="bg-orb w-80 h-80 bg-secondary-container bottom-[5%] right-[-5%] transition-all duration-1000"></div>
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10">
+<div class="flex items-center px-5 h-16 w-full max-w-md mx-auto justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h1 class="font-headline-md text-headline-md text-primary tracking-tight">AI Fortune Studio</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full glass-card hover:opacity-80 transition-all">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</button>
+</div>
+</header>
+<main class="pt-20 pb-32 px-5 max-w-md mx-auto space-y-stack-lg">
+<!-- Section 1: Image Upload Area -->
+<section class="space-y-stack-md">
+<div class="flex items-center justify-between">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Base Artifact</h2>
+<span class="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded-full border border-primary/20">RAW INPUT</span>
+</div>
+<div class="glass-card h-56 flex flex-col items-center justify-center border-dashed border-2 border-white/10 hover:border-primary/40 transition-all duration-500 group cursor-pointer relative overflow-hidden" id="drop-zone" onclick="playMysticSound('soft')">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-primary text-3xl">cloud_upload</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface mb-1">Upload Source Image</p>
+<p class="font-caption text-caption text-on-surface-variant">Drag and drop or tap to browse</p>
+</div>
+</div>
+</section>
+<!-- Section 2: Preview Area (Placeholder/Loading State) -->
+<section class="space-y-stack-md">
+<div class="flex items-center justify-between">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Astral Preview</h2>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary-container animate-ping"></div>
+<span class="text-[10px] text-secondary-fixed-dim">AI READY</span>
+</div>
+</div>
+<div class="glass-card aspect-square relative overflow-hidden group">
+<img class="w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" data-alt="A cinematic, high-detail digital painting of a mystical cyberpunk alchemist laboratory. In the center, a large glass holographic preview window glows with neon cyan and gold energy. The background is a deep indigo void with floating particles of data. The lighting is moody and atmospheric, emphasizing the techno-mysticism brand identity with sharp gold highlights and soft purple shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHTBv8fa6rX0A5syT67wtF7eDZjmJDRSfSi7ICI1CyQ5WnuoJbXXqmhODWgPfarYLHw6Da0Up74eVY5vQTkKPoim38BlhhcgUMPlYNUe4JU6aCpR25jT-jvzhvNObKbJ1n5NDe1ZaEJC5GgBoD7Dh77gSY_-RlWWOQMZSkyHwtrvy0LkiX7GM773ZZLz_U7X_nbeu91_Rm_0C6OlBoiIreojQ8KD13E6-JFso3I4zx_IRES2gwQXu2WC6WqKiW2hYwLrq_hs61yZuj"/>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="bg-surface/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
+<p class="text-caption font-label-caps text-primary">AWAITING TRANSFORMATION</p>
+</div>
+</div>
+<!-- AI Perimeter Pulse -->
+<div class="absolute inset-0 ai-pulse rounded-[24px] pointer-events-none"></div>
+</div>
+</section>
+<!-- Section 3: Style Selector Grid -->
+<section class="space-y-stack-md">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Select Aesthetic Essence</h2>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+<!-- Style Item: Anime -->
+<button class="glass-card p-2 text-left group hover:premium-border transition-all duration-300" onclick="playMysticSound('soft')">
+<div class="h-20 w-full rounded-xl overflow-hidden mb-2 relative">
+<img class="w-full h-full object-cover" data-alt="Vibrant anime style landscape with lush green hills and a massive, detailed white cloud in a brilliant blue sky. The visual style captures the nostalgic and high-quality aesthetic of Studio Ghibli films, with soft lighting and painterly textures. Colors are saturated and joyful, fitting the techno-mysticism theme through its ethereal, dream-like quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdj5_KO2LPwFI_aorCVolSB9fX_zFzTtpjBnMwvx8lxlQBnMCSBUuP4AKSaMtb20Z4e84ZJHnNqosPf2UzlixhYx9BuWbJICHtLqReNSivWYT3RzbARLk0i_BRUxgLiym-sQXQII4edbA5XE9aZobyCSsTOHjPg3NBfXA43eOpjqsHHVKjc2bXwySmeWNf96NBDlMr0Bccxt7Y1-Ve3MxNQ97_OWYV5Ib8t0nars5MIlVaonauh916tFVidu7TtU1HJreJ1dC2BDVa"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+</div>
+<span class="font-label-caps text-[11px] text-on-surface block px-1 group-hover:text-primary transition-colors">Anime</span>
+</button>
+<!-- Style Item: Cyberpunk -->
+<button class="glass-card p-2 text-left group hover:premium-border transition-all duration-300" onclick="playMysticSound('soft')">
+<div class="h-20 w-full rounded-xl overflow-hidden mb-2 relative border border-secondary-container/20">
+<img class="w-full h-full object-cover" data-alt="A futuristic cyberpunk cityscape at night, drenched in neon cyan and magenta lights. High-tech architecture is shrouded in rain and fog, with glowing holograms of mystical runes. The style is sharp, detailed, and moody, perfectly representing the techno-mysticism aesthetic with its blend of advanced technology and ancient symbols." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwVEPwiQZC6NivYS7AzBwDUjzko1y0HVkXzYHs2zks4C29g9dzQEKG3L8KNOyKGkEIWtfTIREwqWjpQHdkWil4dF9E6tPXhnm_w7mnyY0d2lv38HphKNwhl8TIlGIHa_l7nDoNg7c_bK3Xl-G2ds1uSp_b9OOENkwCECcnIRnjy-Ylo5vBhn1dfGhmfCR0QJSIWrorsabpupQQugFAoLvMzQjkYyV-nBxne2FHBPm3U71UBk8r3QUUN44INazrIVEIsv2nWvaJTQII"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+</div>
+<span class="font-label-caps text-[11px] text-on-surface block px-1 group-hover:text-primary transition-colors">Cyberpunk</span>
+</button>
+<!-- Style Item: Oil Painting -->
+<button class="glass-card p-2 text-left group hover:premium-border transition-all duration-300" onclick="playMysticSound('soft')">
+<div class="h-20 w-full rounded-xl overflow-hidden mb-2 relative">
+<img class="w-full h-full object-cover" data-alt="A classic oil painting portrait of a wise sage, featuring thick, expressive brushstrokes and a rich impasto texture. The color palette uses deep umbers, burnt siennas, and brilliant gold leaf accents. The lighting is dramatic, reminiscent of Rembrandt, creating a sense of ancient wisdom and physical craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbRffpTWdZt-JSi2uvz2ODQtB8JttEjQKHxjD9nXgO2qLm8bhGS-iOfgBFPivKq-PwDIOm9t6jj_KFudx95kYjb3KzezRsnDdAJGRWt-xpSAjAXELHKjzgBTUE_VsGNJDt8_VjoMfOAW7ZHQXQyjoDDIhsUJjCeoyjigP4bjgffIdocNYyyLeXLvCMSojM-XiQkTkTdswNOmqmkYPH77pO2nopwLoavOZ66Yhdpl-1PO75z1QAjuWeggsfsMzc4sW1q9jr1FK-WEEI"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+</div>
+<span class="font-label-caps text-[11px] text-on-surface block px-1 group-hover:text-primary transition-colors">Oil Painting</span>
+</button>
+<!-- Style Item: Watercolor -->
+<button class="glass-card p-2 text-left group hover:premium-border transition-all duration-300" onclick="playMysticSound('soft')">
+<div class="h-20 w-full rounded-xl overflow-hidden mb-2 relative">
+<img class="w-full h-full object-cover" data-alt="Ethereal watercolor wash of a cosmic nebula, with soft bleeding edges and delicate transparent layers of violet, indigo, and gold. The style is fluid and organic, feeling like digital ink floating on wet paper. It is sophisticated and artistic, bridging the gap between digital creation and traditional fine art." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6Y-6gc6DyfKur8G8X7sT9jJaKQdTB6vPuVHHyGIVogSPn2WN4GD_1Sqv_GhSzTMU9pryE27UNoXb-pbOtC56Ps2MJlbi_uITOyz7ncucyc-4iyAN_cXICVsFKObSOa2sN_lGNlLs3WJOs7fAhn3PS4I0zLD3UURK3PN58O0L08HYP2PWeT-WoDXVbYlneDKbOW5gLLU-aJF79OWeBhvihAcoO8O_VggKZtwUYvCuR7-feSLWqqP8CMUtwD9w62rJdFIRZjbRwaBTO"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+</div>
+<span class="font-label-caps text-[11px] text-on-surface block px-1 group-hover:text-primary transition-colors">Watercolor</span>
+</button>
+<!-- Style Item: Pixel Art -->
+<button class="glass-card p-2 text-left group hover:premium-border transition-all duration-300" onclick="playMysticSound('soft')">
+<div class="h-20 w-full rounded-xl overflow-hidden mb-2 relative">
+<img class="w-full h-full object-cover" data-alt="High-fidelity 16-bit pixel art of a glowing technological artifact on an altar. Every pixel is carefully placed to create depth and texture, using a limited but vibrant palette of neon cyan and deep purples. The mood is retro-futuristic and charming, embodying the digital mysticism theme in a nostalgic format." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVW2SbEa1TcNgbymfgNHfbE9QyBGVzDl-dtBof0x2OtpsvhK3S-BehJi5Lgu01zQnAXD_yBRx_oD1D0q1-PpFG29f3UQWdtvU-ROyIaCInjRrx7XJ8aYNxTBxUX6geW5vJ4CLNVgbsZzywttB9JiYq0KQJo-6rb_LLCvQp_TSWcaXHqVWTxJ3z150jaV3G5bffaIjFudvkgFkYgWI_vJ5LXFzOHRxU8CaCWMiUusG5S9DVuqDbXbczx2I8rJWDyDhDbjyIt0BOijLf"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+</div>
+<span class="font-label-caps text-[11px] text-on-surface block px-1 group-hover:text-primary transition-colors">Pixel Art</span>
+</button>
+<!-- Style Item: Realistic -->
+<button class="glass-card p-2 text-left group hover:premium-border transition-all duration-300" onclick="playMysticSound('soft')">
+<div class="h-20 w-full rounded-xl overflow-hidden mb-2 relative">
+<img class="w-full h-full object-cover" data-alt="Hyper-realistic macro photograph of a crystal prism catching a beam of light. Every detail of the surface texture and the internal light refractions is crisp and clear. The style is clean, modern, and high-fidelity, using a neutral palette with spectrum-like light dispersions that feel magical yet grounded in reality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlmYXHA6CY7KQjjrdEy2zjqCRB06Lhv4-Mo6fDB9pRe2hgeMFeHv-iHRZe5CqpuDvJc5QSpyHmSVTcTf96poc9LtoK-9VQcdengPwfJB2MMgRS78kSw6RQDQ2thVOUXgrArt_9cM99sAOWv6AurtMrCksSc2m-k7zxeiCY-iEWBZaApeqfD81GPG0n7a3ZWBaxsK8F31S9FYlWlN6eU6Av7hMItQQWicZFbk9dp40YNs5mnl7VF_ZSdFstM_XmI23D-LDRJKnFVSBq"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+</div>
+<span class="font-label-caps text-[11px] text-on-surface block px-1 group-hover:text-primary transition-colors">Realistic</span>
+</button>
+</div>
+<!-- Horizontal scroll for more styles -->
+<div class="flex gap-3 overflow-x-auto pb-2 custom-scrollbar no-scrollbar">
+<button class="flex-shrink-0 glass-card px-4 py-3 border border-white/5 hover:border-primary/30 transition-colors" onclick="playMysticSound('soft')">
+<span class="font-label-caps text-[10px] uppercase text-on-surface-variant">Disney</span>
+</button>
+<button class="flex-shrink-0 glass-card px-4 py-3 border border-white/5 hover:border-primary/30 transition-colors" onclick="playMysticSound('soft')">
+<span class="font-label-caps text-[10px] uppercase text-on-surface-variant">LEGO</span>
+</button>
+<button class="flex-shrink-0 glass-card px-4 py-3 border border-white/5 hover:border-primary/30 transition-colors" onclick="playMysticSound('soft')">
+<span class="font-label-caps text-[10px] uppercase text-on-surface-variant">Minecraft</span>
+</button>
+<button class="flex-shrink-0 glass-card px-4 py-3 border border-white/5 hover:border-primary/30 transition-colors" onclick="playMysticSound('soft')">
+<span class="font-label-caps text-[10px] uppercase text-on-surface-variant">Neon</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Contextual Magic Transform Button (Fixed above Nav) -->
+<div class="fixed bottom-24 left-1/2 -translate-x-1/2 w-full max-w-[calc(100%-40px)] z-50">
+<button class="w-full h-16 rounded-2xl bg-gradient-to-r from-[#d4af37] to-[#B8860B] flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:scale-[1.02] active:scale-95 transition-all duration-300 relative overflow-hidden" id="magic-btn" onclick="playMysticSound('magic')">
+<span class="material-symbols-outlined text-on-primary-fixed text-2xl" style="font-variation-settings: 'FILL' 1;">magic_button</span>
+<span class="font-label-caps text-sm tracking-widest text-on-primary-fixed uppercase font-bold">Magic Transform</span>
+</button><script>
+(function() {
+  const btn = document.getElementById('magic-btn');
+  if (!btn) return;
+
+  btn.addEventListener('click', (e) => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    for (let i = 0; i < 12; i++) {
+      const particle = document.createElement('span');
+      particle.className = 'material-symbols-outlined absolute pointer-events-none text-primary z-50';
+      particle.style.fontVariationSettings = "'FILL' 1";
+      particle.style.fontSize = '14px';
+      particle.textContent = 'star';
+      particle.style.left = x + 'px';
+      particle.style.top = y + 'px';
+      
+      const angle = (Math.PI * 2 / 12) * i;
+      const velocity = 50 + Math.random() * 50;
+      const tx = Math.cos(angle) * velocity;
+      const ty = Math.sin(angle) * velocity;
+
+      btn.appendChild(particle);
+
+      const animation = particle.animate([
+        { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+        { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
+      ], {
+        duration: 800,
+        easing: 'cubic-bezier(0, .9, .57, 1)'
+      });
+
+      animation.onfinish = () => particle.remove();
+    }
+  });
+})();
+</script>
+</div>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container/60 dark:bg-surface-container/60 backdrop-blur-2xl border-t border-white/5 shadow-[0_-4px_24px_rgba(0,0,0,0.4)]">
+<div class="flex justify-around items-center h-20 px-4 pb-safe w-full max-w-md mx-auto">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-primary-fixed transition-transform active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-[10px] mt-1">Home</span>
+</a>
+<!-- Create (Active) -->
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary drop-shadow-[0_0_8px_rgba(212,175,55,0.4)] transition-transform active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">magic_button</span>
+<span class="font-label-caps text-[10px] mt-1">Create</span>
+</a>
+<!-- Gallery -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-primary-fixed transition-transform active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-label-caps text-[10px] mt-1">Gallery</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-primary-fixed transition-transform active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-[10px] mt-1">Profile</span>
+</a>
+</div>
+</nav>
+<script>
+        // Web Audio API Sound System
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playMysticSound(type) {
+            initAudio();
+            const now = audioCtx.currentTime;
+            
+            if (type === 'magic') {
+                // Magical resonant chime
+                [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.value = freq;
+                    
+                    gain.gain.setValueAtTime(0, now);
+                    gain.gain.linearRampToValueAtTime(0.1, now + 0.1 + i*0.05);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 2);
+                    
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 2);
+                });
+            } else if (type === 'soft') {
+                // Subtle ping
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(1200, now);
+                osc.frequency.exponentialRampToValueAtTime(600, now + 0.1);
+                
+                gain.gain.setValueAtTime(0, now);
+                gain.gain.linearRampToValueAtTime(0.05, now + 0.02);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now);
+                osc.stop(now + 0.3);
+            }
+        }
+
+        // Simple Interaction Logic
+        const magicBtn = document.getElementById('magic-btn');
+        const dropZone = document.getElementById('drop-zone');
+        
+        magicBtn.addEventListener('click', () => {
+            magicBtn.innerHTML = `
+                <span class="material-symbols-outlined animate-spin">sync</span>
+                <span class="font-label-caps text-sm tracking-widest uppercase font-bold">Channelling Energy...</span>
+            `;
+            magicBtn.style.opacity = '0.8';
+            
+            setTimeout(() => {
+                magicBtn.innerHTML = `
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">magic_button</span>
+                    <span class="font-label-caps text-sm tracking-widest uppercase font-bold">Magic Transform</span>
+                `;
+                magicBtn.style.opacity = '1';
+            }, 3000);
+        });
+
+        dropZone.addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    dropZone.querySelector('p:first-of-type').textContent = file.name;
+                    dropZone.classList.add('border-primary/60');
+                    dropZone.querySelector('.material-symbols-outlined').textContent = 'check_circle';
+                    dropZone.querySelector('.material-symbols-outlined').classList.add('text-secondary-fixed-dim');
+                }
+            };
+            input.click();
+        });
+
+        // Hover effect for background orb tracking
+        document.addEventListener('mousemove', (e) => {
+            const orb = document.querySelector('.bg-orb:nth-child(2)');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            orb.style.transform = `translate(${x * 50}px, ${y * 50}px)`;
+        });
+    </script>
+</body></html>

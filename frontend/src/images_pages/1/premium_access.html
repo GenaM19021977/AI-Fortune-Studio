@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Premium Subscription</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#fbabff",
+                        "on-secondary-fixed-variant": "#7c008e",
+                        "background": "#0b1326",
+                        "secondary-fixed-dim": "#fbabff",
+                        "surface-dim": "#0b1326",
+                        "inverse-primary": "#6d3bd7",
+                        "inverse-on-surface": "#283044",
+                        "surface-container-highest": "#2d3449",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#e9ddff",
+                        "tertiary": "#89ceff",
+                        "on-secondary-fixed": "#36003e",
+                        "primary-fixed-dim": "#d0bcff",
+                        "surface-container-low": "#131b2e",
+                        "on-tertiary": "#00344d",
+                        "primary-container": "#a078ff",
+                        "surface-variant": "#2d3449",
+                        "on-tertiary-fixed": "#001e2f",
+                        "surface-tint": "#d0bcff",
+                        "on-primary-container": "#340080",
+                        "tertiary-fixed-dim": "#89ceff",
+                        "surface-bright": "#31394d",
+                        "surface-container-lowest": "#060e20",
+                        "on-background": "#dae2fd",
+                        "outline": "#958ea0",
+                        "surface-container-high": "#222a3d",
+                        "on-surface-variant": "#cbc3d7",
+                        "on-tertiary-container": "#002d43",
+                        "on-primary": "#3c0091",
+                        "error-container": "#93000a",
+                        "tertiary-container": "#009ada",
+                        "on-primary-fixed": "#23005c",
+                        "surface-container": "#171f33",
+                        "on-error": "#690005",
+                        "on-secondary-container": "#ffd8fd",
+                        "secondary-container": "#ae05c6",
+                        "primary": "#d0bcff",
+                        "outline-variant": "#494454",
+                        "on-surface": "#dae2fd",
+                        "tertiary-fixed": "#c9e6ff",
+                        "on-tertiary-fixed-variant": "#004c6e",
+                        "on-secondary": "#580065",
+                        "inverse-surface": "#dae2fd",
+                        "on-primary-fixed-variant": "#5516be",
+                        "secondary-fixed": "#ffd6fd",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#0b1326"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-page": "1.25rem",
+                        "stack-sm": "0.5rem",
+                        "stack-lg": "1.5rem",
+                        "stack-md": "1rem",
+                        "gutter-grid": "1rem",
+                        "stack-xl": "2.5rem"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter", "sans-serif"],
+                        "headline-md": ["Inter", "sans-serif"],
+                        "headline-lg-mobile": ["Inter", "sans-serif"],
+                        "body-sm": ["Inter", "sans-serif"],
+                        "headline-lg": ["Inter", "sans-serif"],
+                        "label-caps": ["Geist", "monospace"],
+                        "mono-label": ["Geist", "monospace"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "mono-label": ["13px", { "lineHeight": "18px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ambient-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        .orb-1 {
+            top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, var(--tw-colors-primary-container) 0%, transparent 70%);
+        }
+        .orb-2 {
+            bottom: 20%; right: -20%; width: 60vw; height: 60vw; background: radial-gradient(circle, var(--tw-colors-secondary-container) 0%, transparent 70%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .premium-glow {
+            box-shadow: 0 0 30px rgba(251, 171, 255, 0.4);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen font-body-lg overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<div class="ambient-orb orb-1"></div>
+<div class="ambient-orb orb-2"></div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
+<div class="flex items-center justify-between px-margin-page h-16 w-full">
+<div class="flex items-center gap-stack-sm hover:opacity-80 transition-opacity active:scale-95 transition-transform cursor-pointer">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-high border border-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<span class="font-headline-lg-mobile text-headline-lg-mobile bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">AI Fortune Studio</span>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center glass-card hover:opacity-80 transition-opacity active:scale-95 transition-transform text-primary dark:text-primary">
+<span class="material-symbols-outlined">auto_awesome</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-24 pb-32 px-margin-page flex flex-col gap-stack-xl max-w-4xl mx-auto">
+<div class="text-center flex flex-col gap-stack-sm mt-stack-md">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Unlock the Ultimate Power</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mx-auto">Elevate your digital mysticism experience with unlimited creations, pristine HD quality, and exclusive visionary styles.</p>
+</div>
+<!-- Comparison Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter-grid">
+<!-- Free Tier -->
+<div class="glass-card rounded-xl p-stack-lg flex flex-col gap-stack-md opacity-80 scale-95 md:scale-100 transition-transform">
+<div class="flex items-center justify-between border-b border-white/5 pb-stack-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface-variant">Initiate</h2>
+<span class="font-headline-md text-headline-md text-on-surface-variant">Free</span>
+</div>
+<ul class="flex flex-col gap-stack-sm flex-grow">
+<li class="flex items-start gap-stack-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-outline mt-1" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-sm text-body-sm">15 Generations per day</span>
+</li>
+<li class="flex items-start gap-stack-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-outline mt-1" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-sm text-body-sm">Standard resolution output</span>
+</li>
+<li class="flex items-start gap-stack-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-outline mt-1" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-sm text-body-sm">Basic mystical styles</span>
+</li>
+<li class="flex items-start gap-stack-sm text-on-surface-variant opacity-50">
+<span class="material-symbols-outlined text-outline mt-1">cancel</span>
+<span class="font-body-sm text-body-sm">Slow queue times</span>
+</li>
+</ul>
+</div>
+<!-- Premium Tier -->
+<div class="glass-card rounded-xl p-stack-lg flex flex-col gap-stack-md premium-glow relative overflow-hidden border border-secondary/30">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary-container/20 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none"></div>
+<div class="flex items-center justify-between border-b border-white/10 pb-stack-sm">
+<div class="flex items-center gap-stack-sm">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Visionary</h2>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface">$9.99<span class="font-body-sm text-body-sm text-on-surface-variant">/mo</span></span>
+</div>
+<ul class="flex flex-col gap-stack-sm flex-grow relative z-10">
+<li class="flex items-start gap-stack-sm text-on-surface">
+<span class="material-symbols-outlined text-secondary mt-1" style="font-variation-settings: 'FILL' 1;">all_inclusive</span>
+<span class="font-body-sm text-body-sm"><strong>Unlimited</strong> generations</span>
+</li>
+<li class="flex items-start gap-stack-sm text-on-surface">
+<span class="material-symbols-outlined text-secondary mt-1" style="font-variation-settings: 'FILL' 1;">high_quality</span>
+<span class="font-body-sm text-body-sm"><strong>HD</strong> Images &amp; Video exports</span>
+</li>
+<li class="flex items-start gap-stack-sm text-on-surface">
+<span class="material-symbols-outlined text-secondary mt-1" style="font-variation-settings: 'FILL' 1;">speed</span>
+<span class="font-body-sm text-body-sm"><strong>Priority</strong> generation queue</span>
+</li>
+<li class="flex items-start gap-stack-sm text-on-surface">
+<span class="material-symbols-outlined text-secondary mt-1" style="font-variation-settings: 'FILL' 1;">palette</span>
+<span class="font-body-sm text-body-sm">Access to <strong>Exclusive Styles</strong></span>
+</li>
+<li class="flex items-start gap-stack-sm text-on-surface">
+<span class="material-symbols-outlined text-secondary mt-1" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="font-body-sm text-body-sm">Commercial usage rights</span>
+</li>
+</ul>
+<button class="w-full mt-stack-md py-3 px-6 rounded-full bg-gradient-to-r from-primary-container to-secondary-container text-on-primary-container font-headline-md text-headline-md shadow-[0_0_20px_rgba(208,188,255,0.3)] hover:opacity-90 active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 relative z-10">
+                    Get Premium
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container/60 dark:bg-surface-container/60 backdrop-blur-2xl border-t border-white/10 shadow-[0_-8px_32px_0_rgba(174,5,198,0.15)] md:hidden">
+<div class="flex justify-around items-center w-full pt-2 pb-safe px-2 pb-4">
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200 p-2 w-16" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200 p-2 w-16" href="#">
+<span class="material-symbols-outlined mb-1">add_circle</span>
+<span class="font-label-caps text-label-caps">Create</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200 p-2 w-16" href="#">
+<span class="material-symbols-outlined mb-1">auto_stories</span>
+<span class="font-label-caps text-label-caps">Gallery</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-fixed shadow-[0_0_15px_rgba(251,171,255,0.4)] hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200 p-2 w-16 rounded-lg bg-white/5" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>AI Fortune Studio - Music</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Space+Grotesk:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#574500",
+                    "on-error-container": "#ffdad6",
+                    "surface-container": "#1f1e2a",
+                    "surface-container-lowest": "#0d0d18",
+                    "surface-tint": "#e9c349",
+                    "on-primary-container": "#554300",
+                    "inverse-on-surface": "#302f3b",
+                    "secondary-container": "#00eefc",
+                    "primary": "#f2ca50",
+                    "on-primary-fixed": "#241a00",
+                    "secondary": "#d3fbff",
+                    "surface-variant": "#343440",
+                    "primary-fixed-dim": "#e9c349",
+                    "on-surface-variant": "#d0c5af",
+                    "surface-container-low": "#1b1a26",
+                    "primary-fixed": "#ffe088",
+                    "on-primary": "#3c2f00",
+                    "background": "#12121d",
+                    "surface": "#12121d",
+                    "on-surface": "#e3e0f1",
+                    "on-secondary-fixed-variant": "#004f54",
+                    "on-background": "#e3e0f1",
+                    "on-tertiary-container": "#6500b1",
+                    "error-container": "#93000a",
+                    "on-error": "#690005",
+                    "on-secondary": "#00363a",
+                    "tertiary-container": "#ce9eff",
+                    "surface-container-high": "#292935",
+                    "surface-dim": "#12121d",
+                    "inverse-surface": "#e3e0f1",
+                    "secondary-fixed-dim": "#00dbe9",
+                    "outline": "#99907c",
+                    "tertiary": "#e1c2ff",
+                    "secondary-fixed": "#7df4ff",
+                    "tertiary-fixed": "#efdbff",
+                    "outline-variant": "#4d4635",
+                    "on-tertiary": "#480081",
+                    "primary-container": "#d4af37",
+                    "on-secondary-fixed": "#002022",
+                    "tertiary-fixed-dim": "#dcb8ff",
+                    "inverse-primary": "#735c00",
+                    "surface-container-highest": "#343440",
+                    "on-tertiary-fixed-variant": "#6700b5",
+                    "on-secondary-container": "#00686f",
+                    "surface-bright": "#383845",
+                    "error": "#ffb4ab",
+                    "on-tertiary-fixed": "#2c0051"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "card-padding": "24px",
+                    "stack-md": "16px",
+                    "safe-area": "20px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Inter"],
+                    "label-caps": ["Space Grotesk"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #12121d;
+            color: #e3e0f1;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel-featured {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            border: 1px solid #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+        }
+        .neon-glow {
+            filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.4));
+        }
+        .golden-glow {
+            filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.5));
+        }
+        .wave-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 3px;
+            height: 40px;
+        }
+        .wave-bar {
+            width: 3px;
+            background: #f2ca50;
+            border-radius: 2px;
+            animation: wave-anim 1.2s ease-in-out infinite;
+        }
+        @keyframes wave-anim {
+            0%, 100% { height: 8px; opacity: 0.5; }
+            50% { height: 100%; opacity: 1; }
+        }
+        .lyrics-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .lyrics-scroll::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+        }
+        .moving-orb {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md antialiased">
+<!-- Atmospheric Background Elements -->
+<div class="moving-orb bg-[#1A0B2E] top-0 left-[-10%] animate-pulse"></div>
+<div class="moving-orb bg-[#00F0FF] bottom-20 right-[-10%] animate-pulse" style="animation-delay: 2s;"></div>
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10">
+<div class="flex items-center px-5 h-16 w-full max-w-md mx-auto justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary font-headline-md text-headline-md">auto_awesome</span>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary tracking-tight">AI Fortune Studio</h1>
+</div>
+<button class="text-on-surface-variant hover:opacity-80 transition-all duration-300">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<main class="pt-20 pb-28 px-5 w-full max-w-md mx-auto flex flex-col gap-stack-lg">
+<!-- Song Identity Section -->
+<section class="flex flex-col items-center text-center gap-stack-sm mt-4">
+<div class="relative group">
+<div class="absolute inset-0 bg-primary/20 blur-2xl rounded-full opacity-50 group-hover:opacity-80 transition-opacity"></div>
+<div class="w-48 h-48 rounded-2xl glass-panel-featured overflow-hidden relative z-10">
+<img class="w-full h-full object-cover" data-alt="A mystical digital art masterpiece showing a futuristic vinyl record glowing with golden light and cyan binary codes, floating in a deep purple nebula space. High-end techno-mysticism aesthetic with sharp reflections and atmospheric dust particles." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDspioAirD2Qf9WzN8keugqQPZb2JjCc3JvRkZxW9aEZrgFVP5LnQDoG-oD0EZ_Ecyw6-wCF-Bp1AvX1lls0viqiBJzsRvFzFk8OO6D3hFtV2vTHDUV-NOvgNw1WUc18RNMNtcz39NDT4teqqMgUJ0JooAY7ySgx0jQeucP1LI1TgYhPe2c9KZKB2O8DBKA-5a20afNMOzbKaoh0Q_d9fJfzYcZip2wFvOaNGB26O1wT9JDKL1dMyFsIlIbrydvjZDLEZAoxlcpZE_W"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+</div>
+</div>
+<div class="mt-4">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Celestial Echoes</h2>
+<p class="font-label-caps text-label-caps text-primary tracking-[0.2em] mt-1">PRODUCED BY AI ORACLE</p>
+</div>
+</section>
+<!-- Lyrics Display -->
+<section class="glass-panel rounded-3xl p-card-padding h-64 flex flex-col gap-4">
+<div class="flex items-center justify-between border-b border-white/5 pb-3">
+<span class="font-label-caps text-label-caps text-on-surface-variant">SYNCHRONIZED LYRICS</span>
+<span class="material-symbols-outlined text-primary text-sm">auto_fix_high</span>
+</div>
+<div class="lyrics-scroll overflow-y-auto pr-2 space-y-4">
+<p class="text-on-surface-variant/40 transition-colors">In the silence of the digital void...</p>
+<p class="text-primary font-semibold text-lg leading-relaxed scale-105 origin-left transition-all">We find the sparks of ancient light</p>
+<p class="text-on-surface-variant transition-colors">Mapping constellations in the code</p>
+<p class="text-on-surface-variant/60 transition-colors">Through the circuits of the night.</p>
+<p class="text-on-surface-variant/40 transition-colors">A symphony of binary dreams...</p>
+</div>
+</section>
+<!-- Audio Player & Visualizer -->
+<section class="glass-panel-featured rounded-[2rem] p-card-padding flex flex-col gap-6">
+<!-- Waveform Animation -->
+<div class="wave-container">
+<div class="wave-bar" style="animation-delay: 0.1s; height: 15px;"></div>
+<div class="wave-bar" style="animation-delay: 0.3s; height: 35px;"></div>
+<div class="wave-bar" style="animation-delay: 0.5s; height: 25px;"></div>
+<div class="wave-bar" style="animation-delay: 0.2s; height: 40px;"></div>
+<div class="wave-bar" style="animation-delay: 0.4s; height: 20px;"></div>
+<div class="wave-bar" style="animation-delay: 0.6s; height: 30px;"></div>
+<div class="wave-bar" style="animation-delay: 0.8s; height: 10px;"></div>
+<div class="wave-bar" style="animation-delay: 0.1s; height: 35px;"></div>
+<div class="wave-bar" style="animation-delay: 0.3s; height: 25px;"></div>
+<div class="wave-bar" style="animation-delay: 0.5s; height: 40px;"></div>
+<div class="wave-bar" style="animation-delay: 0.7s; height: 15px;"></div>
+</div>
+<!-- Progress Bar -->
+<div class="flex flex-col gap-2">
+<div class="h-1 w-full bg-white/10 rounded-full overflow-hidden">
+<div class="h-full w-1/3 bg-primary golden-glow transition-all duration-1000"></div>
+</div>
+<div class="flex justify-between font-label-caps text-label-caps text-on-surface-variant/60">
+<span>1:12</span>
+<span>3:45</span>
+</div>
+</div>
+<!-- Controls -->
+<div class="flex items-center justify-between px-2">
+<button class="text-on-surface-variant/80 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">shuffle</span>
+</button>
+<div class="flex items-center gap-8">
+<button class="text-on-surface hover:text-primary transition-all active:scale-90">
+<span class="material-symbols-outlined text-4xl">skip_previous</span>
+</button>
+<button class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-on-primary golden-glow active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">pause</span>
+</button>
+<button class="text-on-surface hover:text-primary transition-all active:scale-90">
+<span class="material-symbols-outlined text-4xl">skip_next</span>
+</button>
+</div>
+<button class="text-on-surface-variant/80 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">repeat</span>
+</button>
+</div>
+</section>
+<!-- Studio Actions Grid -->
+<div class="grid grid-cols-3 gap-3">
+<button class="glass-panel py-4 rounded-2xl flex flex-col items-center gap-2 hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-secondary">mic_external_on</span>
+<span class="font-label-caps text-label-caps">Karaoke</span>
+</button>
+<button class="glass-panel py-4 rounded-2xl flex flex-col items-center gap-2 hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-secondary">graphic_eq</span>
+<span class="font-label-caps text-label-caps">Instru</span>
+</button>
+<button class="glass-panel py-4 rounded-2xl flex flex-col items-center gap-2 hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-secondary">rebase_edit</span>
+<span class="font-label-caps text-label-caps">Remix</span>
+</button>
+</div>
+<!-- Export Buttons -->
+<div class="flex gap-4 mb-4">
+<button class="flex-1 glass-panel py-4 rounded-2xl flex items-center justify-center gap-2 font-headline-md text-body-md text-on-surface hover:border-primary/50 transition-all">
+<span class="material-symbols-outlined">download</span>
+<span>Download</span>
+</button>
+<button class="flex-1 glass-panel py-4 rounded-2xl flex items-center justify-center gap-2 font-headline-md text-body-md text-on-surface hover:border-primary/50 transition-all">
+<span class="material-symbols-outlined">share</span>
+<span>Share</span>
+</button>
+</div>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface-container/60 dark:bg-surface-container/60 backdrop-blur-2xl rounded-t-xl border-t border-white/5 shadow-[0_-4px_24px_rgba(0,0,0,0.4)]">
+<div class="flex justify-around items-center h-20 px-4 pb-safe w-full max-w-md mx-auto">
+<div class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-primary-fixed active:scale-90 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary dark:text-primary drop-shadow-[0_0_8px_rgba(212,175,55,0.4)] active:scale-90 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">magic_button</span>
+<span class="font-label-caps text-label-caps">Create</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-primary-fixed active:scale-90 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-label-caps text-label-caps">Gallery</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-primary-fixed active:scale-90 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</div>
+</div>
+</nav>
+<script>
+        // Simple interactive micro-interactions
+        document.querySelectorAll('.glass-panel').forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('touchend', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+
+        // Toggle play/pause icon logic (purely visual for this prototype)
+        const playBtn = document.querySelector('.bg-primary span');
+        let isPlaying = true;
+        playBtn.parentElement.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            playBtn.innerText = isPlaying ? 'pause' : 'play_arrow';
+            
+            const bars = document.querySelectorAll('.wave-bar');
+            bars.forEach(bar => {
+                bar.style.animationPlayState = isPlaying ? 'running' : 'paused';
+            });
+        });
+    </script>
+</body></html>

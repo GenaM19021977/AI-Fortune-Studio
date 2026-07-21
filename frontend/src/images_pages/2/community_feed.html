@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Fortune Studio - Community</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&amp;family=Hanken+Grotesk:wght@400;500;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#0e0e13",
+                        "outline": "#9d8ba0",
+                        "surface-tint": "#ecb2ff",
+                        "on-secondary-fixed": "#002022",
+                        "error-container": "#93000a",
+                        "primary": "#ecb2ff",
+                        "on-secondary-container": "#00686f",
+                        "surface-container-highest": "#35343a",
+                        "primary-fixed": "#f8d8ff",
+                        "surface-container-high": "#2a292f",
+                        "inverse-on-surface": "#303036",
+                        "on-primary-fixed-variant": "#74009f",
+                        "tertiary-container": "#e7006e",
+                        "surface-dim": "#131318",
+                        "on-surface": "#e4e1e9",
+                        "on-primary": "#520071",
+                        "on-error": "#690005",
+                        "on-surface-variant": "#d4c0d7",
+                        "secondary-fixed": "#7df4ff",
+                        "on-error-container": "#ffdad6",
+                        "background": "#131318",
+                        "secondary-fixed-dim": "#00dbe9",
+                        "on-secondary": "#00363a",
+                        "surface-variant": "#35343a",
+                        "primary-container": "#bd00ff",
+                        "surface-bright": "#39383e",
+                        "on-secondary-fixed-variant": "#004f54",
+                        "on-background": "#e4e1e9",
+                        "secondary": "#d3fbff",
+                        "on-tertiary-fixed": "#3f0019",
+                        "on-primary-fixed": "#320047",
+                        "tertiary-fixed": "#ffd9e0",
+                        "on-tertiary-container": "#ffffff",
+                        "inverse-primary": "#9900cf",
+                        "on-tertiary-fixed-variant": "#8f0041",
+                        "on-primary-container": "#ffffff",
+                        "inverse-surface": "#e4e1e9",
+                        "secondary-container": "#00eefc",
+                        "surface-container": "#1f1f25",
+                        "on-tertiary": "#66002c",
+                        "outline-variant": "#514255",
+                        "surface": "#131318",
+                        "primary-fixed-dim": "#ecb2ff",
+                        "surface-container-low": "#1b1b20",
+                        "tertiary-fixed-dim": "#ffb1c3",
+                        "tertiary": "#ffb1c3",
+                        "error": "#ffb4ab"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "container-padding": "20px",
+                        "stack-gap": "16px",
+                        "glass-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "label-mono": ["JetBrains Mono"],
+                        "headline-lg": ["Sora"],
+                        "display-xl": ["Sora"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Sora"]
+                    },
+                    "fontSize": {
+                        "label-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-xl": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "34px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0A0A0F;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(189, 0, 255, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(0, 238, 252, 0.08), transparent 25%);
+            background-attachment: fixed;
+            color: #e4e1e9;
+        }
+        
+        .glass-panel {
+            background: rgba(19, 19, 24, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.2s ease;
+        }
+        
+        .glass-btn:active {
+            transform: scale(0.96);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #ecb2ff 0%, #00eefc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Hide scrollbar for horizontal scroll areas */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md min-h-screen pb-24 relative overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 backdrop-blur-md border-b border-white/10 shadow-[0_0_20px_rgba(189,0,255,0.1)] bg-transparent">
+<div class="flex justify-between items-center px-container-padding py-4 w-full">
+<div class="flex items-center gap-3">
+<img alt="User Avatar" class="w-10 h-10 rounded-full border border-white/20 object-cover" data-alt="A small, stylized neon avatar showing a cybernetic eye glowing in purple and cyan hues, highly detailed, perfect circle crop, dark background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuApbHZjj4vsxxfG3DoAtKushM40HXh7H8RbPcQQyoeprIjJuqOFAv3etFX13eKTAQBet931V7urokZ0D6W-7Comr-OUsrakkLTzzG-JOTAZ9WWLhIOJJpM_vf0vjm49vzoihX0QtSeBxum1G5JGLd8Lje4O3AHvEQXf42MlkSwTlD88goVbLH_v5C0uV7IImbhQb0mom_6q3wshDRVgejVvNrpQVJrJnPgah3tO9BvHMm1fJdowcEAas-zosPB7r-CE0DFkm0p67LY"/>
+</div>
+<div class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary active:scale-95 transition-transform hover:opacity-80">
+                AI Fortune Studio
+            </div>
+<button class="text-primary hover:opacity-80 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-size: 28px;">military_tech</span>
+</button>
+</div>
+</header>
+<main class="pt-[90px] px-container-padding max-w-2xl mx-auto space-y-stack-gap">
+<!-- Trending Challenges Section -->
+<section class="mt-4">
+<div class="flex justify-between items-end mb-4">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Trending</h2>
+<a class="text-primary text-sm font-medium hover:opacity-80" href="#">View All</a>
+</div>
+<div class="flex gap-4 overflow-x-auto no-scrollbar pb-4 snap-x">
+<!-- Challenge Card 1 -->
+<div class="glass-panel rounded-xl p-4 min-w-[200px] snap-center flex-shrink-0 relative overflow-hidden group cursor-pointer">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center gap-2 mb-2 relative z-10">
+<span class="material-symbols-outlined text-secondary-container" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-label-mono text-label-mono text-secondary-container uppercase">Challenge</span>
+</div>
+<h3 class="font-bold text-on-surface relative z-10">Cyberpunk Pets</h3>
+<p class="text-sm text-on-surface-variant mt-1 relative z-10">24k participants</p>
+</div>
+<!-- Challenge Card 2 -->
+<div class="glass-panel rounded-xl p-4 min-w-[200px] snap-center flex-shrink-0 relative overflow-hidden group cursor-pointer">
+<div class="absolute inset-0 bg-gradient-to-br from-tertiary-container/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center gap-2 mb-2 relative z-10">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-mono text-label-mono text-tertiary uppercase">Weekly</span>
+</div>
+<h3 class="font-bold text-on-surface relative z-10">Neon Landscapes</h3>
+<p class="text-sm text-on-surface-variant mt-1 relative z-10">18k participants</p>
+</div>
+</div>
+</section>
+<!-- Feed Stream -->
+<section class="space-y-6 mt-8">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-6">Best of the Week</h2>
+<!-- Feed Item 1 (Image) -->
+<article class="glass-panel rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(189,0,255,0.05)]">
+<!-- Header -->
+<div class="p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full border border-white/10 object-cover" data-alt="A portrait of a futuristic artist avatar, neon pink hair, wearing augmented reality glasses reflecting a cityscape, high quality digital art style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJdDMMMIWdaZgwoSLA4QwUcT6NVeoJTXyat_1dmrIxby98MYn_xTO-fgeVNzll75hdaHv8fl8RER0p8mc30YKcEvCAambiT4gwanwMZDl624KGPUQFTWzxmznaqdKvTmWmk_CFvqNMDhZS7riYX4UtJwc7T4Oo8lY2idQ72ySSqKmt29ir3h65UTBtM-UjaN5Sb8cC-aL9kz6TvaQusDzRC_mUmddqy9eZArwCB9v-dFuoVwcrKyf8RO1xVn5m01cFi5vnMO9jpEw"/>
+<div>
+<div class="flex items-center gap-1">
+<span class="font-bold text-on-surface">@neon_dreamer</span>
+<span class="material-symbols-outlined text-secondary-container text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<span class="text-xs text-on-surface-variant">2 hours ago</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<!-- Content -->
+<div class="relative w-full aspect-square">
+<img class="w-full h-full object-cover" data-alt="A highly detailed, ultra-realistic digital painting of a futuristic metropolis floating in the clouds at sunset. Vivid colors, deep magentas and bright cyans, volumetric lighting, flying vehicles, cyberpunk aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvNtm6I5nr8-4y_ACTNGJ1d0qK6pJ3vnqM46gTnn2QSKY9oQhsXMKGMjuv5MNYXSE87kpYEOp_Rymwb4009XA9I4dnD1xtQUxP_SkMg-B-dA2vA5lBR-w4A8R8Wp5puDLr0T2HWbLiGGbYRslNK8Sxq3La0VkP46tWm-t0Xj82m8F8FIVnFdxLIaU90prRHybpuwk-TpVoFDwlt9_rDvLYLagRJ37tC-s3QyIl64zXBUHB7lnVwmDp4HyyyeeyHsaAGH2RFUKZlZQ"/>
+<!-- Overlay Badge -->
+<div class="absolute top-4 right-4 glass-btn rounded-full px-3 py-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary">auto_awesome</span>
+<span class="font-label-mono text-label-mono text-on-surface text-[10px]">Midjourney v6</span>
+</div>
+</div>
+<!-- Footer/Actions -->
+<div class="p-4">
+<div class="flex items-center justify-between mb-3">
+<div class="flex gap-4">
+<button class="flex items-center gap-1 text-on-surface hover:text-tertiary transition-colors active:scale-90">
+<span class="material-symbols-outlined">favorite</span>
+<span class="text-sm">12.4k</span>
+</button>
+<button class="flex items-center gap-1 text-on-surface hover:text-primary transition-colors active:scale-90">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-sm">842</span>
+</button>
+<button class="flex items-center gap-1 text-on-surface hover:text-secondary-container transition-colors active:scale-90">
+<span class="material-symbols-outlined">sync</span>
+<span class="text-sm">Remix</span>
+</button>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+</div>
+<p class="text-on-surface text-sm leading-relaxed">
+<span class="font-bold mr-2">@neon_dreamer</span>
+                        Prompt: "A floating city in the clouds during a vibrant synthwave sunset, high detail, volumetric lighting, unreal engine 5 render, trending on artstation"
+                    </p>
+</div>
+</article>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-4 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] rounded-full backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.4)] bg-surface-container/60 z-50 md:hidden">
+<div class="flex justify-around items-center h-16 px-4">
+<!-- Home/Grid -->
+<button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">grid_view</span>
+</button>
+<!-- Generate/Create -->
+<button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">auto_awesome</span>
+</button>
+<!-- Explore (Active) -->
+<button class="flex flex-col items-center justify-center text-primary drop-shadow-[0_0_8px_rgba(236,178,255,0.8)] after:content-[''] after:w-1 after:h-1 after:bg-primary after:rounded-full after:mt-1 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+</button>
+<!-- Premium/Badges -->
+<button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">workspace_premium</span>
+</button>
+<!-- Profile -->
+<button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</nav>
+</body></html>

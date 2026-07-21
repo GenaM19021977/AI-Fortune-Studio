@@ -1,0 +1,397 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <title>AI Video Studio</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+          tailwind.config = {
+            darkMode: "class",
+            theme: {
+              extend: {
+                "colors": {
+                        "on-primary-fixed-variant": "#574500",
+                        "on-error-container": "#ffdad6",
+                        "surface-container": "#1f1e2a",
+                        "surface-container-lowest": "#0d0d18",
+                        "surface-tint": "#e9c349",
+                        "on-primary-container": "#554300",
+                        "inverse-on-surface": "#302f3b",
+                        "secondary-container": "#00eefc",
+                        "primary": "#f2ca50",
+                        "on-primary-fixed": "#241a00",
+                        "secondary": "#d3fbff",
+                        "surface-variant": "#343440",
+                        "primary-fixed-dim": "#e9c349",
+                        "on-surface-variant": "#d0c5af",
+                        "surface-container-low": "#1b1a26",
+                        "primary-fixed": "#ffe088",
+                        "on-primary": "#3c2f00",
+                        "background": "#12121d",
+                        "surface": "#12121d",
+                        "on-surface": "#e3e0f1",
+                        "on-secondary-fixed-variant": "#004f54",
+                        "on-background": "#e3e0f1",
+                        "on-tertiary-container": "#6500b1",
+                        "error-container": "#93000a",
+                        "on-error": "#690005",
+                        "on-secondary": "#00363a",
+                        "tertiary-container": "#ce9eff",
+                        "surface-container-high": "#292935",
+                        "surface-dim": "#12121d",
+                        "inverse-surface": "#e3e0f1",
+                        "secondary-fixed-dim": "#00dbe9",
+                        "outline": "#99907c",
+                        "tertiary": "#e1c2ff",
+                        "secondary-fixed": "#7df4ff",
+                        "tertiary-fixed": "#efdbff",
+                        "outline-variant": "#4d4635",
+                        "on-tertiary": "#480081",
+                        "primary-container": "#d4af37",
+                        "on-secondary-fixed": "#002022",
+                        "tertiary-fixed-dim": "#dcb8ff",
+                        "inverse-primary": "#735c00",
+                        "surface-container-highest": "#343440",
+                        "on-tertiary-fixed-variant": "#6700b5",
+                        "on-secondary-container": "#00686f",
+                        "surface-bright": "#383845",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed": "#2c0051"
+                },
+                "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                },
+                "spacing": {
+                        "card-padding": "24px",
+                        "stack-md": "16px",
+                        "safe-area": "20px",
+                        "stack-sm": "8px",
+                        "stack-lg": "32px",
+                        "gutter": "16px"
+                },
+                "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "label-caps": ["Space Grotesk"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                },
+                "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+                }
+              },
+            },
+          }
+        </script>
+    <style>
+            body {
+                background-color: #12121d;
+                color: #e3e0f1;
+                overflow-x: hidden;
+                -webkit-tap-highlight-color: transparent;
+            }
+    
+            .glass-card {
+                background: rgba(255, 255, 255, 0.04);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 24px;
+            }
+    
+            .premium-border {
+                border: 1px solid #d4af37;
+                box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            }
+    
+            .ai-pulse {
+                position: relative;
+            }
+    
+            .ai-pulse::after {
+                content: '';
+                position: absolute;
+                inset: -2px;
+                border-radius: inherit;
+                border: 1px solid #00f0ff;
+                opacity: 0;
+                animation: pulse-glow 2s infinite;
+            }
+    
+            @keyframes pulse-glow {
+                0% { transform: scale(1); opacity: 0.8; }
+                100% { transform: scale(1.02); opacity: 0; }
+            }
+    
+            .timeline-track {
+                background: rgba(255, 255, 255, 0.05);
+                height: 4px;
+                border-radius: 2px;
+                overflow: hidden;
+            }
+    
+            .timeline-progress {
+                background: linear-gradient(90deg, #d4af37, #f2ca50);
+                height: 100%;
+                width: 65%;
+                box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            }
+    
+            .orb {
+                filter: blur(80px);
+                z-index: -1;
+                position: fixed;
+            }
+    
+            ::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
+    </head>
+    <body class="dark font-body-md text-body-md antialiased">
+    <!-- Atmospheric Background -->
+    <div class="orb w-[300px] h-[300px] bg-tertiary/20 top-[-50px] right-[-50px] rounded-full"></div>
+    <div class="orb w-[400px] h-[400px] bg-secondary-container/10 bottom-[-100px] left-[-100px] rounded-full"></div>
+    <!-- Top App Bar -->
+    <header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10 fixed top-0 w-full z-50">
+    <div class="flex items-center px-5 h-16 w-full max-w-md mx-auto justify-between">
+    <div class="flex items-center gap-3">
+    <span class="material-symbols-outlined text-primary font-headline-md text-headline-md" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+    <h1 class="font-headline-md text-headline-md text-primary dark:text-primary tracking-tight">AI Fortune Studio</h1>
+    </div>
+    <button class="hover:opacity-80 transition-all duration-300 ease-in-out text-on-surface-variant">
+    <span class="material-symbols-outlined">settings</span>
+    </button>
+    </div>
+    </header>
+    <main class="pt-20 pb-28 px-5 w-full max-w-md mx-auto space-y-8">
+    <!-- Video Preview Player (9:16) -->
+    <section class="relative aspect-[9/16] w-full glass-card overflow-hidden ai-pulse premium-border">
+    <div class="absolute inset-0 bg-black/40">
+    <img class="w-full h-full object-cover" data-alt="A cinematic 9:16 vertical video preview showing a mystical, futuristic digital nebula with swirling gold dust and ethereal violet light rays. The visual style is high-end techno-mysticism, featuring translucent geometric symbols floating in deep space. Glowing cyan energy pulses through the background, creating a sense of ancient magic meeting advanced artificial intelligence in a dark, atmospheric environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOPJ4-PtCfOXnFzBg-i0C4j89HEjJgzpHqtCGQBShJvmwlvutNXkcagRdnGcHY9S995QNNsu-Bx5XqnhJ6Z8LiJmr-ojqUsUYcMn3vtZWaXPJcokdvixwRFI_K5leNF9w-YqTuWzItE_ixVjzP9q5hC5qX1EVpW_fjXuhfAjDpLBgO9HRBSoMwYWzDeq1jl8KJQUW7pkgbiGIXHc2cftQySmNz-3jOomD2sEdGbB5zbpqnEqkk0EkgNIbrXbcT_c7ZgRiBPWN2VdgV">
+    </div>
+    <!-- Video Overlay UI -->
+    <div class="absolute inset-0 flex flex-col justify-between p-6">
+    <div class="flex justify-between items-start">
+    <div class="glass-card px-3 py-1 text-on-surface/80 flex items-center gap-2 border-white/20">
+    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+    <span class="font-label-caps text-label-caps uppercase">Preview 4K</span>
+    </div>
+    <button class="glass-card w-10 h-10 flex items-center justify-center border-white/20">
+    <span class="material-symbols-outlined text-on-surface">fullscreen</span>
+    </button>
+    </div>
+    <!-- Playback Control Center -->
+    <div class="flex flex-col items-center gap-4">
+    <button class="w-16 h-16 rounded-full bg-primary/20 backdrop-blur-md border border-primary/40 flex items-center justify-center active:scale-95 transition-transform">
+    <span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+    </button>
+    <div class="w-full space-y-2">
+    <div class="timeline-track">
+    <div class="timeline-progress" style="width: 99.2918%;"></div>
+    </div>
+    <div class="flex justify-between font-label-caps text-label-caps text-on-surface-variant/70">
+    <span class="">0:08</span>
+    <span class="">0:15</span>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    <!-- Tool Actions Bento Grid -->
+    <div class="grid grid-cols-2 gap-4">
+    <button class="glass-card p-4 flex flex-col items-center justify-center gap-3 border-primary/20 hover:border-primary/40 transition-colors group">
+    <div class="w-12 h-12 rounded-2xl bg-primary-container/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+    <span class="material-symbols-outlined text-primary">image</span>
+    </div>
+    <span class="font-label-caps text-label-caps uppercase text-on-surface text-center">Animate Photo</span>
+    </button>
+    <button class="glass-card p-4 flex flex-col items-center justify-center gap-3 border-white/10 hover:border-white/20 transition-colors group">
+    <div class="w-12 h-12 rounded-2xl bg-secondary-container/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+    <span class="material-symbols-outlined text-secondary-fixed-dim">style</span>
+    </div>
+    <span class="font-label-caps text-label-caps uppercase text-on-surface text-center">Style Filter</span>
+    </button>
+    </div>
+    <!-- Main Action Section -->
+    <div class="space-y-4">
+    <button class="w-full h-16 bg-gradient-to-r from-primary-container to-primary rounded-2xl flex items-center justify-center gap-3 text-on-primary font-headline-md text-headline-md shadow-[0_8px_32px_rgba(212,175,55,0.3)] active:scale-[0.98] transition-all" id="generate-video-btn">
+    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">movie_filter</span>
+                    Generate Video
+                </button>
+    <div class="flex gap-3">
+    <button class="flex-1 h-12 glass-card flex items-center justify-center gap-2 text-on-surface-variant font-label-caps text-label-caps uppercase hover:bg-white/5 transition-colors">
+    <span class="material-symbols-outlined text-body-lg">download</span>
+                        Download
+                    </button>
+    <button class="flex-1 h-12 glass-card flex items-center justify-center gap-2 text-on-surface-variant font-label-caps text-label-caps uppercase hover:bg-white/5 transition-colors border-secondary-fixed-dim/20">
+    <span class="material-symbols-outlined text-body-lg">send</span>
+                        Telegram
+                    </button>
+    </div>
+    </div>
+    <!-- Progress List -->
+    <section class="glass-card p-stack-md space-y-4">
+    <h3 class="font-label-caps text-label-caps text-on-surface-variant/60 uppercase px-1">Studio Status</h3>
+    <div class="space-y-3">
+    <div class="flex items-center gap-4 bg-surface-container-low p-3 rounded-xl border border-white/5">
+    <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+    <span class="material-symbols-outlined text-primary text-body-lg">memory</span>
+    </div>
+    <div class="flex-1">
+    <p class="text-sm font-medium text-on-surface">Neural Upscaling</p>
+    <div class="w-full bg-white/5 h-1.5 rounded-full mt-2">
+    <div class="bg-primary h-full w-3/4 rounded-full"></div>
+    </div>
+    </div>
+    <span class="text-xs font-mono text-primary">99%</span>
+    </div>
+    <div class="flex items-center gap-4 bg-surface-container-low p-3 rounded-xl border border-white/5 opacity-60">
+    <div class="w-10 h-10 rounded-lg bg-on-surface-variant/10 flex items-center justify-center">
+    <span class="material-symbols-outlined text-on-surface-variant text-body-lg">motion_blur</span>
+    </div>
+    <div class="flex-1">
+    <p class="text-sm font-medium">Temporal Smoothing</p>
+    <div class="w-full bg-white/5 h-1.5 rounded-full mt-2">
+    <div class="bg-white/10 h-full w-0 rounded-full"></div>
+    </div>
+    </div>
+    <span class="text-xs font-mono">Queued</span>
+    </div>
+    </div>
+    </section>
+    </main>
+    <!-- Bottom Navigation Bar -->
+    <nav class="bg-surface-container/60 dark:bg-surface-container/60 backdrop-blur-2xl border-t border-white/5 fixed bottom-0 w-full z-50 rounded-t-xl shadow-[0_-4px_24px_rgba(0,0,0,0.4)]">
+    <div class="flex justify-around items-center h-20 px-4 pb-safe w-full max-w-md mx-auto">
+    <a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 active:scale-90 transition-transform duration-200" href="#">
+    <span class="material-symbols-outlined">home</span>
+    <span class="font-label-caps text-label-caps mt-1">Home</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-primary dark:text-primary drop-shadow-[0_0_8px_rgba(212,175,55,0.4)] active:scale-90 transition-transform duration-200" href="#">
+    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">magic_button</span>
+    <span class="font-label-caps text-label-caps mt-1">Create</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 active:scale-90 transition-transform duration-200" href="#">
+    <span class="material-symbols-outlined">auto_stories</span>
+    <span class="font-label-caps text-label-caps mt-1">Gallery</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 active:scale-90 transition-transform duration-200" href="#">
+    <span class="material-symbols-outlined">person</span>
+    <span class="font-label-caps text-label-caps mt-1">Profile</span>
+    </a>
+    </div>
+    </nav>
+    <script>
+            // Micro-interaction for buttons
+            document.querySelectorAll('button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const originalScale = button.style.transform;
+                    button.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        button.style.transform = originalScale;
+                    }, 100);
+                });
+            });
+    
+            // Simple timeline progress simulation
+            let progress = 65;
+            const progressEl = document.querySelector('.timeline-progress');
+            const progressText = document.querySelector('.text-primary.font-mono');
+            
+            setInterval(() => {
+                if (progress < 99) {
+                    progress += Math.random() * 0.5;
+                    if(progressEl) progressEl.style.width = `${progress}%`;
+                    if(progressText) progressText.innerText = `${Math.floor(progress)}%`;
+                }
+            }, 1000);
+        </script>
+    
+    
+    <script>
+    (function() {
+      const btn = document.getElementById('generate-video-btn');
+      if (!btn) return;
+    
+      btn.addEventListener('click', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        createParticles(centerX, centerY);
+      });
+    
+      function createParticles(x, y) {
+        const canvas = document.createElement('canvas');
+        canvas.style.position = 'fixed';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        canvas.style.pointerEvents = 'none';
+        canvas.style.zIndex = '9999';
+        document.body.appendChild(canvas);
+    
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    
+        const particles = [];
+        for (let i = 0; i < 30; i++) {
+          particles.push({
+            x: x,
+            y: y,
+            vx: (Math.random() - 0.5) * 10,
+            vy: (Math.random() - 0.5) * 10,
+            size: Math.random() * 4 + 2,
+            life: 1,
+            color: Math.random() > 0.5 ? '#f2ca50' : '#d4af37'
+          });
+        }
+    
+        function animate() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          let alive = false;
+          particles.forEach(p => {
+            if (p.life > 0) {
+              alive = true;
+              p.x += p.vx;
+              p.y += p.vy;
+              p.vy += 0.1; // gravity
+              p.life -= 0.02;
+              ctx.globalAlpha = p.life;
+              ctx.fillStyle = p.color;
+              ctx.beginPath();
+              ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+              ctx.fill();
+              // Add glow
+              ctx.shadowBlur = 10;
+              ctx.shadowColor = p.color;
+            }
+          });
+    
+          if (alive) {
+            requestAnimationFrame(animate);
+          } else {
+            canvas.remove();
+          }
+        }
+        animate();
+      }
+    })();
+    </script></body></html>

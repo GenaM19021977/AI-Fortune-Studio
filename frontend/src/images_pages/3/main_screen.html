@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AI Fortune Studio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#574500",
+                    "on-error-container": "#ffdad6",
+                    "surface-container": "#1f1e2a",
+                    "surface-container-lowest": "#0d0d18",
+                    "surface-tint": "#e9c349",
+                    "on-primary-container": "#554300",
+                    "inverse-on-surface": "#302f3b",
+                    "secondary-container": "#00eefc",
+                    "primary": "#f2ca50",
+                    "on-primary-fixed": "#241a00",
+                    "secondary": "#d3fbff",
+                    "surface-variant": "#343440",
+                    "primary-fixed-dim": "#e9c349",
+                    "on-surface-variant": "#d0c5af",
+                    "surface-container-low": "#1b1a26",
+                    "primary-fixed": "#ffe088",
+                    "on-primary": "#3c2f00",
+                    "background": "#12121d",
+                    "surface": "#12121d",
+                    "on-surface": "#e3e0f1",
+                    "on-secondary-fixed-variant": "#004f54",
+                    "on-background": "#e3e0f1",
+                    "on-tertiary-container": "#6500b1",
+                    "error-container": "#93000a",
+                    "on-error": "#690005",
+                    "on-secondary": "#00363a",
+                    "tertiary-container": "#ce9eff",
+                    "surface-container-high": "#292935",
+                    "surface-dim": "#12121d",
+                    "inverse-surface": "#e3e0f1",
+                    "secondary-fixed-dim": "#00dbe9",
+                    "outline": "#99907c",
+                    "tertiary": "#e1c2ff",
+                    "secondary-fixed": "#7df4ff",
+                    "tertiary-fixed": "#efdbff",
+                    "outline-variant": "#4d4635",
+                    "on-tertiary": "#480081",
+                    "primary-container": "#d4af37",
+                    "on-secondary-fixed": "#002022",
+                    "tertiary-fixed-dim": "#dcb8ff",
+                    "inverse-primary": "#735c00",
+                    "surface-container-highest": "#343440",
+                    "on-tertiary-fixed-variant": "#6700b5",
+                    "on-secondary-container": "#00686f",
+                    "surface-bright": "#383845",
+                    "error": "#ffb4ab",
+                    "on-tertiary-fixed": "#2c0051"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "card-padding": "24px",
+                    "stack-md": "16px",
+                    "safe-area": "20px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Inter"],
+                    "label-caps": ["Space Grotesk"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0F0F1A;
+            color: #e3e0f1;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gold-glow {
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            border: 1px solid #D4AF37 !important;
+        }
+        .cyan-glow-orb {
+            filter: blur(80px);
+            background: #00F0FF;
+            opacity: 0.15;
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .premium-text-gradient {
+            background: linear-gradient(135deg, #f2ca50 0%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style class="">
+@keyframes particle-fade {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0); opacity: 0; }
+}
+.particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  color: #f2ca50;
+  font-size: 12px;
+  animation: particle-fade 0.8s ease-out forwards;
+}
+</style>
+<script>
+    let audioCtx;
+
+    function initAudio() {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    }
+
+    function playMysticSound(type) {
+        initAudio();
+        const now = audioCtx.currentTime;
+        const gainNode = audioCtx.createGain();
+        gainNode.connect(audioCtx.destination);
+
+        if (type === 'soft') {
+            const oscillator = audioCtx.createOscillator();
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(880, now); // A5 note
+            
+            gainNode.gain.setValueAtTime(0, now);
+            gainNode.gain.linearRampToValueAtTime(0.1, now + 0.05);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+            
+            oscillator.connect(gainNode);
+            oscillator.start(now);
+            oscillator.stop(now + 0.5);
+        } else if (type === 'major') {
+            // Main tone
+            const osc1 = audioCtx.createOscillator();
+            osc1.type = 'triangle';
+            osc1.frequency.setValueAtTime(440, now); // A4 note
+            
+            // Harmonic overtone 1
+            const osc2 = audioCtx.createOscillator();
+            const gain2 = audioCtx.createGain();
+            osc2.type = 'sine';
+            osc2.frequency.setValueAtTime(880, now); // A5 note
+            osc2.connect(gain2);
+            gain2.connect(audioCtx.destination);
+            
+            // Harmonic overtone 2
+            const osc3 = audioCtx.createOscillator();
+            const gain3 = audioCtx.createGain();
+            osc3.type = 'sine';
+            osc3.frequency.setValueAtTime(1320, now); // E6 note
+            osc3.connect(gain3);
+            gain3.connect(audioCtx.destination);
+
+            // Envelopes
+            gainNode.gain.setValueAtTime(0, now);
+            gainNode.gain.linearRampToValueAtTime(0.2, now + 0.1);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
+            
+            gain2.gain.setValueAtTime(0, now);
+            gain2.gain.linearRampToValueAtTime(0.1, now + 0.05);
+            gain2.gain.exponentialRampToValueAtTime(0.001, now + 1.0);
+            
+            gain3.gain.setValueAtTime(0, now);
+            gain3.gain.linearRampToValueAtTime(0.05, now + 0.05);
+            gain3.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
+            
+            osc1.connect(gainNode);
+            osc1.start(now);
+            osc2.start(now);
+            osc3.start(now);
+            
+            osc1.stop(now + 1.5);
+            osc2.stop(now + 1.0);
+            osc3.stop(now + 0.8);
+        }
+    }
+</script>
+</head>
+<body class="font-body-md text-on-surface pb-24">
+<!-- Background Atmospheric Elements -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none">
+<div class="cyan-glow-orb w-64 h-64 -top-20 -left-20"></div>
+<div class="cyan-glow-orb w-96 h-96 top-1/2 -right-32 opacity-10"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_#1A0B2E_0%,_#0F0F1A_100%)] opacity-60"></div>
+</div>
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10">
+<div class="flex items-center px-5 h-16 w-full max-w-md mx-auto justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary font-headline-md text-headline-md">auto_awesome</span>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary tracking-tight">AI Fortune Studio</h1>
+</div>
+<button class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:opacity-80 transition-all duration-300">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+</div>
+</header>
+<main class="relative z-10 pt-20 px-5 max-w-md mx-auto space-y-stack-lg">
+<!-- Greeting Header -->
+<section class="mt-4">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-caps text-label-caps text-primary tracking-widest uppercase">Techno-Mysticism</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile font-bold">Greetings, Seeker</h2>
+<p class="font-body-md text-on-surface-variant/80 mt-1">The cosmos is aligning for your digital reading today.</p>
+</section>
+<!-- Prediction of the Day -->
+<section>
+<div class="glass-card gold-glow rounded-[24px] p-card-padding relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4">
+<span class="material-symbols-outlined text-primary/40 text-4xl group-hover:scale-110 transition-transform duration-500">stars</span>
+</div>
+<div class="relative z-10">
+<span class="font-label-caps text-label-caps text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">Daily Insight</span>
+<h3 class="font-headline-md text-headline-md mt-4 premium-text-gradient">Celestial Alignment</h3>
+<p class="font-body-md text-on-surface-variant mt-2 leading-relaxed">Your creative energy is peaking today. The AI suggests a breakthrough in a project you've long set aside.</p>
+<div class="mt-6 flex items-center gap-3">
+<button class="bg-primary-container text-on-primary font-label-caps text-label-caps px-6 py-3 rounded-full flex items-center gap-2 shadow-lg active:scale-95 transition-all" onclick="handleCardClick(event); playMysticSound('major')">
+                            Reveal Full Reading
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Shimmer Effect -->
+<div class="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+</div>
+</section>
+<!-- Categories Grid -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline-md text-headline-md text-on-surface">Divination Arts</h3>
+<button class="font-label-caps text-label-caps text-primary">View All</button>
+</div>
+<div class="grid grid-cols-3 gap-3">
+<!-- Greetings -->
+<div class="glass-card rounded-xl p-4 flex flex-col items-center justify-center aspect-square text-center gap-2 group active:scale-90 transition-all cursor-pointer" onclick="playMysticSound('soft')">
+<span class="material-symbols-outlined text-primary text-2xl">waving_hand</span>
+<span class="font-label-caps text-[10px] tracking-normal">Greetings</span>
+</div>
+<!-- Music -->
+<div class="glass-card rounded-xl p-4 flex flex-col items-center justify-center aspect-square text-center gap-2 active:scale-90 transition-all cursor-pointer" onclick="playMysticSound('soft')">
+<span class="material-symbols-outlined text-secondary-fixed-dim text-2xl">music_note</span>
+<span class="font-label-caps text-[10px] tracking-normal">Music</span>
+</div>
+<!-- Horoscope -->
+<div class="glass-card rounded-xl p-4 flex flex-col items-center justify-center aspect-square text-center gap-2 active:scale-90 transition-all cursor-pointer" onclick="playMysticSound('soft')">
+<span class="material-symbols-outlined text-tertiary text-2xl">nights_stay</span>
+<span class="font-label-caps text-[10px] tracking-normal">Horoscope</span>
+</div>
+<!-- Tarot -->
+<div class="glass-card rounded-xl p-4 flex flex-col items-center justify-center aspect-square text-center gap-2 active:scale-90 transition-all cursor-pointer" onclick="playMysticSound('soft')">
+<span class="material-symbols-outlined text-primary text-2xl">style</span>
+<span class="font-label-caps text-[10px] tracking-normal">Tarot</span>
+</div>
+<!-- Predictions -->
+<div class="glass-card rounded-xl p-4 flex flex-col items-center justify-center aspect-square text-center gap-2 active:scale-90 transition-all cursor-pointer" onclick="playMysticSound('soft')">
+<span class="material-symbols-outlined text-primary-fixed-dim text-2xl">clear_all</span>
+<span class="font-label-caps text-[10px] tracking-normal">Predictions</span>
+</div>
+<!-- Poems -->
+<div class="glass-card rounded-xl p-4 flex flex-col items-center justify-center aspect-square text-center gap-2 active:scale-90 transition-all cursor-pointer" onclick="playMysticSound('soft')">
+<span class="material-symbols-outlined text-on-surface-variant text-2xl">edit_note</span>
+<span class="font-label-caps text-[10px] tracking-normal">Poems</span>
+</div>
+<!-- Images -->
+<div class="glass-card rounded-xl p-4 flex flex-col items-center justify-center aspect-square text-center gap-2 active:scale-90 transition-all cursor-pointer" onclick="playMysticSound('soft')">
+<span class="material-symbols-outlined text-secondary text-2xl">image</span>
+<span class="font-label-caps text-[10px] tracking-normal">Images</span>
+</div>
+<!-- Video -->
+<div class="glass-card rounded-xl p-4 flex flex-col items-center justify-center aspect-square text-center gap-2 active:scale-90 transition-all cursor-pointer" onclick="playMysticSound('soft')">
+<span class="material-symbols-outlined text-on-error text-2xl">videocam</span>
+<span class="font-label-caps text-[10px] tracking-normal">Video</span>
+</div>
+<!-- Memes -->
+<div class="glass-card rounded-xl p-4 flex flex-col items-center justify-center aspect-square text-center gap-2 active:scale-90 transition-all cursor-pointer" onclick="playMysticSound('soft')">
+<span class="material-symbols-outlined text-primary text-2xl">sentiment_very_satisfied</span>
+<span class="font-label-caps text-[10px] tracking-normal">Memes</span>
+</div>
+</div>
+</section>
+<!-- Quick Actions -->
+<section>
+<h3 class="font-headline-md text-headline-md mb-4">Quick Oracles</h3>
+<div class="flex gap-3 overflow-x-auto hide-scrollbar -mx-5 px-5 pb-2">
+<button class="flex-shrink-0 flex items-center gap-3 glass-card rounded-full px-5 py-3 active:scale-95 transition-all" onclick="playMysticSound('soft')">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="font-body-md whitespace-nowrap">Instant Luck Reading</span>
+</button>
+<button class="flex-shrink-0 flex items-center gap-3 glass-card rounded-full px-5 py-3 active:scale-95 transition-all" onclick="playMysticSound('soft')">
+<span class="material-symbols-outlined text-secondary-fixed-dim" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-body-md whitespace-nowrap">Love Compatibility</span>
+</button>
+<button class="flex-shrink-0 flex items-center gap-3 glass-card rounded-full px-5 py-3 active:scale-95 transition-all" onclick="playMysticSound('soft')">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">work</span>
+<span class="font-body-md whitespace-nowrap">Career Path</span>
+</button>
+</div>
+</section>
+<!-- Recent Generations -->
+<section class="pb-8">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline-md text-headline-md">Your Echoes</h3>
+<span class="font-label-caps text-on-surface-variant/50">Recent History</span>
+</div>
+<div class="flex gap-4 overflow-x-auto hide-scrollbar -mx-5 px-5">
+<!-- Recent Card 1 -->
+<div class="flex-shrink-0 w-48 space-y-2 group cursor-pointer">
+<div class="w-48 h-64 rounded-2xl overflow-hidden glass-card relative">
+<img class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" data-alt="A cinematic, detailed digital painting of a mystical cosmic nebula with swirling gold and deep violet energy, in a professional Techno-Mysticism style. The lighting is ethereal and glowy, with sharp golden accents highlighting ancient symbols floating in space. A premium, high-tech interface aesthetic with a cinematic mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM5vO9DWN5rp1E2xDVYpNxIdtKiQvo-6cL0aRyg59oa8kuxrAhMlgcJb34eMWEU-mqcjM1W-F0MVUGHu4g8_BHHwWzVkFa_GEA8_69izzeJJRehj2FZwloNuNjPTZKlG3YrktFPz7jjTuz7rln6zWm5ukNuk46UYp1jQ1UoV2kPuXieyZvUkEoicJhTs23WfbB-rC0_hH3SRdTyxWraDiVfb46Uxi5mZVrAa1jK0lDv2O-YBkLG1XBaYtONMJiVwtJ8lm_k6eAeHdW"/>
+<div class="absolute bottom-0 inset-x-0 p-3 bg-gradient-to-t from-surface-container-lowest to-transparent">
+<span class="font-label-caps text-[10px] text-primary">TAROT READING</span>
+</div>
+</div>
+<p class="font-caption text-on-surface-variant line-clamp-1 px-1">The High Priestess Visualization</p>
+</div>
+<!-- Recent Card 2 -->
+<div class="flex-shrink-0 w-48 space-y-2 group cursor-pointer">
+<div class="w-48 h-64 rounded-2xl overflow-hidden glass-card relative">
+<img class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" data-alt="A high-tech digital interpretation of a zodiac constellation, rendered with glowing neon cyan lines connecting crystalline stars against a deep indigo background. Professional dark-mode UI aesthetic with premium gold flecks scattered like cosmic dust. Mysterious and technologically advanced atmosphere with atmospheric lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_n-WHO-PSGEzE2SZ09awvHaIFu_v4I1twrxzv3MIZ_sywKsKaTCQ-SsiWFdG1PDQSNLxaHgR9iKUpW4yqYwb1v3fZOwFyOczVrflxKNGRmo9sEwuj47OcOzbl6UdOhsHdbNYi3_b9i-16m6hHishSWWDJhBabYgqpK1kb4Tqkrzz_KsBcUHsp_XzGT6NzOh-zQx0uE84uQ8RfauklBwpidESJVWImQeTHVjuMg6hTz-3kX_e361l40pEl3w3Fk5-9KbSCilLmZdJN"/>
+<div class="absolute bottom-0 inset-x-0 p-3 bg-gradient-to-t from-surface-container-lowest to-transparent">
+<span class="font-label-caps text-[10px] text-secondary-fixed-dim">HOROSCOPE MAP</span>
+</div>
+</div>
+<p class="font-caption text-on-surface-variant line-clamp-1 px-1">Scorpio Transit Chart</p>
+</div>
+<!-- Recent Card 3 -->
+<div class="flex-shrink-0 w-48 space-y-2 group cursor-pointer">
+<div class="w-48 h-64 rounded-2xl overflow-hidden glass-card relative">
+<img class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" data-alt="A surreal digital art piece depicting a futuristic oracle composed of flowing golden light and obsidian shards, centered in a vast digital void. Neon cyan atmospheric glows and intricate techno-mystical runes float around the central figure. Premium lighting, deep shadows, and high-end glassmorphism texture quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-UVYL0pXf65USKvrz8w_WsIirXHus-X9HwPzcYhslfZkG9BoO2G6y-xsK3NC-LLvQWe2hbgZPN3pM7AbtBp8EGRUvkhI8Miyv3WPtipnij5fN-GVqu8cXsEgvjyOaGXFd_VTrwF0E3faJkpzAapo9tWi0BexkolFg50ZaeLrv5GlTwJmIiqE_-d2T56IVxbc2kZ-d3oTtLIqDUNKmExP4AyQKd8_ljYS2f7lSORzDURQccpjf89zzJB7GLRqLHNTNrOiuFCjX0WN1"/>
+<div class="absolute bottom-0 inset-x-0 p-3 bg-gradient-to-t from-surface-container-lowest to-transparent">
+<span class="font-label-caps text-[10px] text-tertiary">PREDICTION</span>
+</div>
+</div>
+<p class="font-caption text-on-surface-variant line-clamp-1 px-1">Wealth Alignment Ritual</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 w-16 h-16 rounded-full flex items-center justify-center shadow-2xl bg-gradient-to-b from-[#f2ca50] to-[#D4AF37] active:scale-90 transition-transform group">
+<div class="absolute inset-0 rounded-full blur-md bg-secondary-container/40 group-hover:animate-pulse"></div>
+<span class="material-symbols-outlined text-on-primary text-3xl font-bold relative z-10" style="font-variation-settings: 'FILL' 1;">magic_button</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container/60 dark:bg-surface-container/60 backdrop-blur-2xl border-t border-white/5 shadow-[0_-4px_24px_rgba(0,0,0,0.4)]">
+<div class="flex justify-around items-center h-20 px-4 pb-safe w-full max-w-md mx-auto">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary drop-shadow-[0_0_8px_rgba(212,175,55,0.4)] active:scale-90 transition-transform duration-200" href="#" onclick="playMysticSound('major')">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</a>
+<!-- Create -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-primary-fixed active:scale-90 transition-transform duration-200" href="#" onclick="playMysticSound('major')">
+<span class="material-symbols-outlined">magic_button</span>
+<span class="font-label-caps text-label-caps mt-1">Create</span>
+</a>
+<div class="w-12"></div> <!-- Spacer for FAB -->
+<!-- Gallery -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-primary-fixed active:scale-90 transition-transform duration-200" href="#" onclick="playMysticSound('major')">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-label-caps text-label-caps mt-1">Gallery</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-primary-fixed active:scale-90 transition-transform duration-200" href="#" onclick="playMysticSound('major')">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</a>
+</div>
+</nav>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('touchend', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+
+        // Atmospheric parallax-like effect on scroll
+        window.addEventListener('scroll', () => {
+            const orbs = document.querySelectorAll('.cyan-glow-orb');
+            const scrolled = window.pageYOffset;
+            orbs.forEach((orb, index) => {
+                const speed = 0.2 * (index + 1);
+                orb.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+<script class="">
+function createParticle(x, y) {
+  const particle = document.createElement('div');
+  particle.className = 'particle material-symbols-outlined';
+  particle.textContent = 'star';
+  
+  const dx = (Math.random() - 0.5) * 100 + 'px';
+  const dy = (Math.random() - 0.5) * 100 - 50 + 'px';
+  
+  particle.style.left = x + 'px';
+  particle.style.top = y + 'px';
+  particle.style.setProperty('--dx', dx);
+  particle.style.setProperty('--dy', dy);
+  
+  document.body.appendChild(particle);
+  
+  setTimeout(() => {
+    particle.remove();
+  }, 800);
+}
+
+function handleCardClick(e) {
+  const rect = e.currentTarget.getBoundingClientRect();
+  const x = e.clientX || (rect.left + rect.width / 2);
+  const y = e.clientY || (rect.top + rect.height / 2);
+  
+  for (let i = 0; i < 8; i++) {
+    createParticle(x, y);
+  }
+}
+
+document.querySelectorAll('section:nth-child(3) .grid > .glass-card, section.pb-8 .flex.gap-4 > div').forEach(card => {
+  card.addEventListener('click', handleCardClick);
+});
+</script></body></html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Fortune Studio - Generating</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#fbabff",
+                    "on-secondary-fixed-variant": "#7c008e",
+                    "background": "#0b1326",
+                    "secondary-fixed-dim": "#fbabff",
+                    "surface-dim": "#0b1326",
+                    "inverse-primary": "#6d3bd7",
+                    "inverse-on-surface": "#283044",
+                    "surface-container-highest": "#2d3449",
+                    "error": "#ffb4ab",
+                    "primary-fixed": "#e9ddff",
+                    "tertiary": "#89ceff",
+                    "on-secondary-fixed": "#36003e",
+                    "primary-fixed-dim": "#d0bcff",
+                    "surface-container-low": "#131b2e",
+                    "on-tertiary": "#00344d",
+                    "primary-container": "#a078ff",
+                    "surface-variant": "#2d3449",
+                    "on-tertiary-fixed": "#001e2f",
+                    "surface-tint": "#d0bcff",
+                    "on-primary-container": "#340080",
+                    "tertiary-fixed-dim": "#89ceff",
+                    "surface-bright": "#31394d",
+                    "surface-container-lowest": "#060e20",
+                    "on-background": "#dae2fd",
+                    "outline": "#958ea0",
+                    "surface-container-high": "#222a3d",
+                    "on-surface-variant": "#cbc3d7",
+                    "on-tertiary-container": "#002d43",
+                    "on-primary": "#3c0091",
+                    "error-container": "#93000a",
+                    "tertiary-container": "#009ada",
+                    "on-primary-fixed": "#23005c",
+                    "surface-container": "#171f33",
+                    "on-error": "#690005",
+                    "on-secondary-container": "#ffd8fd",
+                    "secondary-container": "#ae05c6",
+                    "primary": "#d0bcff",
+                    "outline-variant": "#494454",
+                    "on-surface": "#dae2fd",
+                    "tertiary-fixed": "#c9e6ff",
+                    "on-tertiary-fixed-variant": "#004c6e",
+                    "on-secondary": "#580065",
+                    "inverse-surface": "#dae2fd",
+                    "on-primary-fixed-variant": "#5516be",
+                    "secondary-fixed": "#ffd6fd",
+                    "on-error-container": "#ffdad6",
+                    "surface": "#0b1326"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-page": "1.25rem",
+                    "stack-sm": "0.5rem",
+                    "stack-lg": "1.5rem",
+                    "stack-md": "1rem",
+                    "gutter-grid": "1rem",
+                    "stack-xl": "2.5rem"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-caps": ["Geist"],
+                    "mono-label": ["Geist"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["26px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "mono-label": ["13px", {"lineHeight": "18px", "fontWeight": "500"}]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        
+        .pulse-orb {
+            animation: pulse-glow 3s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 40px 10px rgba(208, 188, 255, 0.2); }
+            100% { box-shadow: 0 0 80px 30px rgba(251, 171, 255, 0.4); }
+        }
+
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col items-center justify-center relative overflow-hidden antialiased">
+<!-- Ambient Background Glows -->
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/20 blur-[120px] pointer-events-none"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-secondary/10 blur-[150px] pointer-events-none"></div>
+<main class="w-full max-w-md px-margin-page py-stack-xl flex flex-col items-center justify-center flex-1 relative z-10">
+<!-- Header / Status -->
+<div class="text-center mb-stack-xl">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary mb-stack-sm">
+                Divining Your Future
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant flex items-center justify-center gap-2">
+<span class="material-symbols-outlined animate-spin" data-icon="sync" style="font-variation-settings: 'FILL' 0;">sync</span>
+                Synthesizing cosmic data...
+            </p>
+</div>
+<!-- Central Visualization -->
+<div class="relative w-64 h-64 mb-stack-xl flex items-center justify-center pulse-orb rounded-full">
+<!-- Progress Ring Background -->
+<svg class="absolute inset-0 w-full h-full" viewbox="0 0 100 100">
+<circle class="text-surface-container-highest stroke-current" cx="50" cy="50" fill="transparent" r="46" stroke-width="4"></circle>
+<circle class="text-primary stroke-current progress-ring__circle" cx="50" cy="50" fill="transparent" id="progress-circle" r="46" stroke-dasharray="289.026" stroke-dashoffset="144.513" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<!-- Central Animation Placeholder -->
+<div class="w-48 h-48 rounded-full overflow-hidden bg-surface-container flex items-center justify-center relative shadow-inner">
+<!-- We use a placeholder image for the brain/orb since we can't generate an interactive shader here -->
+<img class="absolute inset-0 w-full h-full object-cover mix-blend-screen opacity-80" data-alt="A highly detailed, futuristic glowing digital orb or stylized cybernetic brain rendered in translucent glassmorphism. The object pulses with ethereal purple and magenta light (primary and secondary brand colors) against a dark, minimal background. Intricate, glowing geometric lines trace its surface, suggesting advanced artificial intelligence processing complex cosmic data. The lighting is dramatic, high-contrast, and cinematic, creating a deep sense of mystery and technological mysticism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1UPeUeV5KK2aYpz1uz3qyQiw_l7hVZ3dSpQBC3bROWa1lewNqqTJ37Hxt_uwk_qZ2PAHUYPc05vdNAbf4y36JobzUks8sGorwJBLauHW-h5Fsvr9tVTbP7WIdsnfziSmLg0Y9fG5wci7bGZ2yBjOrT6NDyW6a7cE6nhbRTrSPPWdmh2DVVrdNQFrh2dfkkSZMZY2RLFAqXgtBjrc6gjLtiF63kjYiw8C8rkiucxA7ZrLXmL7hk-lV7ti8ZUunKRER-Td-tqd8qXU"/>
+</div>
+<div class="absolute bottom-[-40px] font-mono-label text-mono-label text-secondary flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="hourglass_bottom" style="font-variation-settings: 'FILL' 0;">hourglass_bottom</span>
+<span id="time-remaining">15s remaining</span>
+</div>
+</div>
+<!-- Facts Section -->
+<div class="glass-panel rounded-xl w-full p-stack-md flex flex-col gap-stack-sm mb-stack-xl relative overflow-hidden">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-tertiary" data-icon="tips_and_updates" style="font-variation-settings: 'FILL' 1;">tips_and_updates</span>
+<h3 class="font-label-caps text-label-caps text-on-surface uppercase tracking-wider">Oracle Insight</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic" id="fact-text">
+                "Our AI analyzes over 10,000 distinct celestial configurations per second to map your personal trajectory..."
+            </p>
+<!-- Progress bar for facts -->
+<div class="absolute bottom-0 left-0 h-1 bg-primary/20 w-full">
+<div class="h-full bg-gradient-to-r from-primary to-secondary w-1/3" id="fact-progress"></div>
+</div>
+</div>
+</main>
+<!-- Bottom Actions -->
+<div class="w-full px-margin-page pb-stack-xl max-w-md mx-auto relative z-10 flex justify-center">
+<button class="px-6 py-3 rounded-full border border-error/30 text-error font-mono-label text-mono-label hover:bg-error/10 transition-colors flex items-center gap-2 active:scale-95">
+<span class="material-symbols-outlined text-[18px]" data-icon="close" style="font-variation-settings: 'FILL' 0;">close</span>
+            CANCEL RITUAL
+        </button>
+</div>
+<script>
+        // Simple progress simulation
+        const progressCircle = document.getElementById('progress-circle');
+        const circumference = 2 * Math.PI * 46;
+        progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+        
+        let progress = 0;
+        let timeLeft = 15;
+        const timeDisplay = document.getElementById('time-remaining');
+        
+        const interval = setInterval(() => {
+            progress += (100 / 150); // 15 seconds at 100ms intervals
+            if (progress > 100) progress = 100;
+            
+            const offset = circumference - progress / 100 * circumference;
+            progressCircle.style.strokeDashoffset = offset;
+            
+            if (progress >= 100) {
+                clearInterval(interval);
+            }
+        }, 100);
+
+        setInterval(() => {
+            if(timeLeft > 0) {
+                timeLeft--;
+                timeDisplay.innerText = `${timeLeft}s remaining`;
+            }
+        }, 1000);
+    </script>
+</body></html>

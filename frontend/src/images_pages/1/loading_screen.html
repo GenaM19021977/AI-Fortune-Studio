@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AI Fortune Studio - Splash</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#fbabff",
+                      "on-secondary-fixed-variant": "#7c008e",
+                      "background": "#0b1326",
+                      "secondary-fixed-dim": "#fbabff",
+                      "surface-dim": "#0b1326",
+                      "inverse-primary": "#6d3bd7",
+                      "inverse-on-surface": "#283044",
+                      "surface-container-highest": "#2d3449",
+                      "error": "#ffb4ab",
+                      "primary-fixed": "#e9ddff",
+                      "tertiary": "#89ceff",
+                      "on-secondary-fixed": "#36003e",
+                      "primary-fixed-dim": "#d0bcff",
+                      "surface-container-low": "#131b2e",
+                      "on-tertiary": "#00344d",
+                      "primary-container": "#a078ff",
+                      "surface-variant": "#2d3449",
+                      "on-tertiary-fixed": "#001e2f",
+                      "surface-tint": "#d0bcff",
+                      "on-primary-container": "#340080",
+                      "tertiary-fixed-dim": "#89ceff",
+                      "surface-bright": "#31394d",
+                      "surface-container-lowest": "#060e20",
+                      "on-background": "#dae2fd",
+                      "outline": "#958ea0",
+                      "surface-container-high": "#222a3d",
+                      "on-surface-variant": "#cbc3d7",
+                      "on-tertiary-container": "#002d43",
+                      "on-primary": "#3c0091",
+                      "error-container": "#93000a",
+                      "tertiary-container": "#009ada",
+                      "on-primary-fixed": "#23005c",
+                      "surface-container": "#171f33",
+                      "on-error": "#690005",
+                      "on-secondary-container": "#ffd8fd",
+                      "secondary-container": "#ae05c6",
+                      "primary": "#d0bcff",
+                      "outline-variant": "#494454",
+                      "on-surface": "#dae2fd",
+                      "tertiary-fixed": "#c9e6ff",
+                      "on-tertiary-fixed-variant": "#004c6e",
+                      "on-secondary": "#580065",
+                      "inverse-surface": "#dae2fd",
+                      "on-primary-fixed-variant": "#5516be",
+                      "secondary-fixed": "#ffd6fd",
+                      "on-error-container": "#ffdad6",
+                      "surface": "#0b1326"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-page": "1.25rem",
+                      "stack-sm": "0.5rem",
+                      "stack-lg": "1.5rem",
+                      "stack-md": "1rem",
+                      "gutter-grid": "1rem",
+                      "stack-xl": "2.5rem"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Geist"
+                      ],
+                      "mono-label": [
+                              "Geist"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "26px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "mono-label": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Ethereal Glow Animation */
+        @keyframes pulse-glow {
+            0%, 100% {
+                opacity: 0.5;
+                transform: scale(1);
+                filter: blur(40px);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.1);
+                filter: blur(60px);
+            }
+        }
+
+        .ambient-orb {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            max-width: 400px;
+            max-height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, theme('colors.primary-container') 0%, transparent 70%);
+            animation: pulse-glow 4s ease-in-out infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .ambient-orb-secondary {
+            background: radial-gradient(circle, theme('colors.secondary-container') 0%, transparent 60%);
+            animation: pulse-glow 6s ease-in-out infinite alternate-reverse;
+            width: 60vw;
+            height: 60vw;
+            max-width: 300px;
+            max-height: 300px;
+        }
+
+        /* Loading Bar Pulse */
+        @keyframes loading-pulse {
+            0% {
+                width: 0%;
+                opacity: 0.5;
+            }
+            50% {
+                width: 50%;
+                opacity: 1;
+            }
+            100% {
+                width: 100%;
+                opacity: 0;
+            }
+        }
+
+        .loading-progress {
+            background: linear-gradient(90deg, transparent, theme('colors.primary'), theme('colors.secondary'), transparent);
+            animation: loading-pulse 2s ease-in-out infinite;
+        }
+
+        /* Glass Text Effect */
+        .glass-text {
+            background: linear-gradient(135deg, theme('colors.on-surface') 0%, theme('colors.primary') 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 12px rgba(208, 188, 255, 0.2);
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="relative flex items-center justify-center min-h-screen bg-background">
+<!-- Ambient Background Glows -->
+<div class="ambient-orb"></div>
+<div class="ambient-orb ambient-orb-secondary"></div>
+<!-- Main Content Canvas (No Nav Shell per instructions for Splash/Transactional intent) -->
+<main class="relative z-10 flex flex-col items-center justify-center w-full h-full px-margin-page">
+<!-- Animated Core Placeholder -->
+<div class="relative w-48 h-48 mb-stack-xl flex items-center justify-center">
+<!-- Glassy container for the icon/logo -->
+<div class="absolute inset-0 bg-surface-container/20 backdrop-blur-2xl rounded-full border border-white/10 shadow-[0_8px_32px_0_rgba(208,188,255,0.15)] flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-primary text-[80px]" style="font-variation-settings: 'FILL' 1;">
+                    auto_awesome
+                </span>
+</div>
+<!-- Orbital rings -->
+<div class="absolute inset-0 rounded-full border border-primary/30 animate-[spin_10s_linear_infinite]" style="border-top-color: transparent;"></div>
+<div class="absolute inset-[-10px] rounded-full border border-secondary/20 animate-[spin_15s_linear_infinite_reverse]" style="border-bottom-color: transparent;"></div>
+</div>
+<!-- Typography Anchor -->
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg glass-text text-center tracking-tight mb-stack-sm">
+            AI Fortune Studio
+        </h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-center opacity-80 mb-16">
+            Connecting with the digital ether...
+        </p>
+<!-- Minimalist Loading Bar -->
+<div class="absolute bottom-16 left-0 right-0 px-12 flex flex-col items-center">
+<div class="w-full max-w-[200px] h-[2px] bg-surface-container-highest rounded-full overflow-hidden relative">
+<div class="absolute top-0 left-0 h-full loading-progress shadow-[0_0_10px_rgba(208,188,255,0.5)]"></div>
+</div>
+<span class="font-label-caps text-label-caps text-primary/60 mt-stack-sm tracking-widest uppercase">
+                Initializing
+            </span>
+</div>
+</main>
+<script>
+        // Lightweight simulated load progression (visual only)
+        document.addEventListener('DOMContentLoaded', () => {
+            const loadingText = document.querySelector('.tracking-widest');
+            const states = ['Initializing', 'Aligning Stars', 'Awakening Core', 'Ready'];
+            let currentState = 0;
+
+            const interval = setInterval(() => {
+                currentState++;
+                if (currentState < states.length) {
+                    loadingText.style.opacity = 0;
+                    setTimeout(() => {
+                        loadingText.textContent = states[currentState];
+                        loadingText.style.opacity = 1;
+                    }, 200);
+                } else {
+                    clearInterval(interval);
+                    // In a real app, this would trigger navigation
+                }
+            }, 800);
+        });
+    </script>
+</body></html>

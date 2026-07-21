@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Fortune Studio - Result Preview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#fbabff",
+                        "on-secondary-fixed-variant": "#7c008e",
+                        "background": "#0b1326",
+                        "secondary-fixed-dim": "#fbabff",
+                        "surface-dim": "#0b1326",
+                        "inverse-primary": "#6d3bd7",
+                        "inverse-on-surface": "#283044",
+                        "surface-container-highest": "#2d3449",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#e9ddff",
+                        "tertiary": "#89ceff",
+                        "on-secondary-fixed": "#36003e",
+                        "primary-fixed-dim": "#d0bcff",
+                        "surface-container-low": "#131b2e",
+                        "on-tertiary": "#00344d",
+                        "primary-container": "#a078ff",
+                        "surface-variant": "#2d3449",
+                        "on-tertiary-fixed": "#001e2f",
+                        "surface-tint": "#d0bcff",
+                        "on-primary-container": "#340080",
+                        "tertiary-fixed-dim": "#89ceff",
+                        "surface-bright": "#31394d",
+                        "surface-container-lowest": "#060e20",
+                        "on-background": "#dae2fd",
+                        "outline": "#958ea0",
+                        "surface-container-high": "#222a3d",
+                        "on-surface-variant": "#cbc3d7",
+                        "on-tertiary-container": "#002d43",
+                        "on-primary": "#3c0091",
+                        "error-container": "#93000a",
+                        "tertiary-container": "#009ada",
+                        "on-primary-fixed": "#23005c",
+                        "surface-container": "#171f33",
+                        "on-error": "#690005",
+                        "on-secondary-container": "#ffd8fd",
+                        "secondary-container": "#ae05c6",
+                        "primary": "#d0bcff",
+                        "outline-variant": "#494454",
+                        "on-surface": "#dae2fd",
+                        "tertiary-fixed": "#c9e6ff",
+                        "on-tertiary-fixed-variant": "#004c6e",
+                        "on-secondary": "#580065",
+                        "inverse-surface": "#dae2fd",
+                        "on-primary-fixed-variant": "#5516be",
+                        "secondary-fixed": "#ffd6fd",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#0b1326"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-page": "1.25rem",
+                        "stack-sm": "0.5rem",
+                        "stack-lg": "1.5rem",
+                        "stack-md": "1rem",
+                        "gutter-grid": "1rem",
+                        "stack-xl": "2.5rem"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-caps": ["Geist"],
+                        "mono-label": ["Geist"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "mono-label": ["13px", { "lineHeight": "18px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0b1326;
+            color: #dae2fd;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .ambient-orb-primary {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(208, 188, 255, 0.15) 0%, rgba(208, 188, 255, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .ambient-orb-secondary {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(251, 171, 255, 0.15) 0%, rgba(251, 171, 255, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .ai-action-button {
+            background: linear-gradient(135deg, #d0bcff 0%, #fbabff 100%);
+            box-shadow: 0 0 20px rgba(208, 188, 255, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .ai-action-button:active {
+            transform: scale(0.95);
+        }
+
+        .glass-btn-grid {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen pb-[90px] pt-20 px-margin-page relative overflow-x-hidden">
+<!-- Ambient Orbs -->
+<div class="ambient-orb-primary top-0 left-[-50px]"></div>
+<div class="ambient-orb-secondary top-[40%] right-[-100px]"></div>
+<!-- Header Navigation (Task focused, so standard TopAppBar is modified for linear flow) -->
+<header class="fixed top-0 left-0 w-full h-16 z-50 flex items-center justify-between px-margin-page bg-surface/80 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] border-b border-white/10">
+<button aria-label="Go back" class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center p-2 rounded-full glass-btn-grid">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary">Your Fortune</h1>
+<button aria-label="Add to Favorites" class="text-secondary hover:text-primary transition-colors flex items-center justify-center p-2 rounded-full glass-btn-grid">
+<span class="material-symbols-outlined">star</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex flex-col gap-stack-lg max-w-md mx-auto w-full relative z-10">
+<!-- Large Preview Area -->
+<section class="glass-card rounded-xl overflow-hidden aspect-[4/5] relative group flex flex-col">
+<div class="absolute inset-0 bg-cover bg-center w-full h-full z-0 opacity-80" data-alt="A highly detailed, ethereal digital art rendering of a glowing tarot card floating in a dark, minimalist space. The card features intricate mystical symbols rendered in luminescent purple and pink light, reflecting the Digital Mysticism aesthetic. The background is a deep cosmic void with subtle nebulae effects. Soft, high-key ambient lighting surrounds the glowing artifact." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDKL14sacM0e50Y77ijkHuXEsaIbL7hs3yMKLPQoYDl04xHJ6pkGgz60rGob_bFUCUHSL7MmIGv69swm28S-HKf79d4NCMLhwLK7Vs7Gr5ummq-vZqfCjybvMDJdfpCUeP8SEiKHe1LB64xNmRQx8JlO6tqMgcuniI-3TntFySPoS4HDwLgwInnrXkE2-n6IRkvQOmtot1xt6NqxINE0SdpfIpdr10WpZkMEY2VRPb3d7rYYKftX72WIinoAt6JK1q3KldeRWzZfcU')"></div>
+<!-- Overlay Content inside Preview -->
+<div class="relative z-10 mt-auto p-4 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/50 to-transparent w-full">
+<div class="flex gap-2 mb-2">
+<span class="px-3 py-1 rounded-full border border-secondary text-secondary font-label-caps text-label-caps bg-surface-container-highest/50 backdrop-blur-md">Destiny</span>
+<span class="px-3 py-1 rounded-full border border-secondary text-secondary font-label-caps text-label-caps bg-surface-container-highest/50 backdrop-blur-md">Wealth</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1 shadow-sm">The Cyber Oracle</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">The digital streams align in your favor. A sudden influx of resources is predicted within the next quantum cycle.</p>
+</div>
+</section>
+<!-- Action Buttons Grid -->
+<section class="grid grid-cols-4 gap-gutter-grid">
+<button class="glass-btn-grid rounded-lg p-3 flex flex-col items-center justify-center gap-1 hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-primary text-2xl">content_copy</span>
+<span class="font-mono-label text-mono-label text-on-surface-variant">Copy</span>
+</button>
+<button class="glass-btn-grid rounded-lg p-3 flex flex-col items-center justify-center gap-1 hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-primary text-2xl">edit</span>
+<span class="font-mono-label text-mono-label text-on-surface-variant">Edit</span>
+</button>
+<button class="glass-btn-grid rounded-lg p-3 flex flex-col items-center justify-center gap-1 hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-primary text-2xl">refresh</span>
+<span class="font-mono-label text-mono-label text-on-surface-variant">Redo</span>
+</button>
+<button class="glass-btn-grid rounded-lg p-3 flex flex-col items-center justify-center gap-1 hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-primary text-2xl">download</span>
+<span class="font-mono-label text-mono-label text-on-surface-variant">Save</span>
+</button>
+</section>
+<!-- Primary CTA -->
+<section class="mt-4">
+<button class="ai-action-button w-full py-4 rounded-full flex items-center justify-center gap-2 text-on-primary-fixed-variant font-headline-md text-headline-md">
+<span class="material-symbols-outlined">send</span>
+                Share in Telegram
+            </button>
+</section>
+</main>
+<!-- BottomNavBar (Suppressed due to linear/task focus, but requested in prompt. Adapting for requirement while maintaining logic context where possible. If strictly a task dead-end, normally suppressed. Given explicit instruction "Persistent BottomNavBar", I will render it.) -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container/60 dark:bg-surface-container/60 backdrop-blur-2xl border-t border-white/10 shadow-[0_-8px_32px_0_rgba(174,5,198,0.15)] flex justify-around items-center pt-2 pb-safe md:hidden left-0">
+<!-- Assuming 'Create' is active since this is a result preview of a creation -->
+<button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed transition-colors active:scale-90 duration-200 p-2">
+<span class="material-symbols-outlined text-[24px] mb-1">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-secondary-fixed shadow-[0_0_15px_rgba(251,171,255,0.4)] hover:text-primary-fixed transition-colors active:scale-90 duration-200 p-2 relative">
+<div class="absolute inset-0 bg-secondary/10 rounded-full blur-md"></div>
+<span class="material-symbols-outlined text-[24px] mb-1 relative z-10" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="font-label-caps text-label-caps relative z-10">Create</span>
+</button>
+<button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed transition-colors active:scale-90 duration-200 p-2">
+<span class="material-symbols-outlined text-[24px] mb-1">auto_stories</span>
+<span class="font-label-caps text-label-caps">Gallery</span>
+</button>
+<button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed transition-colors active:scale-90 duration-200 p-2">
+<span class="material-symbols-outlined text-[24px] mb-1">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</button>
+</nav>
+</body></html>

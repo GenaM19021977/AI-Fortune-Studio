@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Space+Grotesk:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @keyframes pulse-glow {
+            0%, 100% { transform: scale(1); opacity: 0.8; filter: blur(20px); }
+            50% { transform: scale(1.1); opacity: 1; filter: blur(30px); }
+        }
+        .ai-pulse-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+        }
+        .ai-orb {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, #f2ca50 0%, #d4af37 40%, transparent 70%);
+            animation: pulse-glow 4s ease-in-out infinite;
+        }
+        .ai-orb-inner {
+            position: absolute;
+            inset: 20%;
+            border-radius: 50%;
+            background: radial-gradient(circle, #00f0ff 0%, transparent 60%);
+            mix-blend-mode: screen;
+            animation: pulse-glow 3s ease-in-out infinite reverse;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .premium-border {
+            border: 1px solid #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+        .progress-ring {
+            transition: stroke-dashoffset 0.5s ease;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        .mystic-bg {
+            background: radial-gradient(circle at center, #1a0b2e 0%, #0f0f1a 100%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#574500",
+                        "on-error-container": "#ffdad6",
+                        "surface-container": "#1f1e2a",
+                        "surface-container-lowest": "#0d0d18",
+                        "surface-tint": "#e9c349",
+                        "on-primary-container": "#554300",
+                        "inverse-on-surface": "#302f3b",
+                        "secondary-container": "#00eefc",
+                        "primary": "#f2ca50",
+                        "on-primary-fixed": "#241a00",
+                        "secondary": "#d3fbff",
+                        "surface-variant": "#343440",
+                        "primary-fixed-dim": "#e9c349",
+                        "on-surface-variant": "#d0c5af",
+                        "surface-container-low": "#1b1a26",
+                        "primary-fixed": "#ffe088",
+                        "on-primary": "#3c2f00",
+                        "background": "#12121d",
+                        "surface": "#12121d",
+                        "on-surface": "#e3e0f1",
+                        "on-secondary-fixed-variant": "#004f54",
+                        "on-background": "#e3e0f1",
+                        "on-tertiary-container": "#6500b1",
+                        "error-container": "#93000a",
+                        "on-error": "#690005",
+                        "on-secondary": "#00363a",
+                        "tertiary-container": "#ce9eff",
+                        "surface-container-high": "#292935",
+                        "surface-dim": "#12121d",
+                        "inverse-surface": "#e3e0f1",
+                        "secondary-fixed-dim": "#00dbe9",
+                        "outline": "#99907c",
+                        "tertiary": "#e1c2ff",
+                        "secondary-fixed": "#7df4ff",
+                        "tertiary-fixed": "#efdbff",
+                        "outline-variant": "#4d4635",
+                        "on-tertiary": "#480081",
+                        "primary-container": "#d4af37",
+                        "on-secondary-fixed": "#002022",
+                        "tertiary-fixed-dim": "#dcb8ff",
+                        "inverse-primary": "#735c00",
+                        "surface-container-highest": "#343440",
+                        "on-tertiary-fixed-variant": "#6700b5",
+                        "on-secondary-container": "#00686f",
+                        "surface-bright": "#383845",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed": "#2c0051"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "card-padding": "24px",
+                        "stack-md": "16px",
+                        "safe-area": "20px",
+                        "stack-sm": "8px",
+                        "stack-lg": "32px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "label-caps": ["Space Grotesk"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden mystic-bg min-h-screen flex flex-col items-center">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10 flex items-center px-5 h-16 w-full max-w-md mx-auto">
+<span class="material-symbols-outlined text-primary mr-3">auto_awesome</span>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary tracking-tight">AI Fortune Studio</h1>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-md px-safe-area pt-24 pb-32 flex flex-col items-center justify-center relative overflow-y-auto">
+<!-- Background Orbs -->
+<div class="absolute top-1/4 -left-10 w-48 h-48 bg-tertiary/10 blur-[80px] rounded-full pointer-events-none"></div>
+<div class="absolute bottom-1/4 -right-10 w-64 h-64 bg-secondary-container/10 blur-[100px] rounded-full pointer-events-none"></div>
+<!-- Central AI Pulse Section -->
+<div class="flex flex-col items-center mb-stack-lg">
+<div class="ai-pulse-container flex items-center justify-center">
+<!-- Progress Circular Track -->
+<svg class="absolute inset-0 w-full h-full" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="45" stroke="rgba(255,255,255,0.05)" stroke-width="4"></circle>
+<circle class="progress-ring shadow-[0_0_15px_rgba(242,202,80,0.5)]" cx="50" cy="50" fill="none" id="progressCircle" r="45" stroke="#f2ca50" stroke-dasharray="283" stroke-dashoffset="283" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<!-- Animated Orbs -->
+<div class="ai-orb"></div>
+<div class="ai-orb-inner"></div>
+<!-- Percentage Display -->
+<div class="relative z-10 flex flex-col items-center">
+<span class="font-display-lg text-display-lg text-primary drop-shadow-lg" id="percentText">0%</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest mt-1">Decoding Fate</span>
+</div>
+</div>
+<!-- Estimated Time -->
+<div class="mt-stack-md flex items-center gap-2 bg-surface-container-high/40 px-4 py-2 rounded-full border border-white/5 backdrop-blur-md">
+<span class="material-symbols-outlined text-primary text-sm">schedule</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Est. Time Remaining: <span class="text-primary" id="timeRemaining">calculating...</span></span>
+</div>
+</div>
+<!-- Fact Cards (Swiper-like display) -->
+<div class="w-full mt-stack-lg">
+<div class="glass-card premium-border rounded-xl p-card-padding transition-all duration-500 transform opacity-0 translate-y-4" id="factCard">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">psychology</span>
+</div>
+<div>
+<h3 class="font-label-caps text-label-caps text-primary mb-1 uppercase">Did you know?</h3>
+<p class="font-body-md text-on-surface leading-relaxed italic" id="factText">
+                            Ancient observers used the movement of stars to predict seasonal harvests long before modern astrology evolved.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Progress Steps -->
+<div class="w-full mt-stack-lg space-y-4">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_#f2ca50]" id="step1"></div>
+<p class="font-body-md text-primary" id="stepText1">Initializing Neural Mysticism Engine</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-on-surface-variant/30" id="step2"></div>
+<p class="font-body-md text-on-surface-variant" id="stepText2">Aligning Celestial Data Points</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-on-surface-variant/30" id="step3"></div>
+<p class="font-body-md text-on-surface-variant" id="stepText3">Synthesizing Temporal Patterns</p>
+</div>
+</div>
+</main>
+<!-- Bottom Nav Bar (Suppressed on focused process screen as per guidelines, but keeping structure if needed for context) -->
+<footer class="hidden fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container/60 dark:bg-surface-container/60 backdrop-blur-2xl border-t border-white/5 shadow-[0_-4px_24px_rgba(0,0,0,0.4)] flex justify-around items-center h-20 px-4 pb-safe w-full max-w-md mx-auto">
+<!-- Suppression active for transactional/focused process flow -->
+</footer>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const progressCircle = document.getElementById('progressCircle');
+            const percentText = document.getElementById('percentText');
+            const timeRemaining = document.getElementById('timeRemaining');
+            const factCard = document.getElementById('factCard');
+            const factText = document.getElementById('factText');
+            
+            const radius = 45;
+            const circumference = 2 * Math.PI * radius;
+            let progress = 0;
+
+            const facts = [
+                "Your fortune is calculated using a blend of 12th-century hermetic laws and 21st-century recursive neural networks.",
+                "In ancient Rome, 'Augury' was the practice of interpreting the will of gods by observing the flight of birds.",
+                "The word 'Algorithm' is derived from the name of Al-Khwarizmi, a 9th-century mathematician who studied celestial mechanics.",
+                "AI can process millions of planetary configurations in the time it takes for a single human heartbeat.",
+                "The concept of 'Syncronicity' was coined by Carl Jung to describe meaningful coincidences that defy logical cause and effect."
+            ];
+
+            let factIndex = 0;
+
+            function updateFact() {
+                factCard.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => {
+                    factIndex = (factIndex + 1) % facts.length;
+                    factText.textContent = facts[factIndex];
+                    factCard.classList.remove('opacity-0', 'translate-y-4');
+                }, 500);
+            }
+
+            // Show first fact
+            setTimeout(() => {
+                factCard.classList.remove('opacity-0', 'translate-y-4');
+            }, 800);
+
+            // Interval for facts
+            setInterval(updateFact, 6000);
+
+            // Web Audio API Setup
+            let audioCtx = null;
+            function initAudio() {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+            }
+
+            // Ensure audio context resumes on user interaction
+            document.addEventListener('click', initAudio, { once: true });
+            document.addEventListener('touchstart', initAudio, { once: true });
+
+            function playMysticalChime() {
+                if (!audioCtx) initAudio();
+                if (audioCtx.state === 'suspended') return;
+
+                const frequencies = [523.25, 659.25, 783.99, 987.77]; // C5, E5, G5, B5
+                const duration = 4.0;
+                const startTime = audioCtx.currentTime;
+
+                frequencies.forEach((freq, index) => {
+                    const osc = audioCtx.createOscillator();
+                    const gainNode = audioCtx.createGain();
+
+                    osc.type = 'triangle'; // Shimmering tone
+                    osc.frequency.value = freq;
+                    // Slight detune for a magical chorus effect
+                    osc.detune.value = index * 5;
+
+                    gainNode.gain.setValueAtTime(0, startTime);
+                    // Slow attack
+                    gainNode.gain.linearRampToValueAtTime(0.15, startTime + 0.8 + (index * 0.2));
+                    // Long release
+                    gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+
+                    osc.connect(gainNode);
+                    gainNode.connect(audioCtx.destination);
+
+                    osc.start(startTime);
+                    osc.stop(startTime + duration);
+                });
+            }
+
+            let soundPlayed = false;
+
+            // Progress Logic
+            const interval = setInterval(() => {
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    timeRemaining.textContent = "Complete";
+                    progressCircle.style.strokeDashoffset = 0;
+                    percentText.textContent = '100%';
+                    
+                    if (!soundPlayed) {
+                        playMysticalChime();
+                        soundPlayed = true;
+                    }
+                    return;
+                }
+
+                // Random step increase for "natural" feel
+                progress += Math.random() * 2 + 0.5;
+                if (progress > 100) progress = 100;
+
+                const offset = circumference - (progress / 100) * circumference;
+                progressCircle.style.strokeDashoffset = offset;
+                percentText.textContent = Math.floor(progress) + '%';
+
+                // Update steps
+                if (progress > 30) {
+                    document.getElementById('step2').classList.replace('bg-on-surface-variant/30', 'bg-primary');
+                    document.getElementById('step2').classList.add('shadow-[0_0_8px_#f2ca50]');
+                    document.getElementById('stepText2').classList.replace('text-on-surface-variant', 'text-primary');
+                }
+                if (progress > 70) {
+                    document.getElementById('step3').classList.replace('bg-on-surface-variant/30', 'bg-primary');
+                    document.getElementById('step3').classList.add('shadow-[0_0_8px_#f2ca50]');
+                    document.getElementById('stepText3').classList.replace('text-on-surface-variant', 'text-primary');
+                }
+
+                // Est time
+                const remaining = Math.ceil((100 - progress) / 5);
+                timeRemaining.textContent = remaining + 's';
+
+            }, 200);
+        });
+    </script>
+</body></html>

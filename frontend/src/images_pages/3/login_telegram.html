@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AI Fortune Studio - Gateway</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#574500",
+                    "on-error-container": "#ffdad6",
+                    "surface-container": "#1f1e2a",
+                    "surface-container-lowest": "#0d0d18",
+                    "surface-tint": "#e9c349",
+                    "on-primary-container": "#554300",
+                    "inverse-on-surface": "#302f3b",
+                    "secondary-container": "#00eefc",
+                    "primary": "#f2ca50",
+                    "on-primary-fixed": "#241a00",
+                    "secondary": "#d3fbff",
+                    "surface-variant": "#343440",
+                    "primary-fixed-dim": "#e9c349",
+                    "on-surface-variant": "#d0c5af",
+                    "surface-container-low": "#1b1a26",
+                    "primary-fixed": "#ffe088",
+                    "on-primary": "#3c2f00",
+                    "background": "#12121d",
+                    "surface": "#12121d",
+                    "on-surface": "#e3e0f1",
+                    "on-secondary-fixed-variant": "#004f54",
+                    "on-background": "#e3e0f1",
+                    "on-tertiary-container": "#6500b1",
+                    "error-container": "#93000a",
+                    "on-error": "#690005",
+                    "on-secondary": "#00363a",
+                    "tertiary-container": "#ce9eff",
+                    "surface-container-high": "#292935",
+                    "surface-dim": "#12121d",
+                    "inverse-surface": "#e3e0f1",
+                    "secondary-fixed-dim": "#00dbe9",
+                    "outline": "#99907c",
+                    "tertiary": "#e1c2ff",
+                    "secondary-fixed": "#7df4ff",
+                    "tertiary-fixed": "#efdbff",
+                    "outline-variant": "#4d4635",
+                    "on-tertiary": "#480081",
+                    "primary-container": "#d4af37",
+                    "on-secondary-fixed": "#002022",
+                    "tertiary-fixed-dim": "#dcb8ff",
+                    "inverse-primary": "#735c00",
+                    "surface-container-highest": "#343440",
+                    "on-tertiary-fixed-variant": "#6700b5",
+                    "on-secondary-container": "#00686f",
+                    "surface-bright": "#383845",
+                    "error": "#ffb4ab",
+                    "on-tertiary-fixed": "#2c0051"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "card-padding": "24px",
+                    "stack-md": "16px",
+                    "safe-area": "20px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Inter"],
+                    "label-caps": ["Space Grotesk"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #12121d;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mystical-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 30%, rgba(26, 11, 46, 0.8) 0%, rgba(15, 15, 26, 1) 70%);
+            z-index: -1;
+        }
+
+        .light-ray {
+            position: absolute;
+            top: -20%;
+            left: 50%;
+            width: 150%;
+            height: 150%;
+            background: conic-gradient(from 0deg at 50% 50%, transparent 0%, rgba(242, 202, 80, 0.05) 15%, transparent 30%, rgba(0, 240, 255, 0.03) 45%, transparent 60%);
+            transform-origin: center;
+            animation: rotate-rays 60s linear infinite;
+            filter: blur(40px);
+            z-index: -1;
+        }
+
+        @keyframes rotate-rays {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .gold-border {
+            border: 1px solid #D4AF37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .ai-pulse {
+            position: relative;
+        }
+
+        .ai-pulse::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            background: linear-gradient(90deg, transparent, #00F0FF, transparent);
+            background-size: 200% 100%;
+            animation: move-pulse 3s linear infinite;
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        @keyframes move-pulse {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .interactive-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            z-index: -1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-between min-h-screen p-safe-area text-on-surface">
+<!-- Atmospheric Background Elements -->
+<div class="mystical-glow"></div>
+<div class="light-ray"></div>
+<div class="interactive-orb bg-tertiary w-64 h-64 top-[-10%] right-[-10%] animate-pulse"></div>
+<div class="interactive-orb bg-secondary-container w-80 h-80 bottom-[-15%] left-[-20%] animate-bounce" style="animation-duration: 8s;"></div>
+<!-- Main Content Canvas -->
+<main class="flex flex-col items-center justify-center w-full max-w-md h-full space-y-stack-lg z-10 pt-20">
+<!-- App Logo & Branding -->
+<section class="flex flex-col items-center text-center space-y-stack-md">
+<div class="relative">
+<div class="w-32 h-32 rounded-full glass-card gold-border flex items-center justify-center mb-6 overflow-hidden ai-pulse">
+<span class="material-symbols-outlined text-[64px] text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<!-- Logo Glow -->
+<div class="absolute inset-0 bg-primary/20 blur-3xl -z-10 rounded-full"></div>
+</div>
+<h1 class="font-display-lg text-display-lg text-primary tracking-tight">
+                AI Fortune Studio
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[280px]">
+                Ancient wisdom meets futuristic intelligence.
+            </p>
+</section>
+<!-- Feature Highlights (Bento-style list) -->
+<section class="w-full grid grid-cols-1 gap-4 px-4">
+<div class="glass-card rounded-xl p-4 flex items-center space-x-4 transition-transform hover:scale-[1.02] duration-300">
+<div class="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">bolt</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-primary">Instant magic</span>
+<span class="font-caption text-caption text-on-surface-variant/80">Real-time cosmic insights in seconds.</span>
+</div>
+</div>
+<div class="glass-card rounded-xl p-4 flex items-center space-x-4 transition-transform hover:scale-[1.02] duration-300">
+<div class="flex-shrink-0 w-10 h-10 rounded-lg bg-secondary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary-fixed-dim">palette</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-secondary-fixed-dim">AI art</span>
+<span class="font-caption text-caption text-on-surface-variant/80">Visualized destiny through generative imagery.</span>
+</div>
+</div>
+<div class="glass-card rounded-xl p-4 flex items-center space-x-4 transition-transform hover:scale-[1.02] duration-300">
+<div class="flex-shrink-0 w-10 h-10 rounded-lg bg-tertiary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">psychology</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-tertiary">Personal readings</span>
+<span class="font-caption text-caption text-on-surface-variant/80">Tailored guidance for your unique energy.</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Authentication & Footer Area -->
+<footer class="w-full max-w-md px-6 pb-12 flex flex-col items-center space-y-stack-md z-20">
+<!-- Telegram Sign-In Button -->
+<button class="w-full h-14 bg-gradient-to-r from-primary-container to-primary flex items-center justify-center rounded-full space-x-3 shadow-[0_8px_32px_rgba(212,175,55,0.3)] active:scale-95 transition-all duration-200">
+<svg class="w-6 h-6 fill-on-primary" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.35-.49.96-.75 3.78-1.65 6.31-2.74 7.58-3.27 3.61-1.5 4.35-1.76 4.84-1.77.11 0 .35.03.51.16.13.11.17.26.19.37.02.11.02.24.01.37z"></path>
+</svg>
+<span class="font-headline-md text-body-lg text-on-primary font-bold">Sign in with Telegram</span>
+</button>
+<div class="flex flex-col items-center space-y-2 opacity-60">
+<a class="font-caption text-caption text-on-surface hover:text-primary underline underline-offset-4 transition-colors" href="#">Privacy policy</a>
+<span class="font-caption text-[10px] tracking-widest text-on-surface-variant uppercase">Version 1.0.4 - Stellar Nexus</span>
+</div>
+</footer>
+<!-- Interactive Background Shader -->
+
+<script>
+        // Micro-interactions for atmospheric effect
+        document.addEventListener('mousemove', (e) => {
+            const orbs = document.querySelectorAll('.interactive-orb');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            orbs.forEach((orb, index) => {
+                const speed = (index + 1) * 20;
+                orb.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+
+        // Simple enter animation trigger
+        window.addEventListener('load', () => {
+            document.body.classList.add('opacity-100');
+            document.querySelectorAll('.glass-card').forEach((card, i) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 400 + (i * 100));
+            });
+        });
+    </script>
+</body></html>

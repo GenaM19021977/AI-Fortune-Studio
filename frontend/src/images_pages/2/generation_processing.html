@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Generating Magic - AI Fortune Studio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&amp;family=Sora:wght@700;800&amp;family=Hanken+Grotesk:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#0e0e13",
+                        "outline": "#9d8ba0",
+                        "surface-tint": "#ecb2ff",
+                        "on-secondary-fixed": "#002022",
+                        "error-container": "#93000a",
+                        "primary": "#ecb2ff",
+                        "on-secondary-container": "#00686f",
+                        "surface-container-highest": "#35343a",
+                        "primary-fixed": "#f8d8ff",
+                        "surface-container-high": "#2a292f",
+                        "inverse-on-surface": "#303036",
+                        "on-primary-fixed-variant": "#74009f",
+                        "tertiary-container": "#e7006e",
+                        "surface-dim": "#131318",
+                        "on-surface": "#e4e1e9",
+                        "on-primary": "#520071",
+                        "on-error": "#690005",
+                        "on-surface-variant": "#d4c0d7",
+                        "secondary-fixed": "#7df4ff",
+                        "on-error-container": "#ffdad6",
+                        "background": "#131318",
+                        "secondary-fixed-dim": "#00dbe9",
+                        "on-secondary": "#00363a",
+                        "surface-variant": "#35343a",
+                        "primary-container": "#bd00ff",
+                        "surface-bright": "#39383e",
+                        "on-secondary-fixed-variant": "#004f54",
+                        "on-background": "#e4e1e9",
+                        "secondary": "#d3fbff",
+                        "on-tertiary-fixed": "#3f0019",
+                        "on-primary-fixed": "#320047",
+                        "tertiary-fixed": "#ffd9e0",
+                        "on-tertiary-container": "#ffffff",
+                        "inverse-primary": "#9900cf",
+                        "on-tertiary-fixed-variant": "#8f0041",
+                        "on-primary-container": "#ffffff",
+                        "inverse-surface": "#e4e1e9",
+                        "secondary-container": "#00eefc",
+                        "surface-container": "#1f1f25",
+                        "on-tertiary": "#66002c",
+                        "outline-variant": "#514255",
+                        "surface": "#131318",
+                        "primary-fixed-dim": "#ecb2ff",
+                        "surface-container-low": "#1b1b20",
+                        "tertiary-fixed-dim": "#ffb1c3",
+                        "tertiary": "#ffb1c3",
+                        "error": "#ffb4ab"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "container-padding": "20px",
+                        "stack-gap": "16px",
+                        "glass-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "label-mono": ["JetBrains Mono"],
+                        "headline-lg": ["Sora"],
+                        "display-xl": ["Sora"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Sora"]
+                    },
+                    "fontSize": {
+                        "label-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-xl": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "34px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .radial-blur-bg {
+            background: radial-gradient(circle at center, rgba(189, 0, 255, 0.2) 0%, rgba(10, 10, 15, 1) 70%);
+        }
+        
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.5; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.5; }
+        }
+
+        @keyframes rotate-core {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes float-particle {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
+            50% { transform: translateY(-20px) scale(1.2); opacity: 0.8; }
+        }
+
+        @keyframes text-cycle {
+            0%, 25% { opacity: 1; transform: translateY(0); }
+            30%, 50% { opacity: 0; transform: translateY(-10px); }
+            55%, 75% { opacity: 1; transform: translateY(0); }
+            80%, 100% { opacity: 0; transform: translateY(-10px); }
+        }
+
+        .core-glow {
+            filter: drop-shadow(0 0 30px rgba(189, 0, 255, 0.6));
+        }
+
+        .progress-ring circle {
+            transition: stroke-dashoffset 0.1s linear;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen radial-blur-bg overflow-hidden flex flex-col items-center justify-center relative font-body-md">
+<!-- Top Navigation suppressed for transactional loading state -->
+<!-- Bottom Navigation suppressed for transactional loading state -->
+<!-- Ambient Particles -->
+<div class="absolute inset-0 pointer-events-none z-0">
+<div class="absolute top-[20%] left-[30%] w-2 h-2 bg-primary rounded-full blur-[2px] animate-[float-particle_4s_ease-in-out_infinite]"></div>
+<div class="absolute top-[60%] left-[20%] w-3 h-3 bg-secondary-container rounded-full blur-[3px] animate-[float-particle_6s_ease-in-out_infinite_1s]"></div>
+<div class="absolute top-[40%] right-[25%] w-1.5 h-1.5 bg-primary-container rounded-full blur-[1px] animate-[float-particle_3s_ease-in-out_infinite_2s]"></div>
+<div class="absolute bottom-[30%] right-[35%] w-4 h-4 bg-tertiary-container rounded-full blur-[4px] animate-[float-particle_7s_ease-in-out_infinite_0.5s]"></div>
+</div>
+<!-- Main Generation Canvas -->
+<main class="relative z-10 flex flex-col items-center justify-center w-full px-container-padding">
+<!-- 3D Core Container -->
+<div class="relative w-64 h-64 mb-stack-gap flex items-center justify-center">
+<!-- Outer Pulsing Glow -->
+<div class="absolute inset-0 rounded-full bg-primary-container/20 blur-[40px] animate-[pulse-ring_3s_ease-in-out_infinite]"></div>
+<!-- Progress Ring -->
+<svg class="absolute inset-0 w-full h-full progress-ring" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="48" stroke="rgba(236, 178, 255, 0.1)" stroke-width="1.5"></circle>
+<circle cx="50" cy="50" fill="none" id="progress-circle" r="48" stroke="url(#progressGradient)" stroke-dasharray="301.59" stroke-dashoffset="301.59" stroke-linecap="round" stroke-width="2"></circle>
+<defs>
+<lineargradient id="progressGradient" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#bd00ff"></stop>
+<stop offset="100%" stop-color="#00eefc"></stop>
+</lineargradient>
+</defs>
+</svg>
+<!-- Inner Core Representation (Fallback to CSS shape if 3D not available in prompt context, though requested as 3D. We will use a stylized CSS structure to mimic the crystalline/holographic look) -->
+<div class="relative w-32 h-32 core-glow animate-[rotate-core_15s_linear_infinite]">
+<!-- We simulate a crystalline structure with nested rotated squares and gradients -->
+<div class="absolute inset-0 bg-gradient-to-tr from-primary-container to-secondary-container rounded-lg opacity-80 backdrop-blur-md border border-white/20 rotate-45 mix-blend-screen shadow-[inset_0_0_20px_rgba(255,255,255,0.5)]"></div>
+<div class="absolute inset-4 bg-gradient-to-bl from-tertiary-container to-primary rounded-lg opacity-60 backdrop-blur-lg border border-white/30 rotate-12 mix-blend-screen"></div>
+<div class="absolute inset-8 bg-white/10 rounded-full backdrop-blur-xl border border-white/40 shadow-[0_0_30px_rgba(236,178,255,0.8)] -rotate-45"></div>
+</div>
+<!-- Center light beam -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1px] h-[300px] bg-gradient-to-b from-transparent via-primary-fixed to-transparent opacity-50 blur-[1px]"></div>
+</div>
+<!-- Typography -->
+<h1 class="font-display-xl text-display-xl text-on-surface mb-unit text-center drop-shadow-[0_0_15px_rgba(236,178,255,0.3)]">Generating Magic...</h1>
+<!-- Cycling Tips -->
+<div class="h-8 relative overflow-hidden w-full max-w-sm text-center">
+<p class="font-label-mono text-label-mono text-primary font-medium absolute w-full transition-all duration-500 opacity-100 transform translate-y-0 drop-shadow-[0_0_8px_rgba(236,178,255,0.5)]" id="tip-text">AI is composing your song...</p>
+</div>
+<!-- Progress Percentage (Optional, adds to the HUD feel) -->
+<div class="mt-stack-gap font-label-mono text-label-mono text-outline-variant tracking-widest">
+<span id="progress-text">0</span>%
+        </div>
+</main>
+<!-- Refractive Glass Overlay (VisionOS style depth) -->
+<div class="pointer-events-none fixed inset-0 border-[1px] border-white/5 rounded-3xl m-2 shadow-[inset_0_0_100px_rgba(0,0,0,0.8)] z-50"></div>
+<script>
+        // Progress Logic
+        const progressCircle = document.getElementById('progress-circle');
+        const progressText = document.getElementById('progress-text');
+        const circumference = 2 * Math.PI * 48; // 301.59
+        
+        let progress = 0;
+        const totalDuration = 10000; // 10 seconds for demo
+        const intervalTime = 50;
+        const increment = (100 / (totalDuration / intervalTime));
+
+        const progressInterval = setInterval(() => {
+            progress += increment;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(progressInterval);
+                // Handle completion here if needed
+            }
+            
+            const offset = circumference - (progress / 100) * circumference;
+            progressCircle.style.strokeDashoffset = offset;
+            progressText.innerText = Math.floor(progress);
+        }, intervalTime);
+
+        // Tips Cycling Logic
+        const tips = [
+            "AI is composing your song...",
+            "Tuning holographic frequencies...",
+            "Synthesizing crystalline structures...",
+            "Injecting cyberpunk energy..."
+        ];
+        
+        const tipElement = document.getElementById('tip-text');
+        let currentTipIndex = 0;
+
+        setInterval(() => {
+            // Fade out up
+            tipElement.style.opacity = '0';
+            tipElement.style.transform = 'translateY(-10px)';
+            
+            setTimeout(() => {
+                currentTipIndex = (currentTipIndex + 1) % tips.length;
+                tipElement.innerText = tips[currentTipIndex];
+                
+                // Reset to bottom, then fade in up to center
+                tipElement.style.transition = 'none';
+                tipElement.style.transform = 'translateY(10px)';
+                
+                // Force reflow
+                void tipElement.offsetWidth;
+                
+                tipElement.style.transition = 'all 0.5s ease';
+                tipElement.style.opacity = '1';
+                tipElement.style.transform = 'translateY(0)';
+            }, 500); // Wait for fade out
+            
+        }, 3000); // Change tip every 3 seconds
+    </script>
+</body></html>

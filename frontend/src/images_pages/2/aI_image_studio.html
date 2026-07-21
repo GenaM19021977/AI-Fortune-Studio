@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Fortune Studio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&amp;family=Sora:wght@700;800&amp;family=Hanken+Grotesk:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-lowest": "#0e0e13",
+                      "outline": "#9d8ba0",
+                      "surface-tint": "#ecb2ff",
+                      "on-secondary-fixed": "#002022",
+                      "error-container": "#93000a",
+                      "primary": "#ecb2ff",
+                      "on-secondary-container": "#00686f",
+                      "surface-container-highest": "#35343a",
+                      "primary-fixed": "#f8d8ff",
+                      "surface-container-high": "#2a292f",
+                      "inverse-on-surface": "#303036",
+                      "on-primary-fixed-variant": "#74009f",
+                      "tertiary-container": "#e7006e",
+                      "surface-dim": "#131318",
+                      "on-surface": "#e4e1e9",
+                      "on-primary": "#520071",
+                      "on-error": "#690005",
+                      "on-surface-variant": "#d4c0d7",
+                      "secondary-fixed": "#7df4ff",
+                      "on-error-container": "#ffdad6",
+                      "background": "#131318",
+                      "secondary-fixed-dim": "#00dbe9",
+                      "on-secondary": "#00363a",
+                      "surface-variant": "#35343a",
+                      "primary-container": "#bd00ff",
+                      "surface-bright": "#39383e",
+                      "on-secondary-fixed-variant": "#004f54",
+                      "on-background": "#e4e1e9",
+                      "secondary": "#d3fbff",
+                      "on-tertiary-fixed": "#3f0019",
+                      "on-primary-fixed": "#320047",
+                      "tertiary-fixed": "#ffd9e0",
+                      "on-tertiary-container": "#ffffff",
+                      "inverse-primary": "#9900cf",
+                      "on-tertiary-fixed-variant": "#8f0041",
+                      "on-primary-container": "#ffffff",
+                      "inverse-surface": "#e4e1e9",
+                      "secondary-container": "#00eefc",
+                      "surface-container": "#1f1f25",
+                      "on-tertiary": "#66002c",
+                      "outline-variant": "#514255",
+                      "surface": "#131318",
+                      "primary-fixed-dim": "#ecb2ff",
+                      "surface-container-low": "#1b1b20",
+                      "tertiary-fixed-dim": "#ffb1c3",
+                      "tertiary": "#ffb1c3",
+                      "error": "#ffb4ab"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "4px",
+                      "container-padding": "20px",
+                      "stack-gap": "16px",
+                      "glass-padding": "24px"
+              },
+              "fontFamily": {
+                      "label-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-lg": [
+                              "Sora"
+                      ],
+                      "display-xl": [
+                              "Sora"
+                      ],
+                      "body-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg-mobile": [
+                              "Sora"
+                      ]
+              },
+              "fontSize": {
+                      "label-mono": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-xl": [
+                              "48px",
+                              {
+                                      "lineHeight": "52px",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "34px",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+            },
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0A0A0F;
+            color: #e4e1e9;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Radial Blur Aurora Background */
+        .aurora-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(189, 0, 255, 0.15), transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(0, 238, 252, 0.1), transparent 50%);
+            filter: blur(60px);
+            pointer-events: none;
+        }
+
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: rgba(31, 31, 37, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid;
+            border-image-source: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+            border-image-slice: 1;
+        }
+
+        .glass-card {
+            background: rgba(53, 52, 58, 0.3);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+            border-right: 1px solid rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid transparent;
+            border-radius: 0.75rem;
+        }
+
+        /* Hide scrollbar for horizontal lists */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Glow Effects */
+        .glow-primary {
+            box-shadow: 0 0 15px rgba(189, 0, 255, 0.4);
+        }
+        
+        .image-upload-glow {
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, rgba(189, 0, 255, 0.5), rgba(0, 238, 252, 0.5), rgba(189, 0, 255, 0.5));
+            border-radius: inherit;
+            z-index: -1;
+            filter: blur(10px);
+            opacity: 0.7;
+            animation: pulse-glow 3s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            0% { opacity: 0.5; filter: blur(8px); }
+            100% { opacity: 0.8; filter: blur(12px); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased pb-24 md:pb-0 pt-20">
+<div class="aurora-bg"></div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-md border-b border-white/10 shadow-[0_0_20px_rgba(189,0,255,0.1)] flex justify-between items-center px-container-padding py-4 w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-white/20">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="A futuristic cyberpunk style user avatar portrait, neon lighting, highly detailed, expressive, glowing eyes, digital art, vibrant purple and cyan colors, dark background, premium quality" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9oQcQDb7TU4i4FH1vremScWznQYEGobrXLYWAE6tWXY1RfVFD63nMSSS-hFXtu5Qvxjod9b7U73qN_BZrL-sg_MolZAkWpmaJn6kDkYCkQUPigLEdlA-eX9IAtEya4Kq_VD9uPrSvlWAQmZ6TQzHSpGwPy_NRsaokGWSsGHqQiYLZfj1Qn743S7wWUPp9pyrELmPunmlcZZboEuw4pW5PbU5Vsh1tlJ7fiDn_doO9e3jbjftB_UaYzfGiX4GUe4bo4kA_LdUX7e8"/>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">AI Fortune Studio</h1>
+</div>
+<button class="text-primary hover:opacity-80 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-2xl">military_tech</span>
+</button>
+</header>
+<main class="px-container-padding mx-auto max-w-lg md:max-w-4xl flex flex-col gap-stack-gap h-full">
+<!-- Image Upload/Preview Area -->
+<section class="mt-4 relative w-full aspect-square md:aspect-video rounded-xl">
+<div class="image-upload-glow"></div>
+<div class="glass-panel w-full h-full rounded-xl flex flex-col items-center justify-center relative overflow-hidden group cursor-pointer active:scale-[0.98] transition-transform">
+<!-- Initial State (Upload) -->
+<div class="absolute inset-0 flex flex-col items-center justify-center z-10 transition-opacity duration-300 pointer-events-none group-hover:opacity-100 opacity-80" id="upload-state">
+<div class="w-16 h-16 rounded-full bg-surface-container-highest flex items-center justify-center mb-4 border border-outline/30 glow-primary">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">add_photo_alternate</span>
+</div>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">Upload Image</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-center px-4">Tap to select or drag and drop<br/><span class="text-sm opacity-70">PNG, JPG up to 10MB</span></p>
+</div>
+<!-- Preview State (Hidden by default, used for interaction simulation) -->
+<!-- 
+                <img src="placeholder" data-alt="A portrait of a person in a futuristic cyberpunk city, neon lights reflecting on their face, high-tech clothing, highly detailed, dramatic lighting, cinematic composition" class="absolute inset-0 w-full h-full object-cover z-20 opacity-0 transition-opacity duration-300" id="preview-image" alt="Uploaded Preview">
+                <div class="absolute bottom-4 right-4 z-30 opacity-0 transition-opacity duration-300 bg-surface-container-high/80 backdrop-blur-sm rounded-full p-2 border border-white/10" id="edit-btn">
+                     <span class="material-symbols-outlined text-primary">edit</span>
+                </div>
+                -->
+</div>
+</section>
+<!-- AI Styles Selector -->
+<section class="mt-4 flex flex-col gap-4">
+<div class="flex justify-between items-end">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Select Style</h2>
+<span class="font-label-mono text-label-mono text-primary">13 AVAILABLE</span>
+</div>
+<div class="flex overflow-x-auto gap-4 pb-4 no-scrollbar -mx-container-padding px-container-padding snap-x snap-mandatory">
+<!-- Style Card: Anime (Active) -->
+<div class="snap-center shrink-0 w-32 h-44 rounded-xl relative overflow-hidden cursor-pointer group active:scale-95 transition-all">
+<div class="absolute inset-0 border-2 border-primary rounded-xl z-20 pointer-events-none shadow-[inset_0_0_10px_rgba(189,0,255,0.5)]"></div>
+<img alt="Anime Style Preview" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A highly detailed anime style portrait illustration, vibrant colors, expressive eyes, cel-shaded, studio ghibli inspired lighting, fantasy setting, magical glowing particles, premium quality digital art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC__TptQvRZPMUh0Q8e5qMASXCpfYDipNqlKxYeoeYzoG7Xm_cIH4uwsUz5lZ6tqUYA4fLFaHhZgOgUXyppYMElvDIgAZ6XDj-x8y-MoSgmirzpP5pgucYbIKcss-10wKBgLUJCPrw9TmEOUy7ADnUkuppF9QgQq9_AbDmLsb-QnQX4jTcLMWuU52rl7f8YuehejEtttWAE4uVZtCfsbecAhcfjL0AAIXcBMfMqkZxbZu2jXwvPfvExlIb4Q9Ko8B9WdNCA_KkDit8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-10"></div>
+<div class="absolute bottom-3 left-0 w-full text-center z-10">
+<p class="font-body-md text-body-md text-primary font-bold">Anime</p>
+</div>
+<!-- Active Indicator -->
+<div class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full glow-primary z-20"></div>
+</div>
+<!-- Style Card: Cyberpunk -->
+<div class="snap-center shrink-0 w-32 h-44 rounded-xl relative overflow-hidden cursor-pointer glass-card group active:scale-95 transition-all">
+<img alt="Cyberpunk Style Preview" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-70 group-hover:opacity-100" data-alt="A gritty cyberpunk portrait, neon glowing implants, dark moody lighting, rain slicked streets reflecting pink and cyan neon signs, highly detailed, realistic, futuristic city background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiYHp3rkoRzPpRuA-kPKmHDWkE1r4vTRHBsM7aiMTD9n-bzCDjvtM0PY3EVc52hetTGRIeWmmLX8Lvq9NRmMHg0Ix0R7VT8e6zPJ-uMZaNkpmloYdgLSEeG3hYpwjbpbicbWPn_dKS27ICSOiRudbRkgZVSkKCnJVpF5Zosqdwb4YP4qWRJ7IFADBMrnTpV-iEFdQhm9fW_XRbO40gPMunNHP8AhvBdS32zFXX8ug7vbJNcML01xFLrf0JlCm4plE_pzbRdcimNh0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent z-10"></div>
+<div class="absolute bottom-3 left-0 w-full text-center z-10">
+<p class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Cyberpunk</p>
+</div>
+</div>
+<!-- Style Card: Disney -->
+<div class="snap-center shrink-0 w-32 h-44 rounded-xl relative overflow-hidden cursor-pointer glass-card group active:scale-95 transition-all">
+<img alt="Disney Style Preview" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-70 group-hover:opacity-100" data-alt="A 3D animated character portrait in the style of modern Pixar or Disney movies, soft warm lighting, big expressive eyes, slightly stylized features, magical and whimsical atmosphere, highly detailed textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwT0PbRSEaEw9QPFTlbBk73ij8yfFla_-yGsTO67zZOCw9KSntwlt5Hb-jQKp4Qi9DpBV-yRxFnBWR5G3EzSijRtZfqMG6V3g36dDDyxihAWeoowi99TWlSu_DbHlYUGIbQO4K1GfQXGmZ56bQLZJyMrZvQbd_jxXLhjLTCIdrN_LLCbDXRNFPLywBJ0Q0sNe4sgs5OP33Wsk5n_nG3xKZTutr30hGLtPI0qnUMT7UBMWQOwPsQG5V74kpLvfacyd6zWGW_4O__JE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent z-10"></div>
+<div class="absolute bottom-3 left-0 w-full text-center z-10">
+<p class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Disney</p>
+</div>
+</div>
+<!-- Style Card: Pixel Art -->
+<div class="snap-center shrink-0 w-32 h-44 rounded-xl relative overflow-hidden cursor-pointer glass-card group active:scale-95 transition-all">
+<img alt="Pixel Art Style Preview" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-70 group-hover:opacity-100 pixelated" data-alt="A highly detailed 16-bit pixel art portrait, vibrant retro color palette, classic RPG aesthetic, sharp pixels, moody lighting, nostalgic video game style, masterpiece quality pixel graphics" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEBGQ1q-gVtnQaIurQmFQ7DeJPtbBMODD7T6ochRfplOi25oTpzNbGmHL2fQ-sBcMKt_EhYWkbK7rtkV1OCmal78lLJ-jbuZ3KgqdFqPo1ibhoGyewQUKf4m-Zo_lfoZ_btWOsMAGkinDzfuH40crFGJQRQtX5b46CU6ZmBckUjIb7huRNjU1twkJN2EeOSa86-aicu03Mlq2mHl3JCe7JT5YbuNdTpcvaD5rkAgJy9JeGyInLxjNl6TGaZyC5SfPZxWlll69dyp4" style="image-rendering: pixelated;"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent z-10"></div>
+<div class="absolute bottom-3 left-0 w-full text-center z-10">
+<p class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Pixel Art</p>
+</div>
+</div>
+<!-- Style Card: LEGO -->
+<div class="snap-center shrink-0 w-32 h-44 rounded-xl relative overflow-hidden cursor-pointer glass-card group active:scale-95 transition-all">
+<img alt="LEGO Style Preview" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-70 group-hover:opacity-100" data-alt="A portrait made entirely of realistic 3D rendered plastic building blocks, vibrant primary colors, glossy plastic texture, macro photography style, highly detailed studs and connections, playful atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDDHj-veVxtFsdvPeHkrE1FMcwqp8qszjJL6wlAsBUFmAsK5EKNFlOLvNPa1bF_ck8Yhn0B_UUdzCCJ-5pVD4CgflE7O-vuta_OxObmbuudxtDAKfB5Y-89p4DYl_CVVRmId9WsOQa129zu8EhthVobTBjCP6wsjxRlNcuMzhxn1yYVccNzdfMDUQhjRPdcS2l-190hqoe6v6jx9y9kFy7mtdYhdNrnakR0NzpgwQPUb_Fr4tk00TUqx2AQ0tFSmJKE4xSapNS9zc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent z-10"></div>
+<div class="absolute bottom-3 left-0 w-full text-center z-10">
+<p class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">LEGO</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Generate Button -->
+<section class="mt-auto pt-6 pb-6 w-full flex justify-center">
+<button class="w-full max-w-sm h-14 rounded-full bg-gradient-to-r from-primary-container to-secondary-container text-white font-headline-lg-mobile text-headline-lg-mobile relative overflow-hidden group shadow-[0_0_20px_rgba(189,0,255,0.4)] active:scale-95 transition-all">
+<div class="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></div>
+<div class="flex items-center justify-center gap-2 relative z-10 h-full w-full">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                    Generate Art
+                </div>
+</button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] rounded-full bg-surface-container/60 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.4)] flex justify-around items-center h-16 px-4 z-50">
+<!-- Inactive: grid_view (Home/Dashboard semantic intent) -->
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-2xl">grid_view</span>
+</a>
+<!-- Active: auto_awesome (AI Generation Tool semantic intent) -->
+<a class="flex flex-col items-center justify-center text-primary drop-shadow-[0_0_8px_rgba(236,178,255,0.8)] after:content-[''] after:w-1 after:h-1 after:bg-primary after:rounded-full after:mt-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</a>
+<!-- Inactive: explore -->
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-2xl">explore</span>
+</a>
+<!-- Inactive: workspace_premium -->
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-2xl">workspace_premium</span>
+</a>
+<!-- Inactive: person -->
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-2xl">person</span>
+</a>
+</nav>
+</body></html>

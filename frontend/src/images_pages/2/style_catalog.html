@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AI Fortune Studio - Catalog</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Sora:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#0e0e13",
+                    "outline": "#9d8ba0",
+                    "surface-tint": "#ecb2ff",
+                    "on-secondary-fixed": "#002022",
+                    "error-container": "#93000a",
+                    "primary": "#ecb2ff",
+                    "on-secondary-container": "#00686f",
+                    "surface-container-highest": "#35343a",
+                    "primary-fixed": "#f8d8ff",
+                    "surface-container-high": "#2a292f",
+                    "inverse-on-surface": "#303036",
+                    "on-primary-fixed-variant": "#74009f",
+                    "tertiary-container": "#e7006e",
+                    "surface-dim": "#131318",
+                    "on-surface": "#e4e1e9",
+                    "on-primary": "#520071",
+                    "on-error": "#690005",
+                    "on-surface-variant": "#d4c0d7",
+                    "secondary-fixed": "#7df4ff",
+                    "on-error-container": "#ffdad6",
+                    "background": "#131318",
+                    "secondary-fixed-dim": "#00dbe9",
+                    "on-secondary": "#00363a",
+                    "surface-variant": "#35343a",
+                    "primary-container": "#bd00ff",
+                    "surface-bright": "#39383e",
+                    "on-secondary-fixed-variant": "#004f54",
+                    "on-background": "#e4e1e9",
+                    "secondary": "#d3fbff",
+                    "on-tertiary-fixed": "#3f0019",
+                    "on-primary-fixed": "#320047",
+                    "tertiary-fixed": "#ffd9e0",
+                    "on-tertiary-container": "#ffffff",
+                    "inverse-primary": "#9900cf",
+                    "on-tertiary-fixed-variant": "#8f0041",
+                    "on-primary-container": "#ffffff",
+                    "inverse-surface": "#e4e1e9",
+                    "secondary-container": "#00eefc",
+                    "surface-container": "#1f1f25",
+                    "on-tertiary": "#66002c",
+                    "outline-variant": "#514255",
+                    "surface": "#131318",
+                    "primary-fixed-dim": "#ecb2ff",
+                    "surface-container-low": "#1b1b20",
+                    "tertiary-fixed-dim": "#ffb1c3",
+                    "tertiary": "#ffb1c3",
+                    "error": "#ffb4ab"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "container-padding": "20px",
+                    "stack-gap": "16px",
+                    "glass-padding": "24px"
+            },
+            "fontFamily": {
+                    "label-mono": ["JetBrains Mono"],
+                    "headline-lg": ["Sora"],
+                    "display-xl": ["Sora"],
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Sora"]
+            },
+            "fontSize": {
+                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-xl": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+        /* Custom scrollbar to match dark aesthetic */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #35343a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #514255;
+        }
+        .bg-aurora {
+            background: radial-gradient(ellipse at top, rgba(189,0,255,0.15) 0%, transparent 60%),
+                        radial-gradient(ellipse at bottom left, rgba(0,238,252,0.05) 0%, transparent 50%);
+        }
+        .glass-stroke-top {
+            box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.2);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface font-body-md relative min-h-screen overflow-x-hidden selection:bg-primary-container selection:text-white">
+<!-- Immersive Background -->
+<div class="fixed inset-0 pointer-events-none z-0 bg-aurora"></div>
+<!-- TopAppBar (From JSON) -->
+<header class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-md border-b border-white/10 shadow-[0_0_20px_rgba(189,0,255,0.1)]">
+<div class="flex justify-between items-center px-container-padding py-4 w-full">
+<div class="flex items-center gap-3 active:scale-95 transition-transform hover:opacity-80">
+<!-- Avatar Leading -->
+<div class="w-10 h-10 rounded-full overflow-hidden border border-white/20 bg-surface-container shrink-0">
+<img class="w-full h-full object-cover" data-alt="A highly detailed close-up portrait of a mystical AI avatar character. The face is subtly illuminated by deep neon purple and cyan ambient lights reflecting off glossy, futuristic textures. The style is hyper-realistic cyberpunk elegance, perfectly suited for a premium dark-mode application profile picture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp2NI9c3VyLzJw9WmTk7NMCMHA7Soz1tkZSiezW7mnbPMoh7GZNnPv2ie9DIhRORKIUn0HMp22gS2IQF6DD_PHjJUcXlzv4M3y9SXaZ-2DVqU6WmID8DcetE1CjGxLg8RZnhkM8sd0bUigG0Rt9mjW5h0L_9HdK3kqczRDAzTMCQGBPkec9eUKLdpLyxmQ7GXDZbW5lHdb1uulum12Pj4GBjIIQHO7EpYBG34cPs2FqzxJ2SlkG464QFvT5wNn6fkLs5cNdKRLWTA"/>
+</div>
+<!-- Brand Logo / Headline -->
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary truncate">
+                    AI Fortune Studio
+                </h1>
+</div>
+<!-- Trailing Icon -->
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container/50 border border-white/10 text-primary active:scale-95 transition-transform hover:opacity-80 shrink-0">
+<span class="material-symbols-outlined">military_tech</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="relative z-10 pt-24 pb-32 px-container-padding max-w-7xl mx-auto flex flex-col gap-8">
+<!-- Section: Миры & Эпохи -->
+<section class="flex flex-col gap-4">
+<!-- Floating Label Header -->
+<div class="sticky top-24 z-30 self-start backdrop-blur-xl bg-surface-container-high/70 border border-white/10 rounded-full px-4 py-2 glass-stroke-top shadow-lg shadow-black/50">
+<h2 class="font-label-mono text-label-mono text-secondary-fixed-dim uppercase tracking-widest">Миры &amp; Эпохи</h2>
+</div>
+<!-- Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-stack-gap">
+<!-- Card: Cyberpunk -->
+<div class="group relative aspect-[3/4] rounded-[24px] overflow-hidden bg-surface-container border border-white/5 shadow-2xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(189,0,255,0.15)] cursor-pointer">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A breathtaking, highly detailed full-body portrait of a futuristic cyberpunk hacker in a dark, rain-slicked metropolis. Neon purple and cyan reflections bounce off their high-tech glossy jacket and cybernetic implants. The lighting is moody and cinematic, emphasizing deep shadows and vibrant light-emitting diodes. The image exudes a premium, neo-glassmorphism aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoQ5r-ZsjsgwKLBu8KSQhTjQ_cGFFxj73TOs0RAJnthK5A5MUu-BwXHCsmD5LTagXtfVyW5J9ytzpYXhmaiR6iybvrzvnbKJKMVvOXa0dojQNW7zVw5w8-My79qLtfktqXW5HzBqgRNeo5q0BYyhVsG0XNVT5eQq_J11sQdCS9t9AM7OO48Zmm2VUPOeyR_UrFbtiPtEzyoyyD0_tl2iEz18AZ0v3GW4vITE2CffPWNil4Q2whXoHq6LNEAfpeCClKSV60g0Dcuu8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+<!-- Glass Label Bottom -->
+<div class="absolute bottom-4 left-4 right-4 backdrop-blur-xl bg-surface-container/40 border border-white/10 rounded-xl p-4 glass-stroke-top flex flex-col gap-1 transition-transform group-active:scale-95">
+<span class="font-label-mono text-label-mono text-primary">01 // CYBERPUNK</span>
+<h3 class="font-body-md text-body-md text-white font-medium">Неоновые тени</h3>
+</div>
+</div>
+<!-- Card: Retro Future -->
+<div class="group relative aspect-[3/4] rounded-[24px] overflow-hidden bg-surface-container border border-white/5 shadow-2xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(189,0,255,0.15)] cursor-pointer">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An expansive, meticulously crafted illustration of a retro-futuristic astronaut standing on a desolate alien landscape. The scene is bathed in a surreal twilight of deep violet and muted gold. The spacesuit features sleek, chrome 1960s sci-fi design elements mixed with modern glowing interfaces. The atmosphere is nostalgic yet incredibly advanced, perfectly fitting a dark-mode catalog." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgipUcRKKgbEtFW5yyfM4JmubyHxrnHHOaT8lnZaQ0x7eQ38RzAqXRgeaXcdPaycrU1FcapSUFioiORnHH5nKKhdF2maXC8sj_LGNCz8ydIM0mzox_irHsOWQYMzrfy8-iP-QxbC6KvWQbwu2oz242JdZYaWit-1iDk9IqKPIcQsFZRtZrITzOSY8g7g80NwQRzeA8u9JA0OH9yrq4CHsbrL6lPOwbIHw_zVIRhh1gGpULnll4Vzn83Nxx_jknYwAjIAns71PXyg8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+<!-- Glass Label Bottom -->
+<div class="absolute bottom-4 left-4 right-4 backdrop-blur-xl bg-surface-container/40 border border-white/10 rounded-xl p-4 glass-stroke-top flex flex-col gap-1 transition-transform group-active:scale-95">
+<span class="font-label-mono text-label-mono text-secondary-fixed">02 // RETRO FUTURE</span>
+<h3 class="font-body-md text-body-md text-white font-medium">Хром и Звезды</h3>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Сущности -->
+<section class="flex flex-col gap-4">
+<div class="sticky top-24 z-30 self-start backdrop-blur-xl bg-surface-container-high/70 border border-white/10 rounded-full px-4 py-2 glass-stroke-top shadow-lg shadow-black/50">
+<h2 class="font-label-mono text-label-mono text-primary-fixed uppercase tracking-widest">Сущности</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-stack-gap">
+<!-- Card: Мистика -->
+<div class="group relative aspect-square rounded-[24px] overflow-hidden bg-surface-container border border-white/5 shadow-2xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(189,0,255,0.15)] cursor-pointer">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A striking and mysterious portrait of an ancient seer emerging from a dark, swirling cosmic void. Ethereal, translucent purple energy wraps around their elegant, shadowy robes. Their eyes glow intensely with a pristine white light, casting long shadows. The image is rendered with extreme fidelity, evoking a sense of powerful magic within a sleek digital interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi69kAKC6Zlv3JyAbIJ0RmxbzsK-yE5YLAZmFHK4F3-HYZ7UrQqfWTtMl6NXvGA13KRwjsWRvh6tvvubTMViwKcTlXQqnjzpwSjwu1HmyelWAfJVpWpbGl7Oj13IM_FToe8uuCxrmhfPNpTQoQOsNE4cz3ShZhcSyFhwx-ZmYKzDTMxj5VKSBvuEFI2RtbkD7nnz0Ene09fpcmcxCEHKFu8iL4BuCZAFNDGc_CZjQd8X61mhsa3hQiU7gnzBkyAXyz3vYAaiYJ_QY"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4 backdrop-blur-xl bg-surface-container/40 border border-white/10 rounded-xl p-4 glass-stroke-top flex flex-col gap-1 transition-transform group-active:scale-95">
+<span class="font-label-mono text-label-mono text-primary-fixed">03 // МИСТИКА</span>
+<h3 class="font-body-md text-body-md text-white font-medium">Тайные Знания</h3>
+</div>
+</div>
+<!-- Card: Мудрецы -->
+<div class="group relative aspect-square rounded-[24px] overflow-hidden bg-surface-container border border-white/5 shadow-2xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(189,0,255,0.15)] cursor-pointer">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A hyper-realistic, dark and moody illustration of an ancient stoic philosopher rendered as an advanced AI entity. They sit in a minimalist, shadowy chamber lit only by a hovering, complex geometric hologram. The color palette relies on deep blacks and subtle hints of magenta. The character emanates a calm, calculating intelligence suited for a premium cyber-aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYLjUtu8k2TuYh7FO6o_zNLLTZfz3ZLGEjUHYkmVZS79gBJX0a7JyA9gZKcFEPHGg41aULEt5jcZsimlWRzGhoVMDxp88L6hzdaxiWe6XS7e3nBu1XnBrl41ZRcVexuu8SMdQu5BEgbSMncHKK6TzpRiW-2nktisVIIWMh146dV7HO3zql6tGJTWT-nxEfFd6wDV5PHXC5WWxggyyXGjIfiuOjZHjVIFWhxyTupJMFMhdYCoaX4c1gNNE4pqrlAFtDchX2fwPfcjo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4 backdrop-blur-xl bg-surface-container/40 border border-white/10 rounded-xl p-4 glass-stroke-top flex flex-col gap-1 transition-transform group-active:scale-95">
+<span class="font-label-mono text-label-mono text-surface-tint">04 // МУДРЕЦЫ</span>
+<h3 class="font-body-md text-body-md text-white font-medium">Архитекторы Мысли</h3>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (From JSON) -->
+<!-- Wrapped in md:hidden to only show on mobile as per prompt rules -->
+<div class="md:hidden">
+<nav class="fixed bottom-4 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] rounded-full z-50 bg-surface-container/60 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.4)] flex justify-around items-center h-16 px-4">
+<!-- Icon 1: grid_view (Inactive) -->
+<button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200 w-12 h-12">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">grid_view</span>
+</button>
+<!-- Icon 2: auto_awesome (Inactive) -->
+<button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200 w-12 h-12">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">auto_awesome</span>
+</button>
+<!-- Icon 3: explore (Active - Catalog/Browse Context) -->
+<button class="flex flex-col items-center justify-center text-primary drop-shadow-[0_0_8px_rgba(236,178,255,0.8)] after:content-[''] after:w-1 after:h-1 after:bg-primary after:rounded-full after:mt-1 active:scale-90 transition-all duration-200 w-12 h-12">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+</button>
+<!-- Icon 4: workspace_premium (Inactive) -->
+<button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200 w-12 h-12">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">workspace_premium</span>
+</button>
+<!-- Icon 5: person (Inactive) -->
+<button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200 w-12 h-12">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span>
+</button>
+</nav>
+</div>
+</body></html>

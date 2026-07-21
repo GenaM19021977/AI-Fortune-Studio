@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Space+Grotesk:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#574500",
+                    "on-error-container": "#ffdad6",
+                    "surface-container": "#1f1e2a",
+                    "surface-container-lowest": "#0d0d18",
+                    "surface-tint": "#e9c349",
+                    "on-primary-container": "#554300",
+                    "inverse-on-surface": "#302f3b",
+                    "secondary-container": "#00eefc",
+                    "primary": "#f2ca50",
+                    "on-primary-fixed": "#241a00",
+                    "secondary": "#d3fbff",
+                    "surface-variant": "#343440",
+                    "primary-fixed-dim": "#e9c349",
+                    "on-surface-variant": "#d0c5af",
+                    "surface-container-low": "#1b1a26",
+                    "primary-fixed": "#ffe088",
+                    "on-primary": "#3c2f00",
+                    "background": "#12121d",
+                    "surface": "#12121d",
+                    "on-surface": "#e3e0f1",
+                    "on-secondary-fixed-variant": "#004f54",
+                    "on-background": "#e3e0f1",
+                    "on-tertiary-container": "#6500b1",
+                    "error-container": "#93000a",
+                    "on-error": "#690005",
+                    "on-secondary": "#00363a",
+                    "tertiary-container": "#ce9eff",
+                    "surface-container-high": "#292935",
+                    "surface-dim": "#12121d",
+                    "inverse-surface": "#e3e0f1",
+                    "secondary-fixed-dim": "#00dbe9",
+                    "outline": "#99907c",
+                    "tertiary": "#e1c2ff",
+                    "secondary-fixed": "#7df4ff",
+                    "tertiary-fixed": "#efdbff",
+                    "outline-variant": "#4d4635",
+                    "on-tertiary": "#480081",
+                    "primary-container": "#d4af37",
+                    "on-secondary-fixed": "#002022",
+                    "tertiary-fixed-dim": "#dcb8ff",
+                    "inverse-primary": "#735c00",
+                    "surface-container-highest": "#343440",
+                    "on-tertiary-fixed-variant": "#6700b5",
+                    "on-secondary-container": "#00686f",
+                    "surface-bright": "#383845",
+                    "error": "#ffb4ab",
+                    "on-tertiary-fixed": "#2c0051"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "card-padding": "24px",
+                    "stack-md": "16px",
+                    "safe-area": "20px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Inter"],
+                    "label-caps": ["Space Grotesk"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0F0F1A;
+            margin: 0;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            color: #e3e0f1;
+        }
+
+        .mystic-glow {
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
+        }
+
+        @keyframes float-pulse {
+            0%, 100% { transform: translateY(0px) scale(1); filter: drop-shadow(0 0 20px rgba(242, 202, 80, 0.2)); }
+            50% { transform: translateY(-20px) scale(1.05); filter: drop-shadow(0 0 40px rgba(242, 202, 80, 0.4)); }
+        }
+
+        .animate-mystic-logo {
+            animation: float-pulse 5s ease-in-out infinite;
+        }
+
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in-entry {
+            animation: fade-in-up 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .progress-bar-fill {
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 15px rgba(242, 202, 80, 0.8), 0 0 5px rgba(242, 202, 80, 0.4);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        webgl-shader {
+            pointer-events: none;
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center relative">
+<!-- Fullscreen Shader Background -->
+<!-- STITCH_SHADER_START:ANIMATION_17 class="absolute inset-0 w-full h-full -z-10" -->
+<div class="absolute inset-0 w-full h-full -z-10" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_17" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_17');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+
+uniform float u_time;
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+
+varying vec2 v_texCoord;
+
+void main() {
+    vec2 uv = v_texCoord;
+    
+    // Background color: deep dark navy/purple from surface-container-lowest
+    vec3 color1 = vec3(0.05, 0.05, 0.09); // #0d0d18
+    // Accent color: mystical violet/gold highlights
+    vec3 color2 = vec3(0.15, 0.1, 0.25);  // Deep violet
+    vec3 accent = vec3(0.83, 0.69, 0.22); // #d4af37 (Gold)
+
+    // Create a flowing plasma effect
+    float time = u_time * 0.3;
+    
+    float v = 0.0;
+    vec2 p = uv * 3.0 - 1.5;
+    
+    v += sin(p.x * 2.0 + time);
+    v += sin((p.y * 2.0 + time) / 2.0);
+    v += sin((p.x * 2.0 + p.y * 2.0 + time) / 2.0);
+    
+    p += vec2(sin(time / 3.0), cos(time / 2.0));
+    v += sin(sqrt(p.x * p.x + p.y * p.y + 1.0) + time);
+    
+    v = v / 2.0;
+    
+    vec3 finalColor = mix(color1, color2, sin(v) * 0.5 + 0.5);
+    
+    // Add subtle shimmering gold "stars"
+    float stars = fract(sin(dot(uv + fract(time * 0.01), vec2(12.9898, 78.233))) * 43758.5453);
+    stars = pow(stars, 100.0) * (sin(time * 2.0 + uv.x * 10.0) * 0.5 + 0.5);
+    finalColor += accent * stars * 0.5;
+
+    // Soft vignette
+    float vignette = 1.0 - smoothstep(0.5, 1.5, length(uv - 0.5));
+    finalColor *= vignette;
+
+    gl_FragColor = vec4(finalColor, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_17 -->
+<!-- Atmospheric Layers -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+<div class="absolute inset-0 bg-black/40"></div>
+<canvas class="absolute inset-0 w-full h-full opacity-20" id="particleCanvas"></canvas>
+</div>
+<!-- Main Content Canvas -->
+<main class="relative z-10 flex flex-col items-center justify-between h-full w-full max-w-md px-safe-area py-16">
+<!-- Center Logo Section -->
+<div class="flex-1 flex flex-col items-center justify-center gap-stack-lg">
+<div class="relative group">
+<!-- Outer Aura -->
+<div class="absolute -inset-8 bg-primary/20 rounded-full blur-3xl opacity-50 transition-opacity duration-1000"></div>
+<!-- Main Logo Container -->
+<div class="animate-mystic-logo flex items-center justify-center w-32 h-32 rounded-[32px] glass-panel relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent"></div>
+<span class="material-symbols-outlined text-7xl text-primary mystic-glow" style="font-variation-settings: 'FILL' 1;">
+                        auto_awesome
+                    </span>
+</div>
+</div>
+<!-- Branding Text -->
+<div class="text-center space-y-2 fade-in-entry" style="animation-delay: 0.3s;">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight">
+                    AI Fortune Studio
+                </h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant/60 tracking-[0.2em] uppercase">
+                    Unlocking Destiny
+                </p>
+</div>
+</div>
+<!-- Footer Loading Area -->
+<div class="w-full space-y-stack-md flex flex-col items-center fade-in-entry" style="animation-delay: 0.6s;">
+<!-- Progress Container -->
+<div class="w-full glass-panel h-1.5 rounded-full overflow-hidden p-[0.5px]">
+<div class="progress-bar-fill h-full bg-gradient-to-r from-primary-container via-primary to-primary-fixed rounded-full" id="loadingProgress" style="width: 0%;"></div>
+</div>
+<!-- Caption -->
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px] text-primary/80 animate-pulse">
+                    magic_button
+                </span>
+<p class="font-label-caps text-label-caps text-on-surface-variant/80" id="statusText">
+                    Powered by AI Magic
+                </p>
+</div>
+<!-- Subtle Version info -->
+<div class="pt-4">
+<span class="font-caption text-caption text-on-surface-variant/30">v2.4.0-mystic</span>
+</div>
+</div>
+</main>
+<script>
+        // Particle Background Logic
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.init();
+            }
+            init() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = (Math.random() - 0.5) * 0.3;
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 40; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        initParticles();
+        animateParticles();
+
+        // Loading Progress Simulation
+        const progressBar = document.getElementById('loadingProgress');
+        const statusText = document.getElementById('statusText');
+        let progress = 0;
+
+        const messages = [
+            "Aligning the constellations...",
+            "Consulting the neural network...",
+            "Decrypting ancient scrolls...",
+            "Calibrating cosmic energies...",
+            "Generating your destiny...",
+            "Finalizing the vision..."
+        ];
+
+        const interval = setInterval(() => {
+            progress += Math.random() * 5;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(interval);
+                statusText.innerText = "Welcome to the Future";
+            } else {
+                const msgIndex = Math.floor((progress / 100) * messages.length);
+                if (messages[msgIndex]) statusText.innerText = messages[msgIndex];
+            }
+            progressBar.style.width = progress + '%';
+        }, 180);
+
+    </script>
+</body></html>

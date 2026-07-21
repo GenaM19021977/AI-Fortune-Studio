@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AI Fortune Studio - Premium</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#574500",
+                    "on-error-container": "#ffdad6",
+                    "surface-container": "#1f1e2a",
+                    "surface-container-lowest": "#0d0d18",
+                    "surface-tint": "#e9c349",
+                    "on-primary-container": "#554300",
+                    "inverse-on-surface": "#302f3b",
+                    "secondary-container": "#00eefc",
+                    "primary": "#f2ca50",
+                    "on-primary-fixed": "#241a00",
+                    "secondary": "#d3fbff",
+                    "surface-variant": "#343440",
+                    "primary-fixed-dim": "#e9c349",
+                    "on-surface-variant": "#d0c5af",
+                    "surface-container-low": "#1b1a26",
+                    "primary-fixed": "#ffe088",
+                    "on-primary": "#3c2f00",
+                    "background": "#12121d",
+                    "surface": "#12121d",
+                    "on-surface": "#e3e0f1",
+                    "on-secondary-fixed-variant": "#004f54",
+                    "on-background": "#e3e0f1",
+                    "on-tertiary-container": "#6500b1",
+                    "error-container": "#93000a",
+                    "on-error": "#690005",
+                    "on-secondary": "#00363a",
+                    "tertiary-container": "#ce9eff",
+                    "surface-container-high": "#292935",
+                    "surface-dim": "#12121d",
+                    "inverse-surface": "#e3e0f1",
+                    "secondary-fixed-dim": "#00dbe9",
+                    "outline": "#99907c",
+                    "tertiary": "#e1c2ff",
+                    "secondary-fixed": "#7df4ff",
+                    "tertiary-fixed": "#efdbff",
+                    "outline-variant": "#4d4635",
+                    "on-tertiary": "#480081",
+                    "primary-container": "#d4af37",
+                    "on-secondary-fixed": "#002022",
+                    "tertiary-fixed-dim": "#dcb8ff",
+                    "inverse-primary": "#735c00",
+                    "surface-container-highest": "#343440",
+                    "on-tertiary-fixed-variant": "#6700b5",
+                    "on-secondary-container": "#00686f",
+                    "surface-bright": "#383845",
+                    "error": "#ffb4ab",
+                    "on-tertiary-fixed": "#2c0051"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "card-padding": "24px",
+                    "stack-md": "16px",
+                    "safe-area": "20px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Inter"],
+                    "label-caps": ["Space Grotesk"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #12121d;
+            color: #e3e0f1;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .premium-border {
+            border: 1px solid #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 85, 0.2);
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #f2ca50 0%, #d4af37 100%);
+        }
+        .gold-text-gradient {
+            background: linear-gradient(135deg, #f2ca50 0%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmerEffect 4s infinite linear;
+        }
+        @keyframes shimmerEffect {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+        .active-ring {
+            box-shadow: 0 0 0 2px #d4af37, 0 0 10px #d4af37;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10">
+<div class="flex items-center px-5 h-16 w-full max-w-md mx-auto">
+<span class="material-symbols-outlined text-primary mr-3" data-icon="auto_awesome">auto_awesome</span>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary tracking-tight">AI Fortune Studio</h1>
+<div class="ml-auto">
+<button class="material-symbols-outlined text-on-surface-variant transition-all duration-300 ease-in-out hover:opacity-80" data-icon="close">close</button>
+</div>
+</div>
+</header>
+<!-- Background Atmospheric Orbs -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+<div class="absolute top-[10%] left-[-20%] w-96 h-96 bg-tertiary/10 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[20%] right-[-20%] w-96 h-96 bg-secondary-container/10 rounded-full blur-[120px]"></div>
+</div>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-md mx-auto px-5 pt-24 pb-32 z-10 relative">
+<!-- Hero Section -->
+<div class="text-center mb-stack-lg">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.2em] mb-2 block">ASCEND TO MASTERY</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile font-bold mb-4">Unlock Your <span class="gold-text-gradient">Digital Destiny</span></h2>
+<p class="font-body-md text-body-md text-on-surface-variant/80">Experience the full power of techno-mysticism with our most advanced AI models.</p>
+</div>
+<!-- Comparison Bento Grid -->
+<div class="grid grid-cols-2 gap-4 mb-stack-lg">
+<!-- Free Tier -->
+<div class="glass-card rounded-[24px] p-5 flex flex-col items-center text-center opacity-70 border-white/5 cursor-pointer" onclick="playMysticSound('soft')">
+<span class="material-symbols-outlined text-on-surface-variant mb-3" data-icon="person">person</span>
+<h3 class="font-label-caps text-label-caps uppercase mb-2">Free</h3>
+<div class="font-headline-md text-headline-md mb-1">0€</div>
+<div class="font-caption text-caption text-on-surface-variant">Standard Access</div>
+</div>
+<!-- Premium Tier -->
+<div class="glass-card rounded-[24px] p-5 flex flex-col items-center text-center premium-border bg-primary-container/5 relative overflow-hidden cursor-pointer" onclick="playMysticSound('soft')">
+<div class="absolute top-0 right-0 px-3 py-1 gold-gradient rounded-bl-xl">
+<span class="text-[10px] font-bold text-on-primary">ELITE</span>
+</div>
+<span class="material-symbols-outlined text-primary mb-3" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span>
+<h3 class="font-label-caps text-label-caps uppercase mb-2 text-primary">Premium</h3>
+<div class="font-headline-md text-headline-md text-primary mb-1">9.99€</div>
+<div class="font-caption text-caption text-primary/80">Full Potential</div>
+</div>
+</div>
+<!-- Perks List -->
+<section class="space-y-4 mb-stack-lg">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant tracking-widest px-1">PREMIUM PRIVILEGES</h3>
+<!-- Perk Item 1 -->
+<div class="glass-card rounded-xl p-4 flex items-start gap-4">
+<div class="w-10 h-10 rounded-lg gold-gradient flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary" data-icon="all_inclusive">all_inclusive</span>
+</div>
+<div>
+<h4 class="font-body-md text-body-md font-bold text-on-surface">Unlimited Generations</h4>
+<p class="font-caption text-caption text-on-surface-variant">Break free from daily limits and explore the cosmos endlessly.</p>
+</div>
+</div>
+<!-- Perk Item 2 -->
+<div class="glass-card rounded-xl p-4 flex items-start gap-4">
+<div class="w-10 h-10 rounded-lg gold-gradient flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary" data-icon="high_quality">high_quality</span>
+</div>
+<div>
+<h4 class="font-body-md text-body-md font-bold text-on-surface">HD Image &amp; Video</h4>
+<p class="font-caption text-caption text-on-surface-variant">Witness your destiny in stunning 4K clarity and fluid motion.</p>
+</div>
+</div>
+<!-- Perk Item 3 -->
+<div class="glass-card rounded-xl p-4 flex items-start gap-4">
+<div class="w-10 h-10 rounded-lg gold-gradient flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary" data-icon="speed">speed</span>
+</div>
+<div>
+<h4 class="font-body-md text-body-md font-bold text-on-surface">Priority Queue</h4>
+<p class="font-caption text-caption text-on-surface-variant">Skip the wait. Your readings are processed by high-performance servers first.</p>
+</div>
+</div>
+<!-- Perk Item 4 -->
+<div class="glass-card rounded-xl p-4 flex items-start gap-4">
+<div class="w-10 h-10 rounded-lg gold-gradient flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary" data-icon="palette">palette</span>
+</div>
+<div>
+<h4 class="font-body-md text-body-md font-bold text-on-surface">Exclusive Styles</h4>
+<p class="font-caption text-caption text-on-surface-variant">Access secret tarot decks and mystic visual filters unavailable to others.</p>
+</div>
+</div>
+</section>
+<!-- Pricing Selection -->
+<section class="space-y-3 mb-stack-lg">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant tracking-widest px-1">CHOOSE YOUR PATH</h3>
+<div class="space-y-3">
+<!-- Option 1: Monthly -->
+<label class="relative block cursor-pointer group" onclick="playMysticSound('soft')">
+<input class="peer sr-only" name="plan" type="radio" value="monthly"/>
+<div class="glass-card rounded-2xl p-5 border-white/10 peer-checked:border-primary peer-checked:bg-primary/10 transition-all duration-300">
+<div class="flex justify-between items-center">
+<div>
+<span class="font-body-md text-body-md font-bold block">Monthly Ritual</span>
+<span class="font-caption text-caption text-on-surface-variant">Cancel anytime</span>
+</div>
+<div class="text-right">
+<span class="font-headline-md text-headline-md font-bold">9.99€</span>
+<span class="font-caption text-caption block">/ month</span>
+</div>
+</div>
+</div>
+</label>
+<!-- Option 2: Yearly (Recommended) -->
+<label class="relative block cursor-pointer group" onclick="playMysticSound('soft')">
+<input checked="" class="peer sr-only" name="plan" type="radio" value="yearly"/>
+<div class="glass-card rounded-2xl p-5 border-white/10 peer-checked:border-primary peer-checked:bg-primary/10 transition-all duration-300 relative overflow-hidden shimmer">
+<div class="absolute top-0 left-0 bg-primary px-3 py-1 text-[10px] font-bold text-on-primary rounded-br-lg">BEST VALUE</div>
+<div class="flex justify-between items-center mt-2">
+<div>
+<span class="font-body-md text-body-md font-bold block">Yearly Enlightenment</span>
+<span class="font-caption text-caption text-primary">Save 40% annually</span>
+</div>
+<div class="text-right">
+<span class="font-headline-md text-headline-md font-bold">79.99€</span>
+<span class="font-caption text-caption block">/ year</span>
+</div>
+</div>
+</div>
+</label>
+</div>
+</section>
+<!-- Visual Anchor: Atmospheric Image -->
+<div class="relative w-full h-48 rounded-[24px] overflow-hidden mb-stack-lg border border-white/10">
+<img class="w-full h-full object-cover" data-alt="A cinematic, high-end mystical artifact resembling a futuristic floating tarot card made of dark obsidian and gold circuits. The artifact is suspended in a deep purple and cyan nebula. Glowing golden particles swirl around it, illuminated by ethereal, soft digital light. The atmosphere is premium, luxury, and mysterious, with sharp focus and professional color grading." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ4ezBj62WlqAy1SpzDlPPEkj6U5-oMCqSa6TWiannngxDNQySPWfCFma46hoj-r3sF4TqGbqBUDexPYxUQfKi4GZZdeGNc_agZBDR_EO-cybS34XwJmPaNAevwIH7tybGnaOHGysS7e-tsj61GPOiUdq4WzWbk3eSt33xYAb-lmfv9v9a84biUDADnA2KbU89oqGhTjWd3rZKz7LrdEcu3pOGlsT1N4mIg3vT0gvpmYosJ0HdpSK5EQUAp9NIHnKnJ8yIaIor7j_w"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+</div>
+</main>
+<!-- Bottom Action Bar (Fixed) -->
+<div class="fixed bottom-0 w-full z-50 bg-surface-container/60 dark:bg-surface-container/60 backdrop-blur-2xl border-t border-white/5 rounded-t-xl max-w-md mx-auto left-1/2 -translate-x-1/2">
+<div class="flex flex-col items-center px-5 py-5 pb-safe">
+<button class="w-full h-14 gold-gradient rounded-full flex items-center justify-center gap-2 shadow-[0_4px_24px_rgba(212,175,55,0.4)] hover:scale-[1.02] active:scale-95 transition-all duration-300" id="unlock-magic-btn" onclick="playMysticSound('magic')">
+<span class="material-symbols-outlined text-on-primary" data-icon="auto_fix_high" style="font-variation-settings: 'FILL' 1;">auto_fix_high</span>
+<span class="font-label-caps text-label-caps font-bold text-on-primary text-[16px] tracking-widest">Unlock Magic</span>
+</button>
+<p class="mt-3 font-caption text-caption text-on-surface-variant/60">Secure payment via Telegram Stars or Card</p>
+</div>
+</div>
+<script>
+        // Web Audio API Sound System
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        let audioCtx;
+
+        function playMysticSound(type) {
+            if (!audioCtx) {
+                audioCtx = new AudioContext();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            const t = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            if (type === 'magic') {
+                // Triumphant, resonant chime
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(440, t); // A4
+                osc.frequency.exponentialRampToValueAtTime(880, t + 0.1); // Jump to A5
+                osc.frequency.exponentialRampToValueAtTime(1760, t + 0.3); // Jump to A6
+                
+                gainNode.gain.setValueAtTime(0, t);
+                gainNode.gain.linearRampToValueAtTime(0.5, t + 0.05);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, t + 1.5);
+                
+                osc.start(t);
+                osc.stop(t + 1.5);
+                
+                // Add a secondary oscillator for resonance
+                const osc2 = audioCtx.createOscillator();
+                const gain2 = audioCtx.createGain();
+                osc2.connect(gain2);
+                gain2.connect(audioCtx.destination);
+                osc2.type = 'triangle';
+                osc2.frequency.setValueAtTime(554.37, t); // C#5
+                osc2.frequency.exponentialRampToValueAtTime(1108.73, t + 0.1);
+                gain2.gain.setValueAtTime(0, t);
+                gain2.gain.linearRampToValueAtTime(0.3, t + 0.1);
+                gain2.gain.exponentialRampToValueAtTime(0.001, t + 2);
+                osc2.start(t);
+                osc2.stop(t + 2);
+            } else if (type === 'soft') {
+                // Subtle, professional ping
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(880, t);
+                
+                gainNode.gain.setValueAtTime(0, t);
+                gainNode.gain.linearRampToValueAtTime(0.2, t + 0.02);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, t + 0.3);
+                
+                osc.start(t);
+                osc.stop(t + 0.3);
+            }
+        }
+    </script>
+<script>
+        // Simple Interaction logic
+        const planOptions = document.querySelectorAll('input[name="plan"]');
+        planOptions.forEach(option => {
+            option.addEventListener('change', (e) => {
+                console.log('Selected plan:', e.target.value);
+                // Visual feedback is handled by Tailwind's peer classes
+            });
+        });
+
+        // Add a pulsing effect to the button for "magic" feel
+        const btn = document.querySelector('.gold-gradient');
+        let scale = 1;
+        let growing = true;
+        
+        function pulse() {
+            if (growing) {
+                scale += 0.001;
+                if (scale >= 1.03) growing = false;
+            } else {
+                scale -= 0.001;
+                if (scale <= 0.99) growing = true;
+            }
+            // Only apply pulse if not active
+            if (!btn.matches(':active')) {
+                btn.style.transform = `scale(${scale})`;
+            }
+            requestAnimationFrame(pulse);
+        }
+        // pulse(); // Enable for subtle idle animation
+    </script>
+<script>
+(function() {
+  const btn = document.getElementById('unlock-magic-btn');
+  if (!btn) return;
+
+  btn.addEventListener('click', (e) => {
+    const rect = btn.getBoundingClientRect();
+    for (let i = 0; i < 12; i++) {
+      createParticle(e.clientX, e.clientY);
+    }
+  });
+
+  function createParticle(x, y) {
+    const particle = document.createElement('div');
+    particle.style.position = 'fixed';
+    particle.style.left = x + 'px';
+    particle.style.top = y + 'px';
+    particle.style.width = '6px';
+    particle.style.height = '6px';
+    particle.style.backgroundColor = '#f2ca50';
+    particle.style.borderRadius = '50%';
+    particle.style.pointerEvents = 'none';
+    particle.style.zIndex = '9999';
+    particle.style.boxShadow = '0 0 10px #d4af37';
+    
+    const destinationX = (Math.random() - 0.5) * 150;
+    const destinationY = (Math.random() - 0.5) * 150;
+    
+    document.body.appendChild(particle);
+
+    const animation = particle.animate([
+      { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+      { transform: `translate(${destinationX}px, ${destinationY}px) scale(0)`, opacity: 0 }
+    ], {
+      duration: 800 + Math.random() * 400,
+      easing: 'cubic-bezier(0, .9, .57, 1)',
+      fill: 'forwards'
+    });
+
+    animation.onfinish = () => particle.remove();
+  }
+})();
+</script></body></html>

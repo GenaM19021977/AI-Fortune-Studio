@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Tarot Reading - AI Fortune Studio</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#131318",
+                        "inverse-primary": "#9900cf",
+                        "primary-fixed": "#f8d8ff",
+                        "surface-container-highest": "#35343a",
+                        "error": "#ffb4ab",
+                        "inverse-on-surface": "#303036",
+                        "background": "#131318",
+                        "on-secondary-fixed-variant": "#004f54",
+                        "secondary": "#d3fbff",
+                        "secondary-fixed-dim": "#00dbe9",
+                        "tertiary-fixed-dim": "#ffb1c3",
+                        "on-primary-container": "#ffffff",
+                        "surface-variant": "#35343a",
+                        "surface-tint": "#ecb2ff",
+                        "on-tertiary-fixed": "#3f0019",
+                        "surface-container-lowest": "#0e0e13",
+                        "surface-bright": "#39383e",
+                        "tertiary": "#ffb1c3",
+                        "on-secondary-fixed": "#002022",
+                        "primary-container": "#bd00ff",
+                        "on-tertiary": "#66002c",
+                        "surface-container-low": "#1b1b20",
+                        "primary-fixed-dim": "#ecb2ff",
+                        "on-primary-fixed": "#320047",
+                        "tertiary-container": "#e7006e",
+                        "on-secondary-container": "#00686f",
+                        "surface-container": "#1f1f25",
+                        "on-error": "#690005",
+                        "outline": "#9d8ba0",
+                        "on-background": "#e4e1e9",
+                        "error-container": "#93000a",
+                        "on-primary": "#520071",
+                        "surface-container-high": "#2a292f",
+                        "on-tertiary-container": "#ffffff",
+                        "on-surface-variant": "#d4c0d7",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed": "#7df4ff",
+                        "on-primary-fixed-variant": "#74009f",
+                        "inverse-surface": "#e4e1e9",
+                        "surface": "#131318",
+                        "tertiary-fixed": "#ffd9e0",
+                        "primary": "#ecb2ff",
+                        "outline-variant": "#514255",
+                        "on-tertiary-fixed-variant": "#8f0041",
+                        "on-surface": "#e4e1e9",
+                        "secondary-container": "#00eefc",
+                        "on-secondary": "#00363a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "20px",
+                        "unit": "4px",
+                        "stack-gap": "16px",
+                        "glass-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Sora"],
+                        "body-md": ["Hanken Grotesk"],
+                        "label-mono": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Sora"],
+                        "display-xl": ["Sora"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "34px", "fontWeight": "700" }],
+                        "display-xl": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.04em", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0A0A0F;
+            color: #e4e1e9;
+            overflow-x: hidden;
+            overscroll-behavior-y: none;
+        }
+        
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(31, 31, 37, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-card {
+            background: linear-gradient(145deg, rgba(31, 31, 37, 0.6) 0%, rgba(19, 19, 24, 0.4) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid;
+            border-image-source: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+            box-shadow: 0 4px 24px -1px rgba(189, 0, 255, 0.05);
+        }
+
+        /* Ambient Glow Background */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(189, 0, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0, 238, 252, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Glow Button */
+        .btn-glow {
+            background: linear-gradient(90deg, var(--color-primary-container), var(--color-tertiary-container));
+            position: relative;
+            z-index: 1;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(90deg, var(--color-primary-container), var(--color-tertiary-container));
+            filter: blur(15px);
+            opacity: 0.6;
+            z-index: -1;
+            border-radius: inherit;
+            transition: opacity 0.3s ease;
+        }
+        
+        .btn-glow:active {
+            transform: scale(0.96);
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        
+        .card-float-1 { animation: float 6s ease-in-out infinite; }
+        .card-float-2 { animation: float 5s ease-in-out infinite 1s; }
+        .card-float-3 { animation: float 7s ease-in-out infinite 2s; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased min-h-screen flex flex-col relative pb-32">
+<div class="ambient-bg"></div>
+<!-- TopAppBar (from JSON, adapted for back navigation) -->
+<header class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-md border-b border-white/10 shadow-[0_0_20px_rgba(189,0,255,0.1)] flex justify-between items-center px-container-padding py-4 w-full">
+<button class="text-on-surface-variant hover:opacity-80 active:scale-95 transition-transform w-10 h-10 flex items-center justify-center rounded-full glass-panel">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary text-center absolute left-1/2 -translate-x-1/2 w-max">Tarot Reading</h1>
+<button class="text-on-surface-variant hover:opacity-80 active:scale-95 transition-transform w-10 h-10 flex items-center justify-center rounded-full glass-panel">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">more_vert</span>
+</button>
+</header>
+<main class="flex-1 mt-24 px-container-padding flex flex-col gap-stack-gap">
+<!-- Hero Section: Tarot Spread -->
+<section class="relative h-[300px] w-full flex items-center justify-center perspective-[1000px] mb-8 mt-4">
+<!-- Particles/Stars placeholder -->
+<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0ibm9uZSIvPjxjaXJjbGUgY3g9IjIwMCIgY3k9IjIwMCIgcj0iMiIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iMC41Ii8+PC9zdmc+')] opacity-20 pointer-events-none"></div>
+<!-- Spread Container -->
+<div class="relative w-full max-w-sm flex justify-center items-center h-full">
+<!-- Card 1 (Past) -->
+<div class="absolute left-0 top-1/2 -translate-y-1/2 -rotate-12 card-float-1 z-10 w-24 h-40 md:w-32 md:h-52 glass-panel rounded-lg overflow-hidden border border-white/20 shadow-[0_0_15px_rgba(0,238,252,0.3)]">
+<div class="absolute inset-0 bg-gradient-to-br from-surface-variant/80 to-surface-dim/90"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-2 text-center opacity-80">
+<span class="material-symbols-outlined text-secondary text-3xl mb-2" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-label-mono text-label-mono text-secondary-fixed">PAST</span>
+</div>
+</div>
+<!-- Card 2 (Present) - Center, Elevated -->
+<div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 card-float-2 z-30 w-28 h-48 md:w-36 md:h-60 glass-panel rounded-lg overflow-hidden border border-white/30 shadow-[0_0_25px_rgba(189,0,255,0.4)] scale-110">
+<div class="absolute inset-0 bg-gradient-to-b from-primary-container/20 to-surface-dim/90"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-2 text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-2" style="font-variation-settings: 'FILL' 1;">visibility</span>
+<span class="font-label-mono text-label-mono text-primary-fixed">PRESENT</span>
+<div class="mt-4 text-xs font-body-md text-on-surface opacity-50">?</div>
+</div>
+</div>
+<!-- Card 3 (Future) -->
+<div class="absolute right-0 top-1/2 -translate-y-1/2 rotate-12 card-float-3 z-20 w-24 h-40 md:w-32 md:h-52 glass-panel rounded-lg overflow-hidden border border-white/20 shadow-[0_0_15px_rgba(231,0,110,0.3)]">
+<div class="absolute inset-0 bg-gradient-to-bl from-surface-variant/80 to-surface-dim/90"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-2 text-center opacity-80">
+<span class="material-symbols-outlined text-tertiary text-3xl mb-2" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-mono text-label-mono text-tertiary-fixed">FUTURE</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Primary Action -->
+<div class="flex justify-center mb-8">
+<button class="btn-glow px-8 py-4 rounded-full font-headline-lg-mobile text-body-md font-bold text-on-primary-container tracking-wider w-full max-w-xs uppercase flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">casino</span>
+                Reveal Spread
+            </button>
+</div>
+<!-- Focus/Question Input -->
+<div class="glass-card rounded-xl p-glass-padding">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">adjust</span>
+<h2 class="font-headline-lg-mobile text-body-md font-bold text-on-surface">Your Focus</h2>
+</div>
+<div class="relative">
+<textarea class="w-full bg-black/30 border border-white/10 rounded-lg p-4 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all resize-none h-24" placeholder="Enter your question or current situation to align the aetheric energies..."></textarea>
+</div>
+</div>
+<!-- Reading Insights Placeholder -->
+<div class="glass-card rounded-xl p-glass-padding mt-4 mb-8">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-secondary-fixed" style="font-variation-settings: 'FILL' 0;">scatter_plot</span>
+<h2 class="font-headline-lg-mobile text-body-md font-bold text-on-surface">Cosmic Alignment</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-80 leading-relaxed">
+                The quantum fields are currently settling. Draw your cards to interpret the energetic convergence of your past choices, present state, and probable futures through the lens of the Neo-Arcana.
+            </p>
+</div>
+</main>
+<!-- BottomNavBar (from JSON) -->
+<nav class="fixed bottom-4 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] rounded-full bg-surface-container/60 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.4)] flex justify-around items-center h-16 px-4 z-50 md:hidden">
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">grid_view</span>
+</a>
+<!-- Active Tab: Explore / Divination equivalent -->
+<a class="flex flex-col items-center justify-center text-primary drop-shadow-[0_0_8px_rgba(236,178,255,0.8)] after:content-[''] after:w-1 after:h-1 after:bg-primary after:rounded-full after:mt-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">workspace_premium</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span>
+</a>
+</nav>
+</body></html>

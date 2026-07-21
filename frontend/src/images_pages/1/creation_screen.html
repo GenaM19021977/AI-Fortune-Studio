@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AI Fortune Studio - Creation Master</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#fbabff",
+                    "on-secondary-fixed-variant": "#7c008e",
+                    "background": "#0b1326",
+                    "secondary-fixed-dim": "#fbabff",
+                    "surface-dim": "#0b1326",
+                    "inverse-primary": "#6d3bd7",
+                    "inverse-on-surface": "#283044",
+                    "surface-container-highest": "#2d3449",
+                    "error": "#ffb4ab",
+                    "primary-fixed": "#e9ddff",
+                    "tertiary": "#89ceff",
+                    "on-secondary-fixed": "#36003e",
+                    "primary-fixed-dim": "#d0bcff",
+                    "surface-container-low": "#131b2e",
+                    "on-tertiary": "#00344d",
+                    "primary-container": "#a078ff",
+                    "surface-variant": "#2d3449",
+                    "on-tertiary-fixed": "#001e2f",
+                    "surface-tint": "#d0bcff",
+                    "on-primary-container": "#340080",
+                    "tertiary-fixed-dim": "#89ceff",
+                    "surface-bright": "#31394d",
+                    "surface-container-lowest": "#060e20",
+                    "on-background": "#dae2fd",
+                    "outline": "#958ea0",
+                    "surface-container-high": "#222a3d",
+                    "on-surface-variant": "#cbc3d7",
+                    "on-tertiary-container": "#002d43",
+                    "on-primary": "#3c0091",
+                    "error-container": "#93000a",
+                    "tertiary-container": "#009ada",
+                    "on-primary-fixed": "#23005c",
+                    "surface-container": "#171f33",
+                    "on-error": "#690005",
+                    "on-secondary-container": "#ffd8fd",
+                    "secondary-container": "#ae05c6",
+                    "primary": "#d0bcff",
+                    "outline-variant": "#494454",
+                    "on-surface": "#dae2fd",
+                    "tertiary-fixed": "#c9e6ff",
+                    "on-tertiary-fixed-variant": "#004c6e",
+                    "on-secondary": "#580065",
+                    "inverse-surface": "#dae2fd",
+                    "on-primary-fixed-variant": "#5516be",
+                    "secondary-fixed": "#ffd6fd",
+                    "on-error-container": "#ffdad6",
+                    "surface": "#0b1326"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-page": "1.25rem",
+                    "stack-sm": "0.5rem",
+                    "stack-lg": "1.5rem",
+                    "stack-md": "1rem",
+                    "gutter-grid": "1rem",
+                    "stack-xl": "2.5rem",
+                    "safe": "env(safe-area-inset-bottom, 1rem)"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-caps": ["Geist"],
+                    "mono-label": ["Geist"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["26px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "mono-label": ["13px", {"lineHeight": "18px", "fontWeight": "500"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        /* Custom scrollbar for horizontal chip lists */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Ambient Background Glows */
+        .ambient-orb-1 {
+            position: fixed;
+            top: -10%;
+            left: -20%;
+            width: 70vw;
+            height: 70vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(208,188,255,0.15) 0%, rgba(11,19,38,0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .ambient-orb-2 {
+            position: fixed;
+            bottom: 10%;
+            right: -20%;
+            width: 80vw;
+            height: 80vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(251,171,255,0.1) 0%, rgba(11,19,38,0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Ghost Input Autofill Fix */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        input:-webkit-autofill:active{
+            -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+            -webkit-text-fill-color: #dae2fd !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen relative overflow-x-hidden antialiased">
+<!-- Ambient Background Elements -->
+<div class="ambient-orb-1"></div>
+<div class="ambient-orb-2"></div>
+<!-- TopAppBar Shared Component -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] flex items-center justify-between px-margin-page h-16">
+<div class="h-8 w-8 rounded-full overflow-hidden border-2 border-outline-variant bg-surface-container flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A detailed, high-resolution portrait photograph of a mystical digital avatar. The subject is a young woman with luminescent silver hair and glowing violet eyes, set against a dark, minimal cosmic background. The lighting is moody and cinematic, emphasizing an ethereal, futuristic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDemq6k2hzbBiV6UtnK6ni8BiTiZofWJvyjrFEURClQOv0rVauBbIsXBO6pPx5adzdsMvmkygH4V6smo01RNqH5IvxW6EFGZ2HzNG9zwtLMJYDctXjdzkgcKdCp_Ly_XDNTXXJqyWStl6EWWXEvWmjZecjm7q4jI4TCJFsGSxq79ugEVl_TlK-HwEizyB4-Tx4nSez7C9BO-O4AyKJutGrJ-Z3S1-seeZGWvGQSWtRglkGt7grmJSk8hhTnQpCRfZLsu8C3Z-o5uZo"/>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary truncate mx-4">
+            AI Fortune Studio
+        </h1>
+<button class="text-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-[88px] pb-[120px] px-margin-page relative z-10 flex flex-col gap-stack-xl max-w-2xl mx-auto">
+<!-- Header / Context -->
+<section class="text-center">
+<h2 class="font-headline-md text-headline-md text-primary-fixed mb-stack-sm">Initiate Ritual</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Provide the fundamental anchors for your reading. The Oracle requires these elements to align the manifestation.</p>
+</section>
+<!-- Form Section 1: The Seeker (Level 2 Glass Card) -->
+<section class="bg-white/[0.08] backdrop-blur-[24px] border-t border-l border-white/10 rounded-xl p-6 shadow-lg flex flex-col gap-stack-lg relative overflow-hidden">
+<!-- Decorative inner glow -->
+<div class="absolute -top-10 -left-10 w-32 h-32 bg-primary/20 blur-3xl rounded-full pointer-events-none"></div>
+<h3 class="font-headline-md text-headline-md text-secondary border-b border-white/5 pb-2">The Seeker</h3>
+<!-- Name Input -->
+<div class="flex flex-col gap-2 relative">
+<label class="font-label-caps text-label-caps text-outline uppercase tracking-wider">True Name</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant text-on-surface font-body-lg text-body-lg py-2 px-0 focus:ring-0 focus:border-primary transition-colors placeholder:text-on-surface-variant/50" placeholder="Enter full name" type="text"/>
+</div>
+<!-- Gender Chips -->
+<div class="flex flex-col gap-3">
+<label class="font-label-caps text-label-caps text-outline uppercase tracking-wider">Energy Alignment</label>
+<div class="flex flex-wrap gap-2">
+<button class="border border-secondary bg-secondary/20 text-secondary rounded-full px-5 py-2 font-body-sm text-body-sm backdrop-blur-sm shadow-[0_0_10px_rgba(251,171,255,0.3)] transition-all">Masculine</button>
+<button class="border border-secondary/50 bg-white/[0.05] text-on-surface rounded-full px-5 py-2 font-body-sm text-body-sm backdrop-blur-sm hover:border-primary/50 transition-all">Feminine</button>
+<button class="border border-secondary/50 bg-white/[0.05] text-on-surface rounded-full px-5 py-2 font-body-sm text-body-sm backdrop-blur-sm hover:border-primary/50 transition-all">Neutral</button>
+</div>
+</div>
+<!-- DOB Picker -->
+<div class="flex flex-col gap-2 relative">
+<label class="font-label-caps text-label-caps text-outline uppercase tracking-wider">Origin Date</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant text-on-surface font-body-lg text-body-lg py-2 px-0 focus:ring-0 focus:border-primary transition-colors color-scheme-dark" type="date"/>
+<!-- Custom CSS to handle date picker icon color in webkit -->
+<style>
+                    ::-webkit-calendar-picker-indicator {
+                        filter: invert(1) hue-rotate(180deg) brightness(0.8);
+                        opacity: 0.7;
+                        cursor: pointer;
+                    }
+                </style>
+</div>
+</section>
+<!-- Form Section 2: The Intent (Level 2 Glass Card) -->
+<section class="bg-white/[0.08] backdrop-blur-[24px] border-t border-l border-white/10 rounded-xl p-6 shadow-lg flex flex-col gap-stack-lg">
+<h3 class="font-headline-md text-headline-md text-secondary border-b border-white/5 pb-2">The Intent</h3>
+<!-- Focus Area -->
+<div class="flex flex-col gap-3">
+<label class="font-label-caps text-label-caps text-outline uppercase tracking-wider">Focal Point</label>
+<div class="flex overflow-x-auto hide-scrollbar gap-2 pb-2 -mx-2 px-2">
+<button class="flex-shrink-0 border border-primary/50 bg-white/[0.05] text-on-surface rounded-lg px-4 py-3 font-body-sm text-body-sm flex items-center gap-2 hover:bg-white/[0.1] transition-colors">
+<span class="material-symbols-outlined text-[18px]">favorite</span> Love
+                    </button>
+<button class="flex-shrink-0 border border-primary bg-primary/20 text-primary-fixed rounded-lg px-4 py-3 font-body-sm text-body-sm flex items-center gap-2 shadow-[0_0_10px_rgba(208,188,255,0.2)] transition-colors">
+<span class="material-symbols-outlined text-[18px]">work</span> Career
+                    </button>
+<button class="flex-shrink-0 border border-primary/50 bg-white/[0.05] text-on-surface rounded-lg px-4 py-3 font-body-sm text-body-sm flex items-center gap-2 hover:bg-white/[0.1] transition-colors">
+<span class="material-symbols-outlined text-[18px]">diamond</span> Wealth
+                    </button>
+<button class="flex-shrink-0 border border-primary/50 bg-white/[0.05] text-on-surface rounded-lg px-4 py-3 font-body-sm text-body-sm flex items-center gap-2 hover:bg-white/[0.1] transition-colors">
+<span class="material-symbols-outlined text-[18px]">psychiatry</span> Spirit
+                    </button>
+</div>
+</div>
+<!-- Context Input -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-outline uppercase tracking-wider">Whisper to the Oracle</label>
+<textarea class="w-full bg-white/[0.03] border border-outline-variant rounded-lg p-4 text-on-surface font-body-lg text-body-lg focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none h-28 placeholder:text-on-surface-variant/40 shadow-inner" placeholder="Share specific details, questions, or feelings..."></textarea>
+</div>
+</section>
+<!-- Form Section 3: The Medium (Level 2 Glass Card) -->
+<section class="bg-white/[0.08] backdrop-blur-[24px] border-t border-l border-white/10 rounded-xl p-6 shadow-lg flex flex-col gap-stack-lg">
+<h3 class="font-headline-md text-headline-md text-secondary border-b border-white/5 pb-2">The Medium</h3>
+<!-- Type Selection -->
+<div class="grid grid-cols-3 gap-3">
+<button class="flex flex-col items-center justify-center gap-2 py-4 rounded-xl border border-primary bg-primary/10 text-primary transition-all shadow-[0_0_15px_rgba(208,188,255,0.15)] relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-b from-primary/20 to-transparent opacity-50"></div>
+<span class="material-symbols-outlined text-[28px] relative z-10" style="font-variation-settings: 'FILL' 1;">image</span>
+<span class="font-mono-label text-mono-label relative z-10">Vision</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 py-4 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface-variant transition-all hover:border-primary/50 group">
+<span class="material-symbols-outlined text-[28px] group-hover:text-primary transition-colors">menu_book</span>
+<span class="font-mono-label text-mono-label">Poem</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 py-4 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface-variant transition-all hover:border-primary/50 group">
+<span class="material-symbols-outlined text-[28px] group-hover:text-primary transition-colors">music_note</span>
+<span class="font-mono-label text-mono-label">Melody</span>
+</button>
+</div>
+<!-- Style Grid (Bento Style) -->
+<div class="flex flex-col gap-3 mt-2">
+<label class="font-label-caps text-label-caps text-outline uppercase tracking-wider">Aesthetic Matrix</label>
+<div class="grid grid-cols-2 gap-3">
+<!-- Style 1: Active -->
+<div class="relative h-24 rounded-lg overflow-hidden border-2 border-secondary shadow-[0_0_15px_rgba(251,171,255,0.4)] cursor-pointer group">
+<img class="w-full h-full object-cover absolute inset-0 opacity-80 group-hover:scale-105 transition-transform duration-500" data-alt="A mesmerizing digital illustration in a cyberpunk tarot style. Vibrant neon pink and cyan lines trace intricate geometric occult symbols over a deep, dark blue background. The aesthetic is highly detailed, merging ancient mysticism with futuristic technology, illuminated by glowing light elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC-hs0MC7OJk6ZWkJuYPSR8rBSfhQJWRjlW0evAtn2FNxWn83_ktJySJV9Raxh2lgAl7TiPqjXeuKmlPg7JJgFV-vmQ2UjNUIxc9hrCuWAMXhIyTDJO71fT5RiZA8_Q0IZvK8EEIme5R8-5fx0jHg7LIUh2fARK5H0DDFNaHOoRu8fdjToH_cM4j6AUQxZ_7zluMGcYui0SJq7fqBg4h6XvwfPXJc8D20P87yv0x16U5lu63xucMdPENwoHt-7o3nteN1EQF6kOoU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent"></div>
+<div class="absolute bottom-2 left-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-mono-label text-mono-label text-on-surface">Neon Oracle</span>
+</div>
+</div>
+<!-- Style 2 -->
+<div class="relative h-24 rounded-lg overflow-hidden border border-white/10 cursor-pointer group hover:border-primary/50 transition-colors">
+<img class="w-full h-full object-cover absolute inset-0 opacity-60 group-hover:scale-105 group-hover:opacity-80 transition-all duration-500" data-alt="An ethereal watercolor painting depicting a dreamscape. Soft, flowing strokes of pale purple, deep violet, and shimmering silver blend seamlessly on a textured dark background. The mood is tranquil and mystical, evoking a sense of ancient magic and deep cosmic mystery without distinct rigid forms." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdodVbCQCjFANDEr5nv1a5rCvhQcAQJJyfoiMMFuRcVBDPJdH_-rUbxfcAIYl853SjWnrDg7fbngjBW0LqKlKOv2j3MH52LFlnBYKywM4x2hgxci6CiJHWynjZYMcMBUikChX5iRr70rvPdzKVs0NybEKO4euT07eXGUoiLUIXPXiui65ze3hzgV_bwXElsgfk3jfD_tWwJSkylEovwJyH0e6mMz5IsIzzhswX-gca83rEDzPp2rmE0X66zPz-KTVwzM7mlTzY-lk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent"></div>
+<div class="absolute bottom-2 left-2">
+<span class="font-mono-label text-mono-label text-on-surface-variant group-hover:text-on-surface transition-colors">Astral Wash</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Primary Action -->
+<div class="mt-4 mb-8">
+<button class="w-full relative group overflow-hidden rounded-full py-4 px-6 flex items-center justify-center gap-2 active:scale-[0.98] transition-transform duration-200 shadow-[0_0_20px_rgba(208,188,255,0.2)]">
+<div class="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_auto] group-hover:bg-right transition-all duration-500"></div>
+<div class="absolute inset-0 opacity-0 group-hover:opacity-20 bg-white transition-opacity duration-300"></div>
+<span class="font-headline-md text-headline-md text-on-primary-fixed relative z-10">Manifest Fortune</span>
+<span class="material-symbols-outlined relative z-10 text-on-primary-fixed" style="font-variation-settings: 'FILL' 1;">spark</span>
+</button>
+</div>
+</main>
+<!-- BottomNavBar Shared Component -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl border-t border-white/10 shadow-[0_-8px_32px_0_rgba(174,5,198,0.15)] bg-surface-container/60 dark:bg-surface-container/60 backdrop-blur-2xl flex justify-around items-center pt-2 pb-safe md:hidden">
+<!-- Home (Inactive) -->
+<button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed transition-colors active:scale-90 duration-200 w-16 h-14">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="font-label-caps text-label-caps text-[10px] mt-1">Home</span>
+</button>
+<!-- Create (Active) -->
+<button class="flex flex-col items-center justify-center text-secondary-fixed shadow-[0_0_15px_rgba(251,171,255,0.4)] active:scale-90 transition-transform duration-200 w-16 h-14 relative">
+<div class="absolute inset-0 bg-secondary/10 rounded-lg -z-10"></div>
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="font-label-caps text-label-caps text-[10px] mt-1">Create</span>
+</button>
+<!-- Gallery (Inactive) -->
+<button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed transition-colors active:scale-90 duration-200 w-16 h-14">
+<span class="material-symbols-outlined text-[24px]">auto_stories</span>
+<span class="font-label-caps text-label-caps text-[10px] mt-1">Gallery</span>
+</button>
+<!-- Profile (Inactive) -->
+<button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed transition-colors active:scale-90 duration-200 w-16 h-14">
+<span class="material-symbols-outlined text-[24px]">person</span>
+<span class="font-label-caps text-label-caps text-[10px] mt-1">Profile</span>
+</button>
+</nav>
+<!-- Web Desktop Navigation Fallback (Hidden on Mobile) -->
+<nav class="hidden md:flex fixed top-0 right-0 h-16 items-center px-8 gap-8 z-[60]">
+<a class="font-label-caps text-label-caps text-outline hover:text-primary transition-colors uppercase" href="#">Home</a>
+<a class="font-label-caps text-label-caps text-secondary shadow-[0_0_15px_rgba(251,171,255,0.4)] transition-colors uppercase" href="#">Create</a>
+<a class="font-label-caps text-label-caps text-outline hover:text-primary transition-colors uppercase" href="#">Gallery</a>
+<a class="font-label-caps text-label-caps text-outline hover:text-primary transition-colors uppercase" href="#">Profile</a>
+</nav>
+</body></html>

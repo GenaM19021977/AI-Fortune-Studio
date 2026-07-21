@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Fortune Studio - Stories Preview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Space+Grotesk:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Space+Grotesk:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#e9c349",
+                        "on-background": "#e3e0f1",
+                        "tertiary": "#e1c2ff",
+                        "on-surface-variant": "#d0c5af",
+                        "inverse-on-surface": "#302f3b",
+                        "background": "#12121d",
+                        "surface-container-lowest": "#0d0d18",
+                        "on-primary-fixed": "#241a00",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#efdbff",
+                        "on-secondary-fixed-variant": "#004f54",
+                        "on-secondary-container": "#00686f",
+                        "on-secondary": "#00363a",
+                        "tertiary-container": "#ce9eff",
+                        "surface-container": "#1f1e2a",
+                        "surface-tint": "#e9c349",
+                        "surface-dim": "#12121d",
+                        "outline": "#99907c",
+                        "primary-fixed": "#ffe088",
+                        "primary-container": "#d4af37",
+                        "surface-container-low": "#1b1a26",
+                        "surface-variant": "#343440",
+                        "outline-variant": "#4d4635",
+                        "primary": "#f2ca50",
+                        "surface-container-highest": "#343440",
+                        "on-primary": "#3c2f00",
+                        "surface": "#12121d",
+                        "secondary-container": "#00eefc",
+                        "on-surface": "#e3e0f1",
+                        "inverse-surface": "#e3e0f1",
+                        "inverse-primary": "#735c00",
+                        "on-tertiary-fixed": "#2c0051",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#00dbe9",
+                        "on-primary-container": "#554300",
+                        "on-error": "#690005",
+                        "surface-container-high": "#292935",
+                        "on-secondary-fixed": "#002022",
+                        "secondary": "#d3fbff",
+                        "on-tertiary-fixed-variant": "#6700b5",
+                        "secondary-fixed": "#7df4ff",
+                        "on-tertiary-container": "#6500b1",
+                        "tertiary-fixed-dim": "#dcb8ff",
+                        "surface-bright": "#383845",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed-variant": "#574500",
+                        "on-tertiary": "#480081"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "2xl": "1.5rem"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "stack-lg": "32px",
+                        "safe-area": "20px",
+                        "stack-md": "16px",
+                        "gutter": "16px",
+                        "card-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "caption": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Space Grotesk"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gold-border-glow {
+            border: 1px solid #d4af37;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.4), inset 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+        .story-glow {
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.2), 0 0 80px rgba(0, 240, 255, 0.1);
+        }
+        .ambient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+            z-index: 0;
+            animation: float 10s infinite ease-in-out alternate;
+        }
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(20px, -20px) scale(1.1); }
+        }
+        
+        /* New Animation for Background Reveal */
+        @keyframes mystic-reveal {
+            0% {
+                opacity: 0;
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 0.8; /* Matching the existing opacity class */
+                transform: scale(1);
+            }
+        }
+        .animate-mystic-reveal {
+            animation: mystic-reveal 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-sans overflow-hidden relative">
+<!-- Ambient Background Effects -->
+<div class="ambient-orb bg-tertiary-container w-64 h-64 top-[-10%] left-[-10%]"></div>
+<div class="ambient-orb bg-secondary-container w-72 h-72 bottom-[-10%] right-[-10%]" style="animation-delay: -5s;"></div>
+<!-- Top Navigation (Close Button) - Transactional Screen, suppress standard TopAppBar -->
+<header class="w-full flex items-center justify-between p-safe-area absolute top-0 z-50">
+<button class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-on-background hover:bg-surface-variant transition-colors duration-200 group">
+<span class="material-symbols-outlined transition-transform duration-200 group-hover:-translate-x-1" data-icon="close">close</span>
+</button>
+<!-- Optional: Share or Options could go right -->
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col items-center justify-center p-safe-area relative z-10 w-full h-full max-w-md mx-auto">
+<!-- Story Frame Container (9:16 Aspect Ratio) -->
+<div class="relative w-full max-w-[320px] aspect-[9/16] rounded-3xl overflow-hidden story-glow gold-border-glow bg-surface-container-lowest flex flex-col">
+<!-- Cosmic/Nebula Background Image -->
+<div class="absolute inset-0 z-0 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center opacity-80 mix-blend-screen animate-mystic-reveal" data-alt="A deep cosmic nebula background featuring vibrant swirling clouds of violet, deep purple, and gold dust. The scene is illuminated by distant glowing stars and subtle neon cyan highlights, creating a mystical, techno-magical atmosphere. The overall mood is mysterious and ethereal, perfectly suited for a high-end digital tarot card." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8crnJp77F4H3N91_p7YidqGvQMu1N75KAJtM_TDmBi53qnMZM7pccx3YpMto6KAXteH7eSSMmWjs7oNiEYiZsqL4T1hhoBVwJ9gFmG1jZJAwEWQ_zhj-G6p9RyHnMQ08t31wyYVLloo-Y9QtI3AAflgvkIDAzBDCdoXIT7VTp4oa-pqPHbuU6-Yw716mqCd8Bfn2E9gu0nIN0H3WOKk4a7Jzwuz47XwHiJC1AOEtSduffhql3mPWPcowLneNQNlZRJsF674zdHN15')"></div>
+<!-- Gradient Overlay for readability -->
+<div class="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background/90"></div>
+</div>
+<!-- Content Area inside Frame -->
+<div class="relative z-10 flex flex-col items-center h-full pt-16 pb-8 px-6">
+<!-- Card Display -->
+<div class="flex-1 w-full flex items-center justify-center perspective-[1000px]">
+<!-- Tarot Card -->
+<div class="w-48 aspect-[2/3] rounded-xl glass-card border border-primary-container/50 shadow-[0_0_20px_rgba(212,175,55,0.3)] relative overflow-hidden transform transition-transform duration-700 hover:rotate-y-12">
+<div class="w-full h-full bg-cover bg-center" data-alt="A beautifully illustrated digital tarot card depicting 'The Celestial Voyager'. The art style blends ancient mysticism with futuristic sci-fi elements. The voyager is a glowing ethereal figure surrounded by holographic geometric shapes, holding a staff of light. The colors are deep indigo, shimmering gold, and bright cyan, rendered in a highly detailed, premium finish." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCnSgHN999luP4hmTy_ze8PZb9XAaUip1-46WB4ILZuAN67XEgza5cPdQTrUhda0er7VPyFbj58ZRLTAK6caD_6Hn00va9m7ubeBcpakrNpHlLkoYbdXPfSo6j8IXgNGng_V5cEHTcVy0xHXFpwomYkmtSLHJrhiUPFds1EcmdFv7ILkkCGF8Px9g-WQbXMOyTLT5aebHxJfpv3VvCZJekyESu41phJ_YKduDZHU7g5hOB0rlFWjLUYTX0Gru-0N2hc0ZdkinlC6Wjf')"></div>
+</div>
+</div>
+<!-- Mystical Text -->
+<div class="text-center mt-6 mb-8 w-full">
+<p class="font-headline-md text-headline-md text-primary mb-2 tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">The Celestial Voyager</p>
+<p class="font-body-md text-body-md text-on-surface-variant italic font-light drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">"A journey of infinite possibilities awaits beneath the shifting stars."</p>
+</div>
+<!-- Branding & QR Footer inside Story -->
+<div class="w-full flex items-center justify-between mt-auto border-t border-white/10 pt-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-label-caps text-label-caps text-on-background tracking-widest">AI Fortune Studio</span>
+</div>
+<!-- QR Placeholder -->
+<div class="w-8 h-8 rounded bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
+<span class="material-symbols-outlined text-sm text-white" data-icon="qr_code_2">qr_code_2</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Action Area -->
+<section class="w-full max-w-md px-6 mb-8 relative z-20">
+<h3 class="font-label-caps text-label-caps text-primary tracking-widest mb-4 text-center uppercase">Select Background Essence</h3>
+<div class="flex gap-4 overflow-x-auto pb-2 no-scrollbar">
+<!-- Option 1: Selected -->
+<button class="flex-shrink-0 w-20 aspect-[9/16] rounded-lg overflow-hidden gold-border-glow relative group transition-all duration-300">
+<img alt="Cosmic Nebula" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbVVGzejuObVy2hPE2Sg0OWI7xbsqj-K_86Yxslsbq_NP-6E1rPgSPt5PmP5fqG-5uuc6R7TGEHPD0UBde_fdMw9TJetOwjRPMIlYKeaiWcjs6QfuNUkn7NajvVD-K0RyhEZm5d-83SbfQZYUQgziWnVX07Q2_HC8UMzLXTpZ-SJMxqSKA5rSPO0tfSgSz50F6zBNdkHBl304txPc87viqzlfp_AJNQ-U3JBYR9xg6hcIxdeTElkAsHTekXcZChJQRo33d2JlN28jV"/>
+<div class="absolute inset-0 bg-primary/10 pointer-events-none"></div>
+</button>
+<!-- Option 2 -->
+<button class="flex-shrink-0 w-20 aspect-[9/16] rounded-lg overflow-hidden border border-white/10 relative group transition-all duration-300 hover:border-primary/50">
+<img alt="Golden Trails" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAFuXvRz6oMFcroMzRWcmOl-1aEL3dG0nGddXUImcd0onsFMNAR_m-6j5el216Vqn7n5vm0dOkwPxU7kYOeki17gQiA7wIkyonsZfW3NZlqUSrJCRB4yWfy6q84Iam_Bu9cXCSJRZVf0tX7fi2uuSX7swAtyLaO-Jr87rZ2iP5zzhadNrOiFv0YOLmFmhhJduTS87BmZd0a-2ANpQT7Sgqp0mGY-Oi4nlTsFUN_GmE05O0M64KdteKjc9IN_WUlwZ-yHBS6lLKqTH4"/>
+</button>
+<!-- Option 3 -->
+<button class="flex-shrink-0 w-20 aspect-[9/16] rounded-lg overflow-hidden border border-white/10 relative group transition-all duration-300 hover:border-primary/50">
+<img alt="Teal Mist" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFK2qt5ilk545NGm891a-Ot73EWq7ND0P36an_yWs-Hn8izRKS5tSJzxyDFQK-nllKtih8wEodFg1Siaolu19SrsWoVfZuDxEV5NMLozuCI0aNohgYtXHU5k-58OPwsAao7QnvqQKxfLgM9stQl1WvloBsUig3oAVm2GKexCw8isrn8RehbZu2l7YYMD-aPYRLSUI1Dl0hYeID8164AKAhv3glTD-g0Z2BRvfsqYHHPSggGR_-GVzz_IagPehQS2apART3_OzJmbyI"/>
+</button>
+<!-- Option 4: Fiery Singularity -->
+<button class="flex-shrink-0 w-20 aspect-[9/16] rounded-lg overflow-hidden border border-white/10 relative group transition-all duration-300 hover:border-primary/50">
+<img alt="Fiery Singularity" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDD2jG-BpsEPS8e8-XFxQy0k22bBXlrM98S-MXCoiX_2JInoiGNbJkCAzyaccMp6ePSVzbUaA3ycwS3kKQK6TOl7aVpH4ffdwUiEAPBrs6ogcLMVYfGy9_9bTN6N1preAVmbsBQo3MedLq4I2xtVkvuAyCm7Hl6VxhUr1vuy91mHDxnQURIHTSpAgJKwtPgPFncOZZ0C2LyK02zTEyfXUzF_JO6DN6p1xrKa26lA6DULQ6QPpp4M0Y3nThb0HQnYrInPd6Mb3wS4Cm6"/>
+</button>
+<!-- Option 5: Crystal Prism -->
+<button class="flex-shrink-0 w-20 aspect-[9/16] rounded-lg overflow-hidden border border-white/10 relative group transition-all duration-300 hover:border-primary/50">
+<img alt="Crystal Prism" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuMpAIn633fnLUxe12NIJ8Kjvxd1H5W31y2_alSVsx2HFWxqXDIgLcYHbGx6aOwXs_hQLPR7tH0qYwQn5HvnudF4GPrVBWowDD1mw50WyzPIrq8ru1NHJhHLN3vH0odENgaAd8aw7KMHXjS3Q3PUBEE_EqLtCujfjJeJHRM5aQ61vz2PoNqBazCpQS-eNMpBtfKnLBbiK6p16cGpZT6rdM9dZB05-r3-VaJMo39Ti03IrM8CO5bZkVBX_n_B_nhi0hcl6eV__UMYw5"/>
+</button>
+<!-- Option 6: Dark Matter -->
+<button class="flex-shrink-0 w-20 aspect-[9/16] rounded-lg overflow-hidden border border-white/10 relative group transition-all duration-300 hover:border-primary/50">
+<img alt="Dark Matter" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcRo6fqI-gzrEJPu84u8tnEKwuABR8hQAvp1XRzW9n486EfCiraV8ZKhmzw_d5hEZdSqXGZXcB-Etw6IN_X2sNPZMgEHyX_2fMzQNLWN8ix-Wj4IZ-dyR01lc82tj_ziZlI3Pg6YQWiPteeI7uIBmcMqbEZH6GWh044ji9bXNOaOIwwjvq1oX7uBkUnXjAqVsOGiqlCj0zCa05HwBp4_tqK5DEdKMECNQRvp27nYYF5Z11o-7rQEt5RNTRz4mytABHJM08iDAHBnam"/>
+</button></div>
+</section><footer class="w-full p-safe-area pb-8 flex flex-col items-center justify-end relative z-20 max-w-md mx-auto">
+<button class="w-full max-w-[320px] h-14 rounded-full bg-gradient-to-r from-primary-container to-primary-fixed-dim text-on-primary-fixed font-headline-md text-body-lg flex items-center justify-center gap-2 shadow-[0_4px_24px_rgba(212,175,55,0.4)] hover:shadow-[0_4px_32px_rgba(212,175,55,0.6)] hover:scale-[1.02] transition-all duration-300 relative overflow-hidden group">
+<div class="absolute inset-0 bg-white/20 w-full transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></div>
+<span class="material-symbols-outlined" data-icon="send">send</span>
+            Post to Stories
+        </button>
+</footer>
+<script>
+    // Simple script to re-trigger animation on background selection (mock)
+    document.querySelectorAll('section button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const bgElement = document.querySelector('.animate-mystic-reveal');
+            
+            // Remove animation
+            bgElement.classList.remove('animate-mystic-reveal');
+            
+            // Trigger reflow
+            void bgElement.offsetWidth;
+            
+            // Add animation back
+            bgElement.classList.add('animate-mystic-reveal');
+        });
+    });
+</script>
+</body></html>

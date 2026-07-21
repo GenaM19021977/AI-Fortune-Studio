@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AI Fortune Studio - Style Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#fbabff",
+                        "on-secondary-fixed-variant": "#7c008e",
+                        "background": "#0b1326",
+                        "secondary-fixed-dim": "#fbabff",
+                        "surface-dim": "#0b1326",
+                        "inverse-primary": "#6d3bd7",
+                        "inverse-on-surface": "#283044",
+                        "surface-container-highest": "#2d3449",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#e9ddff",
+                        "tertiary": "#89ceff",
+                        "on-secondary-fixed": "#36003e",
+                        "primary-fixed-dim": "#d0bcff",
+                        "surface-container-low": "#131b2e",
+                        "on-tertiary": "#00344d",
+                        "primary-container": "#a078ff",
+                        "surface-variant": "#2d3449",
+                        "on-tertiary-fixed": "#001e2f",
+                        "surface-tint": "#d0bcff",
+                        "on-primary-container": "#340080",
+                        "tertiary-fixed-dim": "#89ceff",
+                        "surface-bright": "#31394d",
+                        "surface-container-lowest": "#060e20",
+                        "on-background": "#dae2fd",
+                        "outline": "#958ea0",
+                        "surface-container-high": "#222a3d",
+                        "on-surface-variant": "#cbc3d7",
+                        "on-tertiary-container": "#002d43",
+                        "on-primary": "#3c0091",
+                        "error-container": "#93000a",
+                        "tertiary-container": "#009ada",
+                        "on-primary-fixed": "#23005c",
+                        "surface-container": "#171f33",
+                        "on-error": "#690005",
+                        "on-secondary-container": "#ffd8fd",
+                        "secondary-container": "#ae05c6",
+                        "primary": "#d0bcff",
+                        "outline-variant": "#494454",
+                        "on-surface": "#dae2fd",
+                        "tertiary-fixed": "#c9e6ff",
+                        "on-tertiary-fixed-variant": "#004c6e",
+                        "on-secondary": "#580065",
+                        "inverse-surface": "#dae2fd",
+                        "on-primary-fixed-variant": "#5516be",
+                        "secondary-fixed": "#ffd6fd",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#0b1326"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-page": "1.25rem",
+                        "stack-sm": "0.5rem",
+                        "stack-lg": "1.5rem",
+                        "stack-md": "1rem",
+                        "gutter-grid": "1rem",
+                        "stack-xl": "2.5rem"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-caps": ["Geist"],
+                        "mono-label": ["Geist"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "mono-label": ["13px", { "lineHeight": "18px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .ambient-orb {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(208, 188, 255, 0.15) 0%, rgba(251, 171, 255, 0.05) 50%, transparent 70%);
+            filter: blur(40px);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .search-input:focus {
+            border-bottom-color: #d0bcff;
+            box-shadow: 0 1px 0 0 #d0bcff;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-lg min-h-screen overflow-x-hidden selection:bg-primary/30 relative">
+<!-- Ambient Background Effects -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+<div class="ambient-orb top-[-10%] left-[-10%]"></div>
+<div class="ambient-orb bottom-[20%] right-[-10%]" style="background: radial-gradient(circle, rgba(251, 171, 255, 0.1) 0%, rgba(208, 188, 255, 0.05) 50%, transparent 70%);"></div>
+</div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
+<div class="flex items-center justify-between px-margin-page h-16 w-full">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-white/20">
+<img class="w-full h-full object-cover" data-alt="A small, stylized avatar image of a mystic oracle, highly detailed, vibrant colors, subtle magical glow, set against a dark background, complementing the digital mysticism theme of the app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ37J9EMod_P1VlLAL0mT8sOSlpNiipUu7ouwZ4CRiDvzq9wQEeJh0JNt1g3CBUg76h3JERDZ8c_fjRzA3jioS2H00mWk78qRLI0v-ZGggRYstb4aGHOfnXhu5MSk8aLyx0tIRCqp2OgbLAKhRLj0Ch4pB9Lq5tZsESuYKW47us-rHDlWJzRXKj3n8NEiD-LWUh7kndcwCB8gf4ZJw088dw-41guknPjimYpO0tSvnNPu3e_BJ6DGAEU34e3LNV2y8iaPTKuSGivo"/>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">AI Fortune Studio</h1>
+</div>
+<button class="text-primary dark:text-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform flex items-center justify-center">
+<span class="material-symbols-outlined">auto_awesome</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-[88px] pb-[96px] px-margin-page relative z-10 flex flex-col gap-stack-xl">
+<!-- Search Section -->
+<section class="flex flex-col gap-stack-sm">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-high/50 border-0 border-b border-white/20 text-on-background font-body-lg placeholder:text-on-surface-variant pl-12 pr-4 py-4 focus:ring-0 search-input transition-colors rounded-t-lg backdrop-blur-md" placeholder="Search styles, themes, or characters..." type="text"/>
+</div>
+<div class="flex gap-2 overflow-x-auto hide-scrollbar py-2">
+<span class="px-4 py-1.5 rounded-full border border-secondary/40 text-secondary font-label-caps text-label-caps whitespace-nowrap bg-secondary/5 hover:bg-secondary/10 transition-colors cursor-pointer">All Styles</span>
+<span class="px-4 py-1.5 rounded-full border border-white/10 text-on-surface-variant font-label-caps text-label-caps whitespace-nowrap bg-white/5 hover:bg-white/10 transition-colors cursor-pointer">Trending</span>
+<span class="px-4 py-1.5 rounded-full border border-white/10 text-on-surface-variant font-label-caps text-label-caps whitespace-nowrap bg-white/5 hover:bg-white/10 transition-colors cursor-pointer">New Arrivals</span>
+</div>
+</section>
+<!-- Favorite Styles Bento Grid -->
+<section class="flex flex-col gap-stack-md">
+<h2 class="font-headline-md text-headline-md text-on-background flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                Favorite Styles
+            </h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter-grid">
+<!-- Highlighted Bento Item -->
+<div class="glass-card rounded-xl p-4 flex flex-col justify-between col-span-2 md:col-span-2 aspect-[2/1] relative overflow-hidden group cursor-pointer active:scale-[0.98] transition-transform">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative z-10 flex justify-between items-start">
+<div class="w-10 h-10 rounded-full bg-surface/50 backdrop-blur-md flex items-center justify-center border border-white/10">
+<span class="material-symbols-outlined text-primary">psychology</span>
+</div>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<div class="relative z-10 mt-auto">
+<h3 class="font-headline-md text-headline-md text-on-background mb-1">Mystic Oracle</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1">Deep esoteric insights</p>
+</div>
+</div>
+<!-- Standard Bento Item -->
+<div class="glass-card rounded-xl p-4 flex flex-col justify-between aspect-square relative overflow-hidden group cursor-pointer active:scale-[0.98] transition-transform">
+<div class="absolute inset-0 bg-gradient-to-tr from-secondary/10 to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative z-10 flex justify-between items-start w-full">
+<span class="material-symbols-outlined text-tertiary text-[28px]">auto_fix_high</span>
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<div class="relative z-10 mt-auto">
+<h3 class="font-body-lg text-body-lg font-semibold text-on-background">Fantasy</h3>
+</div>
+</div>
+<!-- Standard Bento Item -->
+<div class="glass-card rounded-xl p-4 flex flex-col justify-between aspect-square relative overflow-hidden group cursor-pointer active:scale-[0.98] transition-transform">
+<div class="absolute inset-0 bg-gradient-to-tr from-error/10 to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative z-10 flex justify-between items-start w-full">
+<span class="material-symbols-outlined text-error text-[28px]">comedy_mask</span>
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<div class="relative z-10 mt-auto">
+<h3 class="font-body-lg text-body-lg font-semibold text-on-background">Humor</h3>
+</div>
+</div>
+</div>
+</section>
+<!-- Full Library -->
+<section class="flex flex-col gap-stack-md">
+<h2 class="font-headline-md text-headline-md text-on-background">Explore Library</h2>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-gutter-grid">
+<!-- Card -->
+<div class="glass-card rounded-xl overflow-hidden flex flex-col group cursor-pointer active:scale-[0.98] transition-transform">
+<div class="h-32 w-full bg-surface-container-high relative">
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent z-10"></div>
+<img class="w-full h-full object-cover mix-blend-luminosity opacity-60 group-hover:opacity-100 transition-opacity duration-300" data-alt="A serene, glowing visualization of ancient wisdom, soft golden and deep blue hues, minimalist digital art style, evoking a sense of ancient knowledge and sages, high quality texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIRCHLMN7kIwuh_PwE_TGMKwfaScMUTwvkaaaIR8Uai-V2sBknGRwYhfXDAb0DA69DMG9TGJjwnIqXDCtwiPcPn01Wx7FUABw69LhqId-kXUCk7nmrnK-mEm3lOlum4OtFooxr_zRjQ-F4XhmwLc4VLy78lv3W-6xiy1TWQxbA3KTKZ9_2HutXue8YgLf8ZBG-fTsYx6tUeAjC_m7IolILQSVVfxfmTqPRRDHHIWFGPJ9H5LC_VmMNls3qtLQHLFeQFi9QMzWlFIs"/>
+<span class="material-symbols-outlined absolute top-2 right-2 z-20 text-white/50 hover:text-secondary transition-colors">favorite</span>
+</div>
+<div class="p-4 relative z-20 -mt-8">
+<div class="w-10 h-10 rounded-lg bg-surface border border-white/10 flex items-center justify-center mb-2 shadow-lg">
+<span class="material-symbols-outlined text-primary">local_library</span>
+</div>
+<h3 class="font-body-lg text-body-lg font-semibold text-on-background">The Sages</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Philosophical readings</p>
+</div>
+</div>
+<!-- Card -->
+<div class="glass-card rounded-xl overflow-hidden flex flex-col group cursor-pointer active:scale-[0.98] transition-transform">
+<div class="h-32 w-full bg-surface-container-high relative">
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent z-10"></div>
+<img class="w-full h-full object-cover mix-blend-luminosity opacity-60 group-hover:opacity-100 transition-opacity duration-300" data-alt="A neon-lit cyberpunk cityscape reflected in a puddle, high contrast cyan and magenta colors, digital glitch effects, futuristic atmosphere, highly detailed illustration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmlHNzLYGCtaRCI5KzcUUpMkwDC8qa_hraQDOiDqSXUUGJpHvlOW0NuaoauGQmFq32r3_zvuKduNssHCxQS-R8RbD6Ubb1toKwwI0lfuVucKtWWRXrg3VBE_ETIzyPue7QP8OtNlNdI6zCcUCSjSUI65Djf5lqr-kwNzwmxvZgEmw0zX16VQZEOcO2hO8P7x3A7b4rrEzjpw3CrO0CL_kkYJ4dRMBPhyoBtbaGB_yShoRyOSLpR41GoYCZj5mJJPW4WxUWypM5TAk"/>
+<span class="material-symbols-outlined absolute top-2 right-2 z-20 text-white/50 hover:text-secondary transition-colors">favorite</span>
+</div>
+<div class="p-4 relative z-20 -mt-8">
+<div class="w-10 h-10 rounded-lg bg-surface border border-white/10 flex items-center justify-center mb-2 shadow-lg">
+<span class="material-symbols-outlined text-tertiary">memory</span>
+</div>
+<h3 class="font-body-lg text-body-lg font-semibold text-on-background">Cyberpunk</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Tech-noir futures</p>
+</div>
+</div>
+<!-- Card -->
+<div class="glass-card rounded-xl overflow-hidden flex flex-col group cursor-pointer active:scale-[0.98] transition-transform">
+<div class="h-32 w-full bg-surface-container-high relative">
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent z-10"></div>
+<img class="w-full h-full object-cover mix-blend-luminosity opacity-60 group-hover:opacity-100 transition-opacity duration-300" data-alt="A sepia-toned vintage aesthetic with floating antique clocks and old parchment paper, subtle glowing magical dust motes, historical and timeless atmosphere, detailed digital art." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyMOWujpQUrsQIaQlguc6IWA7vedFW7EeNSo5CglZbX54pOMl8xvaX-s7UJwzU_zV1BytrhdVwhnFP2K2Sd79jH5H6x-cHM-_AF1xZ7EriX7VNbkJOLUxt0iI6oasrE_EWnlNJcIX0s8xxRFNN9zRFjq6jWETR88tPP_2H2pEJk_u7sUR8pFntTeHdd7H76_4OPq7twRNLm8aKh3YP0Dpazfvg9caO5EW0skOvf9dKXYd9CfoRwMdI11GEvtcVs3Awq7PlI9J7LvQ"/>
+<span class="material-symbols-outlined absolute top-2 right-2 z-20 text-white/50 hover:text-secondary transition-colors">favorite</span>
+</div>
+<div class="p-4 relative z-20 -mt-8">
+<div class="w-10 h-10 rounded-lg bg-surface border border-white/10 flex items-center justify-center mb-2 shadow-lg">
+<span class="material-symbols-outlined text-primary-fixed">hourglass_empty</span>
+</div>
+<h3 class="font-body-lg text-body-lg font-semibold text-on-background">Historical</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Echoes of the past</p>
+</div>
+</div>
+<!-- Card -->
+<div class="glass-card rounded-xl overflow-hidden flex flex-col group cursor-pointer active:scale-[0.98] transition-transform">
+<div class="h-32 w-full bg-surface-container-high relative">
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent z-10"></div>
+<div class="w-full h-full bg-gradient-to-br from-secondary-container to-background flex items-center justify-center mix-blend-luminosity opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+<span class="material-symbols-outlined text-5xl text-white/20">child_care</span>
+</div>
+<span class="material-symbols-outlined absolute top-2 right-2 z-20 text-white/50 hover:text-secondary transition-colors">favorite</span>
+</div>
+<div class="p-4 relative z-20 -mt-8">
+<div class="w-10 h-10 rounded-lg bg-surface border border-white/10 flex items-center justify-center mb-2 shadow-lg">
+<span class="material-symbols-outlined text-secondary">toys</span>
+</div>
+<h3 class="font-body-lg text-body-lg font-semibold text-on-background">For Kids</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Gentle &amp; playful</p>
+</div>
+</div>
+<!-- Card -->
+<div class="glass-card rounded-xl overflow-hidden flex flex-col group cursor-pointer active:scale-[0.98] transition-transform">
+<div class="h-32 w-full bg-surface-container-high relative">
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent z-10"></div>
+<div class="w-full h-full bg-gradient-to-tr from-primary-container to-surface-container flex items-center justify-center mix-blend-luminosity opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+<span class="material-symbols-outlined text-5xl text-white/20">music_note</span>
+</div>
+<span class="material-symbols-outlined absolute top-2 right-2 z-20 text-white/50 hover:text-secondary transition-colors">favorite</span>
+</div>
+<div class="p-4 relative z-20 -mt-8">
+<div class="w-10 h-10 rounded-lg bg-surface border border-white/10 flex items-center justify-center mb-2 shadow-lg">
+<span class="material-symbols-outlined text-primary">headphones</span>
+</div>
+<h3 class="font-body-lg text-body-lg font-semibold text-on-background">Music Styles</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Rhythmic fortunes</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Gallery is Active) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container/60 dark:bg-surface-container/60 backdrop-blur-2xl border-t border-white/10 shadow-[0_-8px_32px_0_rgba(174,5,198,0.15)]">
+<div class="flex justify-around items-center w-full pt-2 pb-safe mb-2">
+<!-- Inactive -->
+<button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200 p-2">
+<span class="material-symbols-outlined mb-1 text-[24px]">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</button>
+<!-- Inactive -->
+<button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200 p-2">
+<span class="material-symbols-outlined mb-1 text-[24px]">add_circle</span>
+<span class="font-label-caps text-label-caps">Create</span>
+</button>
+<!-- Active (Gallery / Style Library) -->
+<button class="flex flex-col items-center justify-center text-secondary-fixed shadow-[0_0_15px_rgba(251,171,255,0.4)] hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200 p-2 rounded-lg bg-white/5">
+<span class="material-symbols-outlined mb-1 text-[24px]" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<span class="font-label-caps text-label-caps">Gallery</span>
+</button>
+<!-- Inactive -->
+<button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed transition-colors active:scale-90 transition-transform duration-200 p-2">
+<span class="material-symbols-outlined mb-1 text-[24px]">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</button>
+</div>
+</nav>
+</body></html>

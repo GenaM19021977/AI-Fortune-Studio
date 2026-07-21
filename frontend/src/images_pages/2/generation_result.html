@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AI Fortune Studio - Result Preview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-lowest": "#0e0e13",
+                        "outline": "#9d8ba0",
+                        "surface-tint": "#ecb2ff",
+                        "on-secondary-fixed": "#002022",
+                        "error-container": "#93000a",
+                        "primary": "#ecb2ff",
+                        "on-secondary-container": "#00686f",
+                        "surface-container-highest": "#35343a",
+                        "primary-fixed": "#f8d8ff",
+                        "surface-container-high": "#2a292f",
+                        "inverse-on-surface": "#303036",
+                        "on-primary-fixed-variant": "#74009f",
+                        "tertiary-container": "#e7006e",
+                        "surface-dim": "#131318",
+                        "on-surface": "#e4e1e9",
+                        "on-primary": "#520071",
+                        "on-error": "#690005",
+                        "on-surface-variant": "#d4c0d7",
+                        "secondary-fixed": "#7df4ff",
+                        "on-error-container": "#ffdad6",
+                        "background": "#131318",
+                        "secondary-fixed-dim": "#00dbe9",
+                        "on-secondary": "#00363a",
+                        "surface-variant": "#35343a",
+                        "primary-container": "#bd00ff",
+                        "surface-bright": "#39383e",
+                        "on-secondary-fixed-variant": "#004f54",
+                        "on-background": "#e4e1e9",
+                        "secondary": "#d3fbff",
+                        "on-tertiary-fixed": "#3f0019",
+                        "on-primary-fixed": "#320047",
+                        "tertiary-fixed": "#ffd9e0",
+                        "on-tertiary-container": "#ffffff",
+                        "inverse-primary": "#9900cf",
+                        "on-tertiary-fixed-variant": "#8f0041",
+                        "on-primary-container": "#ffffff",
+                        "inverse-surface": "#e4e1e9",
+                        "secondary-container": "#00eefc",
+                        "surface-container": "#1f1f25",
+                        "on-tertiary": "#66002c",
+                        "outline-variant": "#514255",
+                        "surface": "#131318",
+                        "primary-fixed-dim": "#ecb2ff",
+                        "surface-container-low": "#1b1b20",
+                        "tertiary-fixed-dim": "#ffb1c3",
+                        "tertiary": "#ffb1c3",
+                        "error": "#ffb4ab"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "unit": "4px",
+                        "container-padding": "20px",
+                        "stack-gap": "16px",
+                        "glass-padding": "24px"
+                    },
+                    fontFamily: {
+                        "label-mono": ["JetBrains Mono"],
+                        "headline-lg": ["Sora"],
+                        "display-xl": ["Sora"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Sora"]
+                    },
+                    fontSize: {
+                        "label-mono": ["12px", { lineHeight: "16px", letterSpacing: "0.1em", fontWeight: "500" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "display-xl": ["48px", { lineHeight: "52px", letterSpacing: "-0.04em", fontWeight: "800" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "headline-lg-mobile": ["28px", { lineHeight: "34px", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0A0A0F;
+            overflow-x: hidden;
+        }
+        
+        .aurora-bg {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(189, 0, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 238, 252, 0.1) 0%, transparent 40%);
+            animation: rotateAurora 30s linear infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes rotateAurora {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .glass-card {
+            background: rgba(31, 31, 37, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -1;
+            margin: -1px;
+            border-radius: inherit;
+            background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+        }
+
+        .glow-btn {
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .glow-btn::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: inherit;
+            filter: blur(15px);
+            opacity: 0.4;
+            z-index: -1;
+            border-radius: inherit;
+            transition: opacity 0.2s ease;
+        }
+        
+        .glow-btn:active {
+            transform: scale(0.96);
+        }
+
+        .action-icon {
+            background: linear-gradient(135deg, #ecb2ff 0%, #00eefc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 12px rgba(189, 0, 255, 0.3);
+        }
+
+        /* Custom Scrollbar for the reading text */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(236, 178, 255, 0.3);
+            border-radius: 4px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface antialiased min-h-screen flex flex-col relative pb-[90px]">
+<!-- Moving Aurora Background -->
+<div class="aurora-bg"></div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 backdrop-blur-md border-b border-white/10 shadow-[0_0_20px_rgba(189,0,255,0.1)] flex justify-between items-center px-container-padding py-4 transition-transform">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-white/20">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A highly detailed close-up of a futuristic cyberpunk avatar profile picture, glowing neon purple and cyan accents, set against a dark fluid glassmorphic background, premium 3D render quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRNPuApj2Ki3euCovCgzAWPKcJkcwP_brNS35j38BCTozu8ZloXvkq75UBT02SNTDJn5cgzgPqfLSbL7kZwmz6MJBcNFbILZrNDtezCjnsfuiUlVJWKNnmel4Demo4sIbiTTUgewuVOOboKe_89mm73KfmEuGG1hudBcrIFLSY2Vz8Zk9U7Uy1SB8oAukX7xeto6NB4f02v38wk3F63ni3uQ0GnshODNYoLn3lL_sPeYW3eewSrvp-Vp8HmYhjqQ0kVSEuVyUPXGA"/>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">AI Fortune Studio</h1>
+</div>
+<button aria-label="Premium Status" class="text-primary hover:opacity-80 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</button>
+</header>
+<!-- Main Content Canvas (Intent: Linear/Result, Navigation Shell Suppressed as per instructions for transactional/result screens) -->
+<main class="flex-1 pt-24 px-container-padding flex flex-col gap-stack-gap max-w-2xl mx-auto w-full">
+<!-- Result Card -->
+<div class="glass-card rounded-xl p-glass-padding flex flex-col gap-4 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-container">auto_awesome</span>
+<span class="font-label-mono text-label-mono text-secondary-container uppercase">Cosmic Alignment</span>
+</div>
+<span class="font-label-mono text-label-mono text-outline">Just now</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">The High Priestess</h2>
+<div class="h-64 rounded-lg overflow-hidden relative mb-4">
+<img alt="Tarot Card Render" class="w-full h-full object-cover" data-alt="A breathtaking, hyper-realistic 3D render of 'The High Priestess' tarot card floating in space. The card features intricate glowing geometric patterns, deep obsidian blacks, bright pristine whites, and vibrant neo-cyberpunk purple and cyan energetic aurora lighting. The mood is mystical, sophisticated, and technologically advanced." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChhZz1eiamAPZgqf66npdNVNV6IR80cPaymMw8LpPHAZQ_RLPGw2-B9KuXK1CdhqgN9molFVyDpnLtwS94cayDTYrYemsThmys7mwOBr-Dmk5MiPtQ8yWe5cWx24DAKAG0DE7odzyQ9i_vIJcoT4TqnM3XGJdhCalOCmaHS_2eSblUlVrJ-EnvTx_A9Ri1yOLzxorn0TtNdFi2ig_oAOOkq7sD3eTeVKO3q6Mo3m581pxGTTO6JstwM0mD3fiOlmlLUTTRmuv0WbQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+</div>
+<div class="custom-scrollbar overflow-y-auto max-h-[265px] pr-2">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed text-lg">
+                    Intuition and mystery veil your path today. The High Priestess emerges from the cosmic void to remind you that not all knowledge is meant to be spoken; some must be felt. 
+                    <br/><br/>
+                    You stand at the threshold of a significant revelation. Trust the subtle whispers of your inner oracle. The neon currents of fate are aligning in your favor, provided you maintain your focus and do not rush to judgment.
+                    <br/><br/>
+                    Seek stillness in the digital noise. Your answers lie in the silent spaces between the data points.
+                </p>
+</div>
+</div>
+<!-- Actions Grid (Bento Style) -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-unit mt-2">
+<!-- Primary Actions -->
+<button class="glow-btn col-span-2 md:col-span-2 bg-gradient-to-r from-primary-container to-tertiary-container rounded-lg p-4 flex items-center justify-center gap-2 shadow-[0_4px_16px_rgba(189,0,255,0.2)]">
+<span class="material-symbols-outlined text-white">send</span>
+<span class="font-body-md text-body-md font-semibold text-white">Send to Telegram</span>
+</button>
+<!-- Secondary Actions -->
+<button class="glass-card rounded-lg p-4 flex flex-col items-center justify-center gap-2 hover:bg-white/5 active:scale-95 transition-all">
+<span class="material-symbols-outlined action-icon text-[32px]">favorite</span>
+<span class="font-label-mono text-label-mono text-on-surface">Save</span>
+</button>
+<button class="glass-card rounded-lg p-4 flex flex-col items-center justify-center gap-2 hover:bg-white/5 active:scale-95 transition-all">
+<span class="material-symbols-outlined action-icon text-[32px]">share</span>
+<span class="font-label-mono text-label-mono text-on-surface">Share</span>
+</button>
+<button class="glass-card rounded-lg p-4 flex flex-col items-center justify-center gap-2 hover:bg-white/5 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-outline text-[24px]">download</span>
+<span class="font-label-mono text-label-mono text-outline">Download</span>
+</button>
+<button class="glass-card rounded-lg p-4 flex flex-col items-center justify-center gap-2 hover:bg-white/5 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-outline text-[24px]">edit</span>
+<span class="font-label-mono text-label-mono text-outline">Edit</span>
+</button>
+<button class="glass-card rounded-lg p-4 flex flex-col items-center justify-center gap-2 hover:bg-white/5 active:scale-95 transition-all col-span-2">
+<span class="material-symbols-outlined text-outline text-[24px]">refresh</span>
+<span class="font-label-mono text-label-mono text-outline">Regenerate</span>
+</button>
+</div>
+</main>
+<!-- Bottom Nav Bar (Suppressed because this is a focused result screen with actions, but included in code structure as per requirements if it were to be shown, though visually hidden here to prioritize canvas per rules) -->
+<!-- 
+    <nav class="fixed bottom-4 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] rounded-full bg-surface-container/60 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.4)] flex justify-around items-center h-16 px-4 md:hidden hidden">
+        <button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200">
+            <span class="material-symbols-outlined">grid_view</span>
+        </button>
+        <button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200">
+            <span class="material-symbols-outlined">auto_awesome</span>
+        </button>
+        <button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200">
+            <span class="material-symbols-outlined">explore</span>
+        </button>
+        <button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200">
+            <span class="material-symbols-outlined">workspace_premium</span>
+        </button>
+        <button class="flex flex-col items-center justify-center text-outline hover:text-primary-fixed-dim active:scale-90 transition-all duration-200">
+            <span class="material-symbols-outlined">person</span>
+        </button>
+    </nav>
+    -->
+</body></html>

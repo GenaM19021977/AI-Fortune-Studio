@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>AI Fortune Studio - Community</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Space+Grotesk:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .premium-border {
+            border: 1px solid #D4AF37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+        .ai-glow {
+            filter: blur(40px);
+            background: #00F0FF;
+            opacity: 0.15;
+            position: absolute;
+            z-index: -1;
+        }
+        body {
+            background-color: #0F0F1A;
+            color: #e3e0f1;
+            overflow-x: hidden;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .active-tab-glow {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed-variant": "#574500",
+                      "on-error-container": "#ffdad6",
+                      "surface-container": "#1f1e2a",
+                      "surface-container-lowest": "#0d0d18",
+                      "surface-tint": "#e9c349",
+                      "on-primary-container": "#554300",
+                      "inverse-on-surface": "#302f3b",
+                      "secondary-container": "#00eefc",
+                      "primary": "#f2ca50",
+                      "on-primary-fixed": "#241a00",
+                      "secondary": "#d3fbff",
+                      "surface-variant": "#343440",
+                      "primary-fixed-dim": "#e9c349",
+                      "on-surface-variant": "#d0c5af",
+                      "surface-container-low": "#1b1a26",
+                      "primary-fixed": "#ffe088",
+                      "on-primary": "#3c2f00",
+                      "background": "#12121d",
+                      "surface": "#12121d",
+                      "on-surface": "#e3e0f1",
+                      "on-secondary-fixed-variant": "#004f54",
+                      "on-background": "#e3e0f1",
+                      "on-tertiary-container": "#6500b1",
+                      "error-container": "#93000a",
+                      "on-error": "#690005",
+                      "on-secondary": "#00363a",
+                      "tertiary-container": "#ce9eff",
+                      "surface-container-high": "#292935",
+                      "surface-dim": "#12121d",
+                      "inverse-surface": "#e3e0f1",
+                      "secondary-fixed-dim": "#00dbe9",
+                      "outline": "#99907c",
+                      "tertiary": "#e1c2ff",
+                      "secondary-fixed": "#7df4ff",
+                      "tertiary-fixed": "#efdbff",
+                      "outline-variant": "#4d4635",
+                      "on-tertiary": "#480081",
+                      "primary-container": "#d4af37",
+                      "on-secondary-fixed": "#002022",
+                      "tertiary-fixed-dim": "#dcb8ff",
+                      "inverse-primary": "#735c00",
+                      "surface-container-highest": "#343440",
+                      "on-tertiary-fixed-variant": "#6700b5",
+                      "on-secondary-container": "#00686f",
+                      "surface-bright": "#383845",
+                      "error": "#ffb4ab",
+                      "on-tertiary-fixed": "#2c0051"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "card-padding": "24px",
+                      "stack-md": "16px",
+                      "safe-area": "20px",
+                      "stack-sm": "8px",
+                      "stack-lg": "32px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Inter"],
+                      "label-caps": ["Space Grotesk"],
+                      "headline-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "caption": ["Inter"],
+                      "headline-lg-mobile": ["Inter"]
+              },
+              "fontSize": {
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-24">
+<!-- Atmospheric Background Layers -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+
+<div class="ai-glow w-[300px] h-[300px] top-1/4 -right-20"></div>
+<div class="ai-glow w-[400px] h-[400px] bottom-1/3 -left-40 opacity-10"></div>
+</div>
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10">
+<div class="flex items-center px-5 h-16 w-full max-w-md mx-auto justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary font-headline-md text-headline-md">auto_awesome</span>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary tracking-tight">AI Fortune Studio</h1>
+</div>
+<button class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:opacity-80 transition-all active:scale-95">
+<span class="material-symbols-outlined text-on-surface">search</span>
+</button>
+</div>
+</header>
+<main class="pt-20 px-5 max-w-md mx-auto space-y-stack-lg">
+<!-- Daily Challenge Banner -->
+<section class="relative">
+<div class="glass-card premium-border rounded-xl p-card-padding relative overflow-hidden group">
+<div class="absolute inset-0 opacity-20 transition-transform duration-700 group-hover:scale-110" data-alt="A mystical digital oracle centered in a void of swirling golden energy and binary code, representing a techno-mystic fusion. High-end gold accents and ethereal violet lighting dominate the scene, creating a sense of sacred digital space. Cinematic lighting with deep shadows and sharp highlights on metallic surfaces." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDX9TatQESoHhPaHWTnJWncBQ-5D4a-n18ypuQMYGGmwNEd-UyQ3FIxxoIpAq6QdqKqQNTkrIdvQ2WmAKDkdfubOIJX4cRK1V5U1eUt-webc8wr8q86Tvvl2xng0OgsF19yWETqXrnFj9Ijh8L7iLdrx1vfav2cZOvoPxZ94Om_cZSTzlBXSc7U-IAEi0tNFSu2ccnU3h1nXKS2goyNLuiZfAvqoZoMF2IVcpdBgXx_Myy6XSrl3jCRpXgEwom1dUtUbcvlc9MBQkam')"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-2">
+<span class="font-label-caps text-label-caps px-2 py-1 bg-primary/20 text-primary rounded-full border border-primary/30 uppercase">Active Challenge</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-white mb-2">The Solar Eclipse Reading</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Craft a prompt that visualizes the duality of light and shadow. Top 5 win 500 Credits.</p>
+<button class="px-6 py-2 bg-primary text-on-primary font-label-caps text-label-caps rounded-full shadow-lg hover:brightness-110 active:scale-95 transition-all">JOIN NOW</button>
+</div>
+</div>
+</section>
+<!-- Popular Creations Gallery -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline-md text-headline-md text-white">Popular Creations</h3>
+<button class="text-primary font-label-caps text-label-caps flex items-center gap-1 hover:underline">
+                    VIEW ALL <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Creation 1 -->
+<div class="glass-card rounded-xl overflow-hidden group cursor-pointer active:scale-[0.98] transition-transform">
+<div class="aspect-square relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A highly detailed close-up of a digital tarot card, The Moon, reimagined with neon circuitry and iridescent glowing threads. The style is techno-mysticism with a deep indigo background and electric blue highlights. Atmospheric fog and lens flares suggest a futuristic spiritual gateway." src="https://lh3.googleusercontent.com/aida-public/AB6AXuARL_gqgZf3m2NUoayefrslOezTBvwqM7qRm4cDbzkkiLvbDljU-ZvqEgstIqENbtcmU9eZpicuz4HLvWz6SNmv_WZSo8jpfnAOjJwuTt8O5qGauObgacItJ71JnUi21TXz8T7fnyrU2FuJGB_6eHDBaomz4dy3JNFpyi1iu86dVK5wdxyGvnwd8-pltO5XB6NPsv1EZu1uDfcViBjOu77_HvOC49XX7ZW1MJMQteGozG1cieGRYJ3kR40YPcYpBsrGfSt_JW2Fv9sI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-2 left-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-[12px] font-medium">1.2k</span>
+</div>
+</div>
+<div class="p-3">
+<p class="font-caption text-caption text-on-surface-variant truncate">@nebula_seeker</p>
+</div>
+</div>
+<!-- Creation 2 -->
+<div class="glass-card rounded-xl overflow-hidden group cursor-pointer active:scale-[0.98] transition-transform">
+<div class="aspect-square relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A floating obsidian crystal cluster pulsating with emerald digital light. The crystals are surrounded by floating golden runes and a soft purple nebula. The lighting is ethereal and directional, highlighting the sharp, glassy edges of the obsidian against the soft cosmic background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJrChct_pNNXEMtxByUPwl6zsbFV8vieMi8eyyT-8_T4j9bOkjx5wu-s4X_q0OEWTR90Hwp-1dz8K8RSrCwJLT9kk7VYQ8io79ETSwGc0a8F25huJp1GEr1szlKU-_LYvjitO46TKEn8hWFmExAo9whRVS_trzphSEQ3L5p8DHDIoHvbW47Qqws858Z3y6eugB1X57GB6QoS4Mei4H9hOk0g6-RETM3fzdxkYGiynDbIGKAh7P_Ie3a_UUTajt0oeWFAb-1th0CuHU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-2 left-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-[12px] font-medium">892</span>
+</div>
+</div>
+<div class="p-3">
+<p class="font-caption text-caption text-on-surface-variant truncate">@cyber_shaman</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Weekly Contest Info Card -->
+<section>
+<div class="glass-card rounded-xl p-card-padding flex items-center gap-4 border-l-4 border-primary">
+<div class="w-16 h-16 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-4xl">military_tech</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-white">Weekly Mystic Prize</h4>
+<p class="font-caption text-caption text-on-surface-variant">The top creator this week receives the exclusive <span class="text-primary font-bold">"Archimage"</span> badge &amp; 1000 Soul Shards.</p>
+</div>
+</div>
+</section>
+<!-- Leaderboard List -->
+<section>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">leaderboard</span>
+<h3 class="font-headline-md text-headline-md text-white">Top Diviners</h3>
+</div>
+<div class="glass-card rounded-xl divide-y divide-white/5">
+<!-- Leader 1 -->
+<div class="flex items-center justify-between p-4 group hover:bg-white/5 transition-colors">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a digital entity avatar with translucent skin showing gold wiring underneath. The eyes glow with a cyan light. The style is futuristic and high-tech, set against a dark, minimal atmospheric background. Extremely high detail, realistic textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY8kcrinEONJsfrQanJN_OyFHCoazv2ICz72jQmXBRqDPQxvPJOIiIxjipLyIBFOAXga6LEzhzasOSVpULx4Zc2ZtkJ5GuiRTYLe713iVe_QwJa0BF49YboDkkEjgEhSadHFXdKDkzu6THDEzZbo38QzGj4WCz_bQGZdsHl8Jk9NXCKf7dz4taZVO1ZKHtY3A805p0JjfWhkYthJ4ODRocX7Zd8OkaALi5kkDYTjD4vLTAwinDFWWm2BVhDaP4MKtAUCtUIHNIsVur"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-primary text-on-primary w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold">1</div>
+</div>
+<div>
+<p class="font-body-md text-body-md text-white font-semibold">OracleZero</p>
+<p class="font-caption text-caption text-on-surface-variant">42 Active Threads</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-caps text-label-caps text-primary">12,450 PTS</p>
+<p class="text-[10px] text-emerald-400">↑ 12%</p>
+</div>
+</div>
+<!-- Leader 2 -->
+<div class="flex items-center justify-between p-4 group hover:bg-white/5 transition-colors">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white/20">
+<img class="w-full h-full object-cover" data-alt="Portrait of a humanoid figure wearing a hooded robe made of shifting digital fabric, displaying constellations. The face is obscured by a golden geometric mask. Dark indigo and violet color palette with shimmering gold embroidery. Soft atmospheric lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5_wCsHZw2MISAVneYXfbyAZuYkjNcsOSuyDs0-nwcIb0dyjwk_PxnRAs_D0LjNKLq7yqSj7t_yeDUdzTxo8bFubJdBAybKCZJ5r6pWfjBiA6Qqo4BjxaK4BEj5G_X1HvKBVv6L0X2KM5mMgZfP8S4LugKNNpyXvo_k_CFzTIxG1EtMMAzkfheS2t129O67vco_C9H0C9o3jcDRuCQhbM4BtjwAz53fTXuRia2x53IocYeEqF5WHHo_yKhuzTd2HMXf0Mck5MBMjra"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-on-surface-variant text-surface w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold">2</div>
+</div>
+<div>
+<p class="font-body-md text-body-md text-white font-semibold">Star_Weaver</p>
+<p class="font-caption text-caption text-on-surface-variant">38 Active Threads</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-caps text-label-caps text-on-surface-variant">9,820 PTS</p>
+<p class="text-[10px] text-on-surface-variant">--</p>
+</div>
+</div>
+<!-- Leader 3 -->
+<div class="flex items-center justify-between p-4 group hover:bg-white/5 transition-colors">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white/20">
+<img class="w-full h-full object-cover" data-alt="Digital art of a serene avatar with flowing mercury-like hair. The avatar has glowing violet eyes and wears intricate platinum jewelry that appears to be integrated into the skin. Minimalist aesthetic with a focus on metallic textures and cool-toned lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA8_mSbvpkRVXvYkHK6_hbYfCCE0PjdRPmqsDHnpRiwLKdgiz7DALKovN25-C9zbAWlJT4FNarN7mFgAQfZ6Ax8eXUb7FBbF7xZ7d2ZyT7dyoO1g2j3ZO2FcKf3wNZmd3AMCXoCM4LoRA09KWjViUJ6Nrg9c1xJX-9bCfHh_35lp-3VoVxAH74YWeniSPzhPYP6NtvTQNvQoSFplWuNrvjACRjkCxwzee6_oAwoIJZ2MV9vyJKUWvaQB12QLlkGVw_xZhaR_4A6BAj"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-on-surface-variant text-surface w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold">3</div>
+</div>
+<div>
+<p class="font-body-md text-body-md text-white font-semibold">Void_Echo</p>
+<p class="font-caption text-caption text-on-surface-variant">31 Active Threads</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-caps text-label-caps text-on-surface-variant">8,150 PTS</p>
+<p class="text-[10px] text-red-400">↓ 4%</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Social Activity Micro-interactions -->
+<section class="pb-10">
+<h3 class="font-headline-md text-headline-md text-white mb-4">Live Activity</h3>
+<div class="space-y-3">
+<div class="flex items-center gap-3 p-3 glass-card rounded-lg animate-pulse">
+<div class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></div>
+<p class="font-caption text-caption text-on-surface-variant italic">@mystic_ai just conjured a Masterpiece...</p>
+</div>
+<div class="flex items-center gap-3 p-3 glass-card rounded-lg opacity-80">
+<div class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_#f2ca50]"></div>
+<p class="font-caption text-caption text-on-surface-variant">320 users are currently meditating...</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container/60 dark:bg-surface-container/60 backdrop-blur-2xl border-t border-white/5 shadow-[0_-4px_24px_rgba(0,0,0,0.4)]">
+<div class="flex justify-around items-center h-20 px-4 pb-safe w-full max-w-md mx-auto">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">magic_button</span>
+<span class="font-label-caps text-label-caps">Create</span>
+</a>
+<!-- Active Tab: Gallery (Community) -->
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary drop-shadow-[0_0_8px_rgba(212,175,55,0.4)] active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<span class="font-label-caps text-label-caps active-tab-glow">Gallery</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</div>
+</nav>
+<!-- FAB for Quick Creation - Contextual -->
+<button class="fixed bottom-24 right-6 w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary-container text-on-primary shadow-[0_0_20px_rgba(212,175,55,0.4)] flex items-center justify-center active:scale-90 transition-transform duration-200 z-40 border border-white/20">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<script>
+        // Micro-interaction for creation cards hover
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.borderColor = 'rgba(242, 202, 80, 0.4)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+            });
+        });
+
+        // Simple parallax effect for bg blobs
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            const glows = document.querySelectorAll('.ai-glow');
+            glows.forEach((glow, index) => {
+                const speed = (index + 1) * 20;
+                glow.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+    </script>
+</body></html>

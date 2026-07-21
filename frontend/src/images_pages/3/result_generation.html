@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AI Fortune Studio - Result</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Space+Grotesk:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#574500",
+                    "on-error-container": "#ffdad6",
+                    "surface-container": "#1f1e2a",
+                    "surface-container-lowest": "#0d0d18",
+                    "surface-tint": "#e9c349",
+                    "on-primary-container": "#554300",
+                    "inverse-on-surface": "#302f3b",
+                    "secondary-container": "#00eefc",
+                    "primary": "#f2ca50",
+                    "on-primary-fixed": "#241a00",
+                    "secondary": "#d3fbff",
+                    "surface-variant": "#343440",
+                    "primary-fixed-dim": "#e9c349",
+                    "on-surface-variant": "#d0c5af",
+                    "surface-container-low": "#1b1a26",
+                    "primary-fixed": "#ffe088",
+                    "on-primary": "#3c2f00",
+                    "background": "#12121d",
+                    "surface": "#12121d",
+                    "on-surface": "#e3e0f1",
+                    "on-secondary-fixed-variant": "#004f54",
+                    "on-background": "#e3e0f1",
+                    "on-tertiary-container": "#6500b1",
+                    "error-container": "#93000a",
+                    "on-error": "#690005",
+                    "on-secondary": "#00363a",
+                    "tertiary-container": "#ce9eff",
+                    "surface-container-high": "#292935",
+                    "surface-dim": "#12121d",
+                    "inverse-surface": "#e3e0f1",
+                    "secondary-fixed-dim": "#00dbe9",
+                    "outline": "#99907c",
+                    "tertiary": "#e1c2ff",
+                    "secondary-fixed": "#7df4ff",
+                    "tertiary-fixed": "#efdbff",
+                    "outline-variant": "#4d4635",
+                    "on-tertiary": "#480081",
+                    "primary-container": "#d4af37",
+                    "on-secondary-fixed": "#002022",
+                    "tertiary-fixed-dim": "#dcb8ff",
+                    "inverse-primary": "#735c00",
+                    "surface-container-highest": "#343440",
+                    "on-tertiary-fixed-variant": "#6700b5",
+                    "on-secondary-container": "#00686f",
+                    "surface-bright": "#383845",
+                    "error": "#ffb4ab",
+                    "on-tertiary-fixed": "#2c0051"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "card-padding": "24px",
+                    "stack-md": "16px",
+                    "safe-area": "20px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Inter"],
+                    "label-caps": ["Space Grotesk"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0F0F1A;
+            background-image: radial-gradient(circle at 50% 50%, #1A0B2E 0%, #0F0F1A 100%);
+            min-height: 100vh;
+            color: #e3e0f1;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel-gold {
+            background: rgba(212, 175, 55, 0.05);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+        }
+        .gold-gradient-btn {
+            background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+        }
+        .ai-pulse {
+            position: absolute;
+            inset: -2px;
+            border-radius: 26px;
+            padding: 2px;
+            background: conic-gradient(from 0deg, transparent, #00F0FF, transparent, transparent);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: rotate 4s linear infinite;
+        }
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .floating-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-md text-body-md antialiased">
+<!-- Atmospheric Background Elements -->
+<div class="floating-orb w-64 h-64 bg-[#1A0B2E] top-[-10%] left-[-10%]"></div>
+<div class="floating-orb w-96 h-96 bg-[#00F0FF22] bottom-[-20%] right-[-10%]"></div>
+<!-- Top Navigation Anchor (Shared Component: TopAppBar) -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10 transition-all duration-300 ease-in-out shadow-none">
+<div class="flex items-center px-5 h-16 w-full max-w-md mx-auto">
+<button class="mr-4 text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-all duration-300">
+<span class="material-symbols-outlined">auto_awesome</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary tracking-tight">AI Fortune Studio</h1>
+<div class="flex-1"></div>
+<button class="text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-all duration-300">
+<span class="material-symbols-outlined">history</span>
+</button>
+</div>
+</header>
+<main class="pt-24 pb-32 px-5 max-w-md mx-auto min-h-screen space-y-stack-lg">
+<!-- Result Content Area -->
+<section class="relative">
+<div class="ai-pulse"></div>
+<div class="glass-panel-gold rounded-[24px] p-6 overflow-hidden relative group">
+<!-- Image Preview (Primary Content) -->
+<div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover" data-alt="A highly detailed and mystical digital artwork of a cosmic tarot card floating in a nebula of gold and deep violet energy. Intricate gold filigree patterns frame a central celestial eye surrounded by shimmering geometric constellations. The lighting is cinematic, with a techno-mystical glow in shades of neon cyan and rich amber, reflecting a premium digital divination aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5fjmYTsycM_RhUrvZltdu6DQOcWZ4NVr8L8S7F5mgs9mj8SxBUrSnFql32agnyKoQpYtNh5IGGN7RkFShYEU_6hAGIdiVzZR7TTTqrz5rSVY829GgTxczsGYH6IZ7WmdVjPHOfrgvrlXg2Bip_9eG754kHHJrSG-exJx3xsuSywA-S3oZJ9I3RrFSeR3iLNTYjVLSB7_p0My85Q-NdOMJyHVXPi3NOIMKLZperhSY1sU4VoLAfrVHn9Ielp2L_fgUttVbVNMOqBxp"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<span class="inline-block px-3 py-1 rounded-full glass-panel border-white/20 text-white font-label-caps text-label-caps mb-2">
+                            THE CELESTIAL VOYAGER
+                        </span>
+<p class="text-white/90 text-sm italic font-light">"A journey of infinite possibilities awaits beneath the shifting stars."</p>
+</div>
+</div>
+<!-- Text Content Area (Secondary Context) -->
+<div class="space-y-stack-md">
+<h2 class="font-headline-md text-headline-md text-primary">Your Digital Omen</h2>
+<p class="text-on-surface-variant leading-relaxed">
+                        The algorithms have converged upon a rare alignment. This visual representation signifies a breakthrough in your current spiritual path, suggesting that the logic of the machine has found a harmonic frequency with your personal energy.
+                    </p>
+<div class="pt-4 border-t border-white/5 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">auto_awesome</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">AI FIDELITY: 99.4%</span>
+</div>
+<span class="font-label-caps text-label-caps text-outline">GEN: 04.22.24</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Action Grid Section -->
+<section class="grid grid-cols-2 gap-4">
+<!-- Edit -->
+<button class="glass-panel rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:bg-white/10 transition-all duration-300 active:scale-95 group particle-click-effect">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-high group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface">Edit</span>
+</button>
+<!-- Re-generate -->
+<button class="glass-panel rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:bg-white/10 transition-all duration-300 active:scale-95 group particle-click-effect">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-high group-hover:text-secondary-fixed-dim transition-colors">
+<span class="material-symbols-outlined">refresh</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface">Re-generate</span>
+</button>
+<!-- Copy -->
+<button class="glass-panel rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:bg-white/10 transition-all duration-300 active:scale-95 group">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-high group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">content_copy</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface">Copy</span>
+</button>
+<!-- Favorites -->
+<button class="glass-panel rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:bg-white/10 transition-all duration-300 active:scale-95 group particle-click-effect">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-high group-hover:text-error transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface">Favorite</span>
+</button>
+<!-- Download (Spans 2 columns) -->
+<button class="col-span-2 glass-panel rounded-xl p-4 flex items-center justify-center gap-4 hover:bg-white/10 transition-all duration-300 active:scale-95 group">
+<span class="material-symbols-outlined text-primary">download</span>
+<span class="font-label-caps text-label-caps text-on-surface">Download High-Resolution</span>
+</button>
+</section>
+</main>
+<!-- Bottom Action Area (The Focus Action) -->
+<div class="fixed bottom-0 left-0 right-0 p-5 z-50 pointer-events-none">
+<div class="max-w-md mx-auto pointer-events-auto">
+<button class="w-full h-14 rounded-full flex items-center justify-center gap-3 mb-3 border border-primary/30 bg-surface-container/40 text-primary hover:bg-primary/10 active:scale-[0.98] transition-all particle-click-effect group">
+<span class="material-symbols-outlined">auto_awesome_motion</span>
+<span class="font-headline-md text-headline-md font-bold text-lg tracking-tight">Поделиться в Сторис</span>
+</button><button class="gold-gradient-btn w-full h-14 rounded-full flex items-center justify-center gap-3 active:scale-[0.98] transition-transform shadow-2xl particle-click-effect">
+<span class="material-symbols-outlined text-on-primary">send</span>
+<span class="font-headline-md text-headline-md text-on-primary font-bold text-lg tracking-tight">Share in Telegram</span>
+</button>
+<!-- Spacer for potential system bar -->
+<div class="h-safe-area"></div>
+</div>
+</div>
+<!-- Hidden Gallery Nav (Shared Component: BottomNavBar logic) -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container/60 dark:bg-surface-container/60 backdrop-blur-2xl border-t border-white/5 shadow-[0_-4px_24px_rgba(0,0,0,0.4)] transition-all duration-500" id="global-nav" style="opacity: 0;">
+<div class="flex justify-around items-center h-20 px-4 pb-safe w-full max-w-md mx-auto">
+<div class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-primary-fixed active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-primary-fixed active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">magic_button</span>
+<span class="font-label-caps text-label-caps">Create</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary dark:text-primary drop-shadow-[0_0_8px_rgba(212,175,55,0.4)] hover:text-primary-fixed active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-label-caps text-label-caps">Gallery</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-primary-fixed active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</div>
+</div>
+</nav>
+<script>
+        // Micro-interactions for the result screen
+        document.addEventListener('DOMContentLoaded', () => {
+            const resultCard = document.querySelector('.glass-panel-gold');
+            
+            // Subtle parallax tilt effect on card
+            resultCard.addEventListener('mousemove', (e) => {
+                const rect = resultCard.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                resultCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            resultCard.addEventListener('mouseleave', () => {
+                resultCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+                resultCard.style.transition = 'transform 0.5s ease-out';
+            });
+
+            // Handle Share Button Feedback
+            const shareBtn = document.querySelector('.gold-gradient-btn');
+            shareBtn.addEventListener('click', () => {
+                shareBtn.innerHTML = `
+                    <span class="material-symbols-outlined animate-spin">sync</span>
+                    <span class="font-headline-md text-headline-md font-bold">Connecting...</span>
+                `;
+                setTimeout(() => {
+                    shareBtn.innerHTML = `
+                        <span class="material-symbols-outlined">check_circle</span>
+                        <span class="font-headline-md text-headline-md font-bold">Shared to Telegram!</span>
+                    `;
+                }, 1500);
+            });
+        });
+    </script>
+</body></html>

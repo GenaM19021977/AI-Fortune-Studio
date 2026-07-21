@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AI Fortune Studio - Creation Master</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#574500",
+                    "on-error-container": "#ffdad6",
+                    "surface-container": "#1f1e2a",
+                    "surface-container-lowest": "#0d0d18",
+                    "surface-tint": "#e9c349",
+                    "on-primary-container": "#554300",
+                    "inverse-on-surface": "#302f3b",
+                    "secondary-container": "#00eefc",
+                    "primary": "#f2ca50",
+                    "on-primary-fixed": "#241a00",
+                    "secondary": "#d3fbff",
+                    "surface-variant": "#343440",
+                    "primary-fixed-dim": "#e9c349",
+                    "on-surface-variant": "#d0c5af",
+                    "surface-container-low": "#1b1a26",
+                    "primary-fixed": "#ffe088",
+                    "on-primary": "#3c2f00",
+                    "background": "#12121d",
+                    "surface": "#12121d",
+                    "on-surface": "#e3e0f1",
+                    "on-secondary-fixed-variant": "#004f54",
+                    "on-background": "#e3e0f1",
+                    "on-tertiary-container": "#6500b1",
+                    "error-container": "#93000a",
+                    "on-error": "#690005",
+                    "on-secondary": "#00363a",
+                    "tertiary-container": "#ce9eff",
+                    "surface-container-high": "#292935",
+                    "surface-dim": "#12121d",
+                    "inverse-surface": "#e3e0f1",
+                    "secondary-fixed-dim": "#00dbe9",
+                    "outline": "#99907c",
+                    "tertiary": "#e1c2ff",
+                    "secondary-fixed": "#7df4ff",
+                    "tertiary-fixed": "#efdbff",
+                    "outline-variant": "#4d4635",
+                    "on-tertiary": "#480081",
+                    "primary-container": "#d4af37",
+                    "on-secondary-fixed": "#002022",
+                    "tertiary-fixed-dim": "#dcb8ff",
+                    "inverse-primary": "#735c00",
+                    "surface-container-highest": "#343440",
+                    "on-tertiary-fixed-variant": "#6700b5",
+                    "on-secondary-container": "#00686f",
+                    "surface-bright": "#383845",
+                    "error": "#ffb4ab",
+                    "on-tertiary-fixed": "#2c0051"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "card-padding": "24px",
+                    "stack-md": "16px",
+                    "safe-area": "20px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Inter"],
+                    "label-caps": ["Space Grotesk"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #12121d;
+            color: #e3e0f1;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-card-gold {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+        }
+        .glow-gold {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            animation: pulse-gold 2s infinite ease-in-out;
+        }
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); transform: scale(1); }
+            50% { box-shadow: 0 0 25px rgba(212, 175, 55, 0.6); transform: scale(1.02); }
+            100% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); transform: scale(1); }
+        }
+        .orb-blur {
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.5;
+        }
+        .form-input-glow:focus {
+            border-bottom-color: #d4af37;
+            outline: none;
+            box-shadow: 0 4px 12px -4px rgba(212, 175, 55, 0.2);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-calendar-picker-indicator {
+            filter: invert(0.8) sepia(50%) saturate(1000%) hue-rotate(5deg);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased min-h-screen pb-24">
+<!-- Atmospheric Background Elements -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden">
+<div class="absolute top-[-10%] left-[-10%] w-64 h-64 bg-tertiary orb-blur rounded-full"></div>
+<div class="absolute bottom-[20%] right-[-5%] w-96 h-96 bg-secondary-container orb-blur rounded-full"></div>
+</div>
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10">
+<div class="flex items-center px-5 h-16 w-full max-w-md mx-auto">
+<span class="material-symbols-outlined text-primary mr-3" data-icon="auto_awesome">auto_awesome</span>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary tracking-tight">AI Fortune Studio</h1>
+</div>
+</header>
+<main class="relative z-10 pt-20 px-5 max-w-md mx-auto space-y-stack-lg">
+<!-- Step Indicator -->
+<div class="flex justify-between items-center px-2">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant/70">CREATION MASTER</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Fate Manifest</h2>
+</div>
+<div class="flex space-x-1">
+<div class="w-8 h-1.5 rounded-full bg-primary"></div>
+<div class="w-8 h-1.5 rounded-full bg-surface-variant"></div>
+<div class="w-8 h-1.5 rounded-full bg-surface-variant"></div>
+</div>
+</div>
+<!-- Creation Form -->
+<form class="space-y-stack-md" id="manifest-form">
+<!-- User Identity Section -->
+<div class="glass-card rounded-[24px] p-card-padding space-y-stack-md">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-primary/80 ml-1">COSMIC IDENTITY</label>
+<input class="w-full bg-surface-container-lowest/40 border-b border-outline-variant px-0 py-3 font-body-lg text-body-lg text-on-surface transition-all form-input-glow focus:bg-transparent" onfocus="playMysticSound('soft')" placeholder="Full Name" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-primary/80 ml-1">POLARITY</label>
+<div class="flex p-1 bg-surface-container-lowest/60 rounded-xl">
+<button class="flex-1 py-2.5 px-4 rounded-lg bg-primary-container text-on-primary-container font-label-caps text-label-caps transition-all" onclick="playMysticSound('soft')" type="button">MASCULINE</button>
+<button class="flex-1 py-2.5 px-4 rounded-lg text-on-surface-variant font-label-caps text-label-caps hover:text-on-surface transition-all" onclick="playMysticSound('soft')" type="button">FEMININE</button>
+<button class="flex-1 py-2.5 px-4 rounded-lg text-on-surface-variant font-label-caps text-label-caps hover:text-on-surface transition-all" onclick="playMysticSound('soft')" type="button">NON-BINARY</button>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-primary/80 ml-1">TEMPORAL ORIGIN</label>
+<input class="w-full bg-surface-container-lowest/40 border-b border-outline-variant px-0 py-3 font-body-lg text-body-lg text-on-surface transition-all form-input-glow focus:bg-transparent" onfocus="playMysticSound('soft')" type="date"/>
+</div>
+</div>
+<!-- Divination Context Section -->
+<div class="glass-card rounded-[24px] p-card-padding space-y-stack-md">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-primary/80 ml-1">EVENT HORIZON</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-lowest/40 border-b border-outline-variant px-0 py-3 font-body-lg text-body-lg text-on-surface transition-all form-input-glow focus:bg-transparent pr-10" onfocus="playMysticSound('soft')">
+<option>Career Transition</option>
+<option>Spiritual Awakening</option>
+<option>Love &amp; Connection</option>
+<option>Financial Expansion</option>
+<option>Personal Growth</option>
+</select>
+<span class="material-symbols-outlined absolute right-0 top-3 pointer-events-none text-primary" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-primary/80 ml-1">ASTRAL RESONANCE (INTERESTS)</label>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 rounded-full border border-primary/40 bg-primary/10 text-primary font-label-caps text-[10px]">MYSTICISM</span>
+<span class="px-3 py-1.5 rounded-full border border-outline-variant text-on-surface-variant font-label-caps text-[10px]">QUANTUM PHYSICS</span>
+<span class="px-3 py-1.5 rounded-full border border-outline-variant text-on-surface-variant font-label-caps text-[10px]">ANCIENT TEXTS</span>
+<span class="px-3 py-1.5 rounded-full border border-primary/40 bg-primary/10 text-primary font-label-caps text-[10px]">CYBERNETICS</span>
+<span class="px-3 py-1.5 rounded-full border border-outline-variant text-on-surface-variant font-label-caps text-[10px]">ALCHEMY</span>
+<button class="px-3 py-1.5 rounded-full border border-dashed border-outline-variant text-on-surface-variant/60 font-label-caps text-[10px]" onclick="playMysticSound('soft')" type="button">+ ADD</button>
+</div>
+</div>
+</div>
+<!-- Prompt & Output Section -->
+<div class="glass-card-gold rounded-[24px] p-card-padding space-y-stack-md relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -mr-16 -mt-16"></div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-primary ml-1">CUSTOM MANIFESTATION PROMPT</label>
+<textarea class="w-full bg-surface-container-lowest/60 rounded-xl border border-outline-variant p-4 font-body-md text-body-md text-on-surface transition-all focus:border-primary focus:ring-1 focus:ring-primary/20 resize-none" onfocus="playMysticSound('soft')" placeholder="Describe the energy you wish to summon..." rows="3"></textarea>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-primary ml-1">GENERATION MEDIUM</label>
+<div class="grid grid-cols-3 gap-3">
+<label class="cursor-pointer group" onclick="playMysticSound('soft')">
+<input checked="" class="hidden peer" name="gen_type" type="radio"/>
+<div class="flex flex-col items-center justify-center p-3 rounded-xl border border-outline-variant bg-surface-container-low peer-checked:bg-primary/10 peer-checked:border-primary transition-all group-hover:bg-white/5">
+<span class="material-symbols-outlined text-on-surface-variant peer-checked:text-primary mb-1" data-icon="music_note">music_note</span>
+<span class="font-label-caps text-[10px]">MUSIC</span>
+</div>
+</label>
+<label class="cursor-pointer group" onclick="playMysticSound('soft')">
+<input class="hidden peer" name="gen_type" type="radio"/>
+<div class="flex flex-col items-center justify-center p-3 rounded-xl border border-outline-variant bg-surface-container-low peer-checked:bg-primary/10 peer-checked:border-primary transition-all group-hover:bg-white/5">
+<span class="material-symbols-outlined text-on-surface-variant peer-checked:text-primary mb-1" data-icon="auto_stories">auto_stories</span>
+<span class="font-label-caps text-[10px]">TEXT</span>
+</div>
+</label>
+<label class="cursor-pointer group" onclick="playMysticSound('soft')">
+<input class="hidden peer" name="gen_type" type="radio"/>
+<div class="flex flex-col items-center justify-center p-3 rounded-xl border border-outline-variant bg-surface-container-low peer-checked:bg-primary/10 peer-checked:border-primary transition-all group-hover:bg-white/5">
+<span class="material-symbols-outlined text-on-surface-variant peer-checked:text-primary mb-1" data-icon="image">image</span>
+<span class="font-label-caps text-[10px]">IMAGE</span>
+</div>
+</label>
+</div>
+</div>
+</div>
+<!-- Create Button -->
+<div class="pt-stack-md">
+<button class="w-full bg-primary-container text-on-primary-container h-16 rounded-2xl font-headline-md text-headline-md glow-gold flex items-center justify-center space-x-3 active:scale-95 transition-transform cursor-pointer" onclick="playMysticSound('magic')" type="submit">
+<span class="material-symbols-outlined" data-icon="magic_button">magic_button</span>
+<span class="font-bold">CREATE</span>
+</button>
+</div>
+</form>
+<!-- Preview Card (Asymmetric Layout) -->
+<div class="grid grid-cols-5 gap-4 h-48">
+<div class="col-span-3 rounded-2xl overflow-hidden glass-card relative group">
+<img class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" data-alt="A macro photography shot of an intricate mechanical clockwork mechanism made of pure gold and obsidian. The gears are illuminated by soft, ethereal neon cyan light, creating a high-contrast techno-mystic aesthetic. The background is a deep, dark indigo space filled with floating data particles and cosmic dust. The overall mood is mysterious, ancient, and highly advanced." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfEEo2jPPrpVeaXV-rSz5Jhbr8m7ds8J9HFXT536XGQAnWtnm4HRaHDZCfpurl0lVRjhNtrjvoGaF-LVYHimEn0RbSJFoTSizndsVFMauo97pb1Y-ZfgX5kLJWKEbrogc9h6nDQJziyUTNBovEyZib4Ozjd9UK1xFofyR1bHo6kUa-LCkxQFkwFu69csaxptG98tu8rM-gWNmz0sQbtIJR4FmCO_jckF00ZJ8ppQxXa-uLR4srOb1siu0anW2FIUmJokqJ8C4JBbzL"/>
+<div class="absolute bottom-4 left-4">
+<p class="font-label-caps text-[10px] text-primary">PREVIOUS FATE</p>
+<p class="font-bold text-sm">Solar Alignment</p>
+</div>
+</div>
+<div class="col-span-2 rounded-2xl bg-surface-container-high p-4 flex flex-col justify-center items-center text-center space-y-2 border border-white/5">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary-fixed-dim" data-icon="monitoring">monitoring</span>
+</div>
+<div>
+<p class="font-headline-md text-primary">89%</p>
+<p class="font-label-caps text-[10px] text-on-surface-variant">SYNC RATE</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container/60 dark:bg-surface-container/60 backdrop-blur-2xl border-t border-white/5">
+<div class="flex justify-around items-center h-20 px-4 pb-safe w-full max-w-md mx-auto">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-primary-fixed active:scale-90 transition-all duration-200" href="#" onclick="playMysticSound('soft')">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-label-caps text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary drop-shadow-[0_0_8px_rgba(212,175,55,0.4)] active:scale-90 transition-all duration-200" href="#" onclick="playMysticSound('soft')">
+<span class="material-symbols-outlined mb-1" data-icon="magic_button">magic_button</span>
+<span class="font-label-caps text-[10px]">Create</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-primary-fixed active:scale-90 transition-all duration-200" href="#" onclick="playMysticSound('soft')">
+<span class="material-symbols-outlined mb-1" data-icon="auto_stories">auto_stories</span>
+<span class="font-label-caps text-[10px]">Gallery</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-primary-fixed active:scale-90 transition-all duration-200" href="#" onclick="playMysticSound('soft')">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-label-caps text-[10px]">Profile</span>
+</a>
+</div>
+</nav>
+<script>
+        // Web Audio API Sound System
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playMysticSound(type) {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            
+            if (type === 'magic') {
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(400, audioCtx.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.5);
+                
+                gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+                gainNode.gain.linearRampToValueAtTime(0.5, audioCtx.currentTime + 0.1);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 1.5);
+                
+                oscillator.start(audioCtx.currentTime);
+                oscillator.stop(audioCtx.currentTime + 1.5);
+            } else if (type === 'soft') {
+                oscillator.type = 'triangle';
+                oscillator.frequency.setValueAtTime(600, audioCtx.currentTime);
+                
+                gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+                gainNode.gain.linearRampToValueAtTime(0.1, audioCtx.currentTime + 0.05);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                
+                oscillator.start(audioCtx.currentTime);
+                oscillator.stop(audioCtx.currentTime + 0.3);
+            }
+        }
+
+        // Segmented control logic
+        const polarityButtons = document.querySelectorAll('.flex.p-1.bg-surface-container-lowest\\/60 button');
+        polarityButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                polarityButtons.forEach(b => {
+                    b.classList.remove('bg-primary-container', 'text-on-primary-container');
+                    b.classList.add('text-on-surface-variant');
+                });
+                btn.classList.add('bg-primary-container', 'text-on-primary-container');
+                btn.classList.remove('text-on-surface-variant');
+            });
+        });
+
+        // Form submission effect
+        document.getElementById('manifest-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin" data-icon="progress_activity">progress_activity</span><span class="font-bold">SUMMONING...</span>';
+            btn.classList.add('opacity-80');
+            
+            setTimeout(() => {
+                btn.innerHTML = '<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span><span class="font-bold">MANIFESTED</span>';
+                btn.classList.replace('bg-primary-container', 'bg-secondary-container');
+                btn.classList.replace('text-on-primary-container', 'text-on-secondary-container');
+            }, 2000);
+        });
+    </script>
+<style>
+@keyframes particle-fade {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0); opacity: 0; }
+}
+.mystic-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  color: #d4af37;
+  font-size: 14px;
+  animation: particle-fade 0.8s ease-out forwards;
+}
+</style>
+<script>
+(function() {
+  function createParticle(x, y) {
+    const particle = document.createElement('span');
+    particle.className = 'mystic-particle material-symbols-outlined';
+    particle.textContent = 'star';
+    
+    const dx = (Math.random() - 0.5) * 150 + 'px';
+    const dy = (Math.random() - 0.5) * 150 + 'px';
+    
+    particle.style.left = x + 'px';
+    particle.style.top = y + 'px';
+    particle.style.setProperty('--dx', dx);
+    particle.style.setProperty('--dy', dy);
+    
+    document.body.appendChild(particle);
+    setTimeout(() => particle.remove(), 800);
+  }
+
+  function handleParticleClick(e) {
+    const x = e.clientX;
+    const y = e.clientY;
+    for (let i = 0; i < 18; i++) {
+      createParticle(x, y);
+    }
+  }
+
+  const selectors = [
+    '#manifest-form button[type="submit"]', // SCREEN_12
+    '#magic-btn', // SCREEN_7
+    'main > div.space-y-4 > button', // SCREEN_13
+    '.gold-glow button', // SCREEN_9
+    '.gold-gradient.rounded-full', // SCREEN_16
+    '.gold-gradient-btn' // SCREEN_15
+  ];
+
+  selectors.forEach(selector => {
+    const btn = document.querySelector(selector);
+    if (btn) {
+      btn.classList.add('cursor-pointer');
+      btn.addEventListener('mousedown', handleParticleClick);
+    }
+  });
+})();
+</script></body></html>
