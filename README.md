@@ -186,6 +186,10 @@ AI-Fortune-Studio/
 - [x] Шаг 1.7 — GenerationService (запись Generation + Result в БД)
 - [x] Шаг 1.8 — POST `/api/v1/generate/` (+ GET detail)
 - [x] Шаг 1.9 — Квоты (`UsageQuota`, 6-й запрос → 429)
+- [x] Шаг 1.10 — me / settings / history / daily-fortune
+- [x] Шаг 1.11 — Frontend дизайн-система (`/dev/ui`: Button, Chip, Card, Skeleton)
+- [x] Шаг 1.12 — API-клиент (TanStack Query, auth headers, `/api/v1/modes/`)
+- [x] Шаг 1.13 — Layout + роутинг (AppShell, BottomNav, маршруты §9.2)
 - [ ] Фаза 1 — см. [DEVELOPMENT_GUIDE.md](./DEVELOPMENT_GUIDE.md)
 
 ---

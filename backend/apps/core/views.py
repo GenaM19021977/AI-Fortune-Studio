@@ -18,6 +18,9 @@ def api_root(_request: Request) -> Response:
         "endpoints": {
             "health": "/api/v1/health/",
             "me": "/api/v1/me/",
+            "me_settings": "/api/v1/me/settings/",
+            "me_history": "/api/v1/me/history/",
+            "daily_fortune": "/api/v1/daily-fortune/",
             "modes": "/api/v1/modes/",
             "personas": "/api/v1/personas/",
             "events": "/api/v1/events/",
