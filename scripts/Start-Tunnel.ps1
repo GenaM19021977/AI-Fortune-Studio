@@ -92,23 +92,30 @@ function Update-EnvWebappUrl {
     # Без завершающего слэша — Telegram WebApp URL так стабильнее
     $HttpsUrl = $HttpsUrl.TrimEnd("/")
 
-    # Построчно: надёжнее, чем regex по всему файлу (CRLF / кодировки Windows)
+    # Построчно: надёжнее, чем regex по всему файлу (CRLF / кодировки Windows).
+    # Важно: значение CORS должно остаться ОДНОЙ строкой — иначе docker compose
+    # падает с "unexpected character ',' in variable name".
     $lines = Get-Content -Path $envFile -Encoding UTF8
     $hasWebapp = $false
     $hasCors = $false
     $updated = foreach ($line in $lines) {
+        # Пропускаем «осиротевшие» хвосты от старых переносов (,https://…)
+        if ($line -match '^,') {
+            continue
+        }
         if ($line -match '^WEBAPP_URL=') {
             $hasWebapp = $true
             "WEBAPP_URL=$HttpsUrl"
         }
         elseif ($line -match '^CORS_ALLOWED_ORIGINS=') {
             $hasCors = $true
-            if ($line -like "*$HttpsUrl*") {
-                $line
+            # Склеиваем, если значение когда-то разорвали на две строки
+            $base = $line.TrimEnd()
+            if ($base -like "*$HttpsUrl*") {
+                $base
             }
             else {
-                # Дописываем origin туннеля (нужен при прямых запросах к API)
-                "$line,$HttpsUrl"
+                "$base,$HttpsUrl"
             }
         }
         else {
@@ -123,7 +130,9 @@ function Update-EnvWebappUrl {
         $updated += "CORS_ALLOWED_ORIGINS=http://localhost:5173,https://web.telegram.org,$HttpsUrl"
     }
 
-    Set-Content -Path $envFile -Value $updated -Encoding UTF8
+    # utf8NoBOM — без BOM docker compose на Windows иногда странно читает первую строку
+    $utf8NoBom = New-Object System.Text.UTF8Encoding $false
+    [System.IO.File]::WriteAllLines($envFile, @($updated), $utf8NoBom)
     Write-Host ""
     Write-Host "Обновлён .env:" -ForegroundColor Green
     Write-Host "  WEBAPP_URL=$HttpsUrl"

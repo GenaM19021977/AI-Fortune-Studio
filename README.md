@@ -30,6 +30,25 @@ Telegram Mini App для персонализированного развлек
 
 ## Быстрый старт (локально)
 
+### Ежедневный запуск (шаг 0.10)
+
+Один скрипт поднимает Docker (PostgreSQL + Redis) и печатает команды для остальных терминалов:
+
+```powershell
+# Windows (из корня проекта)
+.\scripts\dev.ps1
+```
+
+```bash
+# Linux / macOS
+./scripts/dev.sh
+```
+
+Дальше в отдельных терминалах: backend (`runserver`), frontend (`npm run dev`), bot (`python main.py`).  
+Туннель для телефона — по необходимости: `.\scripts\Start-Tunnel.ps1` (шаг 0.9).
+
+---
+
 ### 1. Клонировать и настроить окружение
 
 ```powershell
@@ -43,7 +62,8 @@ copy .env.example .env
 **Сначала запустите Docker Desktop**, затем:
 
 ```powershell
-.\scripts\Start-Infra.ps1
+.\scripts\dev.ps1
+# или только БД/Redis:  .\scripts\Start-Infra.ps1
 # или: docker compose up -d db redis
 ```
 
@@ -137,7 +157,7 @@ AI-Fortune-Studio/
 ├── backend/          # Django + DRF
 ├── bot/              # aiogram 3
 ├── frontend/         # React Mini App
-├── scripts/          # скрипты запуска (шаг 0.10)
+├── scripts/          # Start-Infra, Start-Tunnel, dev.ps1 / dev.sh (шаг 0.10)
 ├── docker-compose.yml
 ├── .env.example
 └── README.md
@@ -156,7 +176,8 @@ AI-Fortune-Studio/
 - [x] Шаг 0.7 — aiogram 3 (polling)
 - [x] Шаг 0.8 — Django Admin (локальная панель)
 - [x] Шаг 0.9 — Туннель для проверки в Telegram
-- [ ] …см. [DEVELOPMENT_GUIDE.md](./DEVELOPMENT_GUIDE.md)
+- [x] Шаг 0.10 — Скрипт локального запуска (`scripts/dev.ps1`, `scripts/dev.sh`)
+- [ ] Фаза 1 — см. [DEVELOPMENT_GUIDE.md](./DEVELOPMENT_GUIDE.md)
 
 ---
 

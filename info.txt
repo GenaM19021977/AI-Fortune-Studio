@@ -15,3 +15,6 @@ python main.py
 superuser
 admin
 admin123
+
+cd "D:\Developer\My project\AI-Fortune-Studio"
+.\scripts\dev.ps1 #Запуск из корневого каталога
