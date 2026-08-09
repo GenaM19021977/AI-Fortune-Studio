@@ -1,1 +1,1 @@
-# Пакет доменных приложений Django (apps.users, apps.content — с шага 1.1)
+# Пакет доменных Django-приложений (users, content, billing, …)

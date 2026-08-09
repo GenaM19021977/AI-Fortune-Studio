@@ -36,8 +36,8 @@ INSTALLED_APPS = [
     "drf_spectacular",
     # Доменные приложения
     "apps.core",
-    # "apps.users",
-    # "apps.content",
+    "apps.users.apps.UsersConfig",
+    "apps.content.apps.ContentConfig",
     # "apps.billing",
     # "apps.ai",
 ]
@@ -103,6 +103,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Redis — для Celery и кэша (подключим в фазе 2)
 REDIS_URL = env("REDIS_URL", default="redis://localhost:6379/0")
 
+# Telegram bot token — HMAC initData (шаг 1.4) и бот
+BOT_TOKEN = env("BOT_TOKEN", default="")
+# initData старше этого окна (сек) отклоняем; 24ч — как в плане §13.1
+TELEGRAM_AUTH_MAX_AGE_SECONDS = env.int("TELEGRAM_AUTH_MAX_AGE_SECONDS", default=86_400)
+
+# Дневной лимит free (заглушка в /me/ до apps.billing)
+FREE_DAILY_LIMIT = env.int("FREE_DAILY_LIMIT", default=5)
+
 # --- Django REST Framework ---
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
@@ -112,10 +120,14 @@ REST_FRAMEWORK = {
     "DEFAULT_PARSER_CLASSES": [
         "rest_framework.parsers.JSONParser",
     ],
-    # Аутентификация Telegram initData — шаг 1.4
-    # "DEFAULT_AUTHENTICATION_CLASSES": [...],
+    # Порядок важен: сначала реальный TMA, потом локальный bypass
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "apps.users.authentication.TelegramInitDataAuthentication",
+        "apps.users.authentication.DevBypassAuthentication",
+    ],
+    # По умолчанию нужен логин; health/каталог явно ставят AllowAny
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.AllowAny",
+        "rest_framework.permissions.IsAuthenticated",
     ],
 }
 

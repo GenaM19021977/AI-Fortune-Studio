@@ -177,6 +177,11 @@ AI-Fortune-Studio/
 - [x] Шаг 0.8 — Django Admin (локальная панель)
 - [x] Шаг 0.9 — Туннель для проверки в Telegram
 - [x] Шаг 0.10 — Скрипт локального запуска (`scripts/dev.ps1`, `scripts/dev.sh`)
+- [x] Шаг 1.1 — Модели пользователей (`TelegramUser`, `UserSettings`)
+- [x] Шаг 1.2 — Модели контента (`ContentMode`, `Persona`, `EventType`, `Generation*`)
+- [x] Шаг 1.3 — Seed-данные (`python manage.py seed_data`)
+- [x] Шаг 1.4 — Auth Telegram initData + dev bypass (`GET /api/v1/me/`)
+- [x] Шаг 1.5 — Catalog API (`modes`, `personas`, `events`, `seasonal`)
 - [ ] Фаза 1 — см. [DEVELOPMENT_GUIDE.md](./DEVELOPMENT_GUIDE.md)
 
 ---
