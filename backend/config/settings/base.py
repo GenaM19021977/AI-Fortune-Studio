@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     "apps.core",
     "apps.users.apps.UsersConfig",
     "apps.content.apps.ContentConfig",
+    "apps.ai.apps.AiConfig",
     # "apps.billing",
-    # "apps.ai",
 ]
 
 MIDDLEWARE = [
@@ -110,6 +110,15 @@ TELEGRAM_AUTH_MAX_AGE_SECONDS = env.int("TELEGRAM_AUTH_MAX_AGE_SECONDS", default
 
 # Дневной лимит free (заглушка в /me/ до apps.billing)
 FREE_DAILY_LIMIT = env.int("FREE_DAILY_LIMIT", default=5)
+
+# --- AI / LLM (шаг 1.6): без ключа работает шаблонный fallback ---
+GROQ_API_KEY = env("GROQ_API_KEY", default="")
+GROQ_MODEL = env("GROQ_MODEL", default="llama-3.3-70b-versatile")
+GROQ_BASE_URL = env("GROQ_BASE_URL", default="https://api.groq.com/openai/v1")
+LLM_TIMEOUT_SECONDS = env.int("LLM_TIMEOUT_SECONDS", default=15)
+LLM_MAX_TOKENS = env.int("LLM_MAX_TOKENS", default=512)
+# False — всегда шаблоны (удобно для CI без сети)
+AI_LLM_ENABLED = env.bool("AI_LLM_ENABLED", default=True)
 
 # --- Django REST Framework ---
 REST_FRAMEWORK = {

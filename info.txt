@@ -21,3 +21,6 @@ cd "D:\Developer\My project\AI-Fortune-Studio"
 
 python manage.py runserver
 python manage.py seed_data #Speed данные (идемпотентная команда)
+
+cd "D:\Developer\My project\AI-Fortune-Studio"
+.\scripts\Start-Tunnel.ps1 # Открытие туннеля

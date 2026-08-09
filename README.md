@@ -182,6 +182,7 @@ AI-Fortune-Studio/
 - [x] Шаг 1.3 — Seed-данные (`python manage.py seed_data`)
 - [x] Шаг 1.4 — Auth Telegram initData + dev bypass (`GET /api/v1/me/`)
 - [x] Шаг 1.5 — Catalog API (`modes`, `personas`, `events`, `seasonal`)
+- [x] Шаг 1.6 — LLM + fallback (`apps.ai`, `pytest apps/ai/tests/test_fallback.py`)
 - [ ] Фаза 1 — см. [DEVELOPMENT_GUIDE.md](./DEVELOPMENT_GUIDE.md)
 
 ---

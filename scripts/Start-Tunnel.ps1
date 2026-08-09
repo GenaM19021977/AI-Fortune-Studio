@@ -48,16 +48,39 @@ catch {
 
 # --- 2. Выбор инструмента: cloudflared (без аккаунта) или ngrok ---
 function Find-TunnelTool {
-    # cloudflared: быстрый trycloudflare.com URL без регистрации
+    # 1) PATH текущего терминала
     $cloudflared = Get-Command cloudflared -ErrorAction SilentlyContinue
     if ($cloudflared) {
         return @{ Name = "cloudflared"; Path = $cloudflared.Source }
+    }
+
+    # 2) Типичные пути winget/MSI (PATH мог не обновиться до перезапуска Cursor)
+    $cloudflaredCandidates = @(
+        "${env:ProgramFiles(x86)}\cloudflared\cloudflared.exe",
+        "$env:ProgramFiles\cloudflared\cloudflared.exe",
+        "$env:LOCALAPPDATA\Programs\cloudflared\cloudflared.exe",
+        "$env:LOCALAPPDATA\cloudflared\cloudflared.exe"
+    )
+    foreach ($candidate in $cloudflaredCandidates) {
+        if ($candidate -and (Test-Path -LiteralPath $candidate)) {
+            return @{ Name = "cloudflared"; Path = $candidate }
+        }
     }
 
     # ngrok: как в DEVELOPMENT_GUIDE; нужен authtoken (ngrok config add-authtoken …)
     $ngrok = Get-Command ngrok -ErrorAction SilentlyContinue
     if ($ngrok) {
         return @{ Name = "ngrok"; Path = $ngrok.Source }
+    }
+
+    $ngrokCandidates = @(
+        "$env:LOCALAPPDATA\ngrok\ngrok.exe",
+        "$env:ProgramFiles\ngrok\ngrok.exe"
+    )
+    foreach ($candidate in $ngrokCandidates) {
+        if ($candidate -and (Test-Path -LiteralPath $candidate)) {
+            return @{ Name = "ngrok"; Path = $candidate }
+        }
     }
 
     return $null
