@@ -5,3 +5,13 @@ python manage.py runserver поднимаем бэккенд
 
 npm install 
 npm run dev подъем фронта
+
+cd bot # Запуск телеграм бота
+.\.venv\Scripts\activate
+python main.py
+
+.\scripts\Start-Tunnel.ps1 запуск бота
+
+superuser
+admin
+admin123

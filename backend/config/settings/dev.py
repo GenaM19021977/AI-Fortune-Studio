@@ -9,9 +9,12 @@ from .base import *  # noqa: F403
 
 DEBUG = env.bool("DEBUG", default=True)  # noqa: F405
 
+# Запросы к Django с телефона идут через Vite proxy (Host = localhost),
+# поэтому сюда НЕ нужно добавлять домен ngrok/cloudflare.
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
-# Frontend Vite на шаге 0.5; пока разрешаем origin из .env
+# Origins из .env. После шага 0.9 Start-Tunnel.ps1 дописывает HTTPS URL туннеля
+# (на случай прямых запросов к API без Vite proxy).
 _cors_origins = env("CORS_ALLOWED_ORIGINS", default="http://localhost:5173")  # noqa: F405
 CORS_ALLOWED_ORIGINS = [o.strip() for o in _cors_origins.split(",") if o.strip()]
 

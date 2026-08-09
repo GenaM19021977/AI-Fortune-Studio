@@ -6,7 +6,10 @@
  * - в браузере без Telegram — мягкая деградация в mock (config/dev.ts);
  * - ready() + expand() вызываем один раз при монтировании.
  *
- * Шаг 0.6 DEVELOPMENT_GUIDE.md
+ * Шаг 0.6 DEVELOPMENT_GUIDE.md.
+ * Шаг 0.9: на телефоне приложение открывается через HTTPS-туннель
+ * (cloudflared/ngrok → Vite). Тогда isTelegram=true и initData заполнен —
+ * это уже не mock, а реальный WebApp внутри клиента Telegram.
  */
 
 import { useEffect, useMemo } from 'react'

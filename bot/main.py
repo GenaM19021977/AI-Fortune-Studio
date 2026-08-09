@@ -42,6 +42,11 @@ async def main() -> None:
     me = await bot.get_me()
     logger.info("Бот @%s запущен в режиме polling. WEBAPP_URL=%s", me.username, settings.webapp_url)
 
+    # Шаг 0.9: без HTTPS Mini App с телефона не откроется — только предупреждаем
+    https_hint = settings.warn_if_webapp_not_https()
+    if https_hint:
+        logger.warning(https_hint)
+
     await dp.start_polling(bot)
 
 
