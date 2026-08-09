@@ -183,6 +183,9 @@ AI-Fortune-Studio/
 - [x] Шаг 1.4 — Auth Telegram initData + dev bypass (`GET /api/v1/me/`)
 - [x] Шаг 1.5 — Catalog API (`modes`, `personas`, `events`, `seasonal`)
 - [x] Шаг 1.6 — LLM + fallback (`apps.ai`, `pytest apps/ai/tests/test_fallback.py`)
+- [x] Шаг 1.7 — GenerationService (запись Generation + Result в БД)
+- [x] Шаг 1.8 — POST `/api/v1/generate/` (+ GET detail)
+- [x] Шаг 1.9 — Квоты (`UsageQuota`, 6-й запрос → 429)
 - [ ] Фаза 1 — см. [DEVELOPMENT_GUIDE.md](./DEVELOPMENT_GUIDE.md)
 
 ---

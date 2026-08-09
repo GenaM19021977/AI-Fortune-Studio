@@ -1,24 +1,28 @@
 """
-Read-only Catalog API (шаг 1.5 DEVELOPMENT_GUIDE.md).
+Read-only Catalog API (шаг 1.5) + генерация (шаг 1.8).
 
-Публичные списки для Mini App — без auth (AllowAny).
-Источник данных — БД после `python manage.py seed_data`.
+Каталог — AllowAny. Generate — IsAuthenticated (TMA / X-Dev-User-Id).
 """
 
 from __future__ import annotations
 
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, status
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from apps.content.models import ContentMode, EventType, Persona
+from apps.billing.services import QuotaExceeded, QuotaService
+from apps.content.models import ContentMode, EventType, Generation, Persona
 from apps.content.serializers import (
     ContentModeSerializer,
     EventTypeSerializer,
+    GenerateRequestSerializer,
     PersonaSerializer,
+    serialize_generation,
 )
 from apps.content.services import filter_seasonal_events
+from apps.content.services.generation_service import GenerationService, GenerationServiceError
+from apps.users.models import TelegramUser
 
 
 class ModeListView(generics.ListAPIView):
@@ -90,3 +94,82 @@ class SeasonalEventListView(APIView):
         qs = filter_seasonal_events(EventType.objects.all())
         data = EventTypeSerializer(qs, many=True).data
         return Response(data)
+
+
+class GenerateCreateView(APIView):
+    """
+    POST /api/v1/generate/ — синхронная текстовая генерация (шаг 1.8).
+
+    Auth: Authorization: tma … или X-Dev-User-Id / ?dev_user_id= (DEBUG).
+    """
+
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request: Request) -> Response:
+        user = request.user
+        if not isinstance(user, TelegramUser):
+            return Response({"detail": "Требуется Telegram-аутентификация."}, status=401)
+
+        serializer = GenerateRequestSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        try:
+            generation = GenerationService.create(user, serializer.validated_data)
+        except QuotaExceeded as exc:
+            return Response(
+                {
+                    "detail": str(exc),
+                    "quota_remaining": 0,
+                    "daily_limit": exc.daily_limit,
+                },
+                status=status.HTTP_429_TOO_MANY_REQUESTS,
+            )
+        except GenerationServiceError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Подтягиваем result + persona одним запросом для ответа
+        generation = (
+            Generation.objects.select_related("persona", "result", "content_mode")
+            .get(pk=generation.pk)
+        )
+        payload = serialize_generation(
+            generation,
+            quota_remaining=QuotaService.get_remaining(user),
+        )
+        http_status = (
+            status.HTTP_201_CREATED
+            if generation.status == Generation.Status.COMPLETED
+            else status.HTTP_200_OK
+        )
+        return Response(payload, status=http_status)
+
+
+class GenerateDetailView(APIView):
+    """
+    GET /api/v1/generate/<uuid>/ — статус и результат (poll из плана §7.3).
+
+    Только владелец генерации.
+    """
+
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request: Request, generation_id) -> Response:
+        user = request.user
+        if not isinstance(user, TelegramUser):
+            return Response({"detail": "Требуется Telegram-аутентификация."}, status=401)
+
+        try:
+            generation = Generation.objects.select_related(
+                "persona",
+                "result",
+                "content_mode",
+            ).get(pk=generation_id, user=user)
+        except (Generation.DoesNotExist, ValueError, TypeError):
+            return Response({"detail": "Генерация не найдена."}, status=404)
+
+        return Response(
+            serialize_generation(
+                generation,
+                quota_remaining=QuotaService.get_remaining(user),
+            )
+        )

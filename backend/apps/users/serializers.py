@@ -32,7 +32,7 @@ class MeSerializer(serializers.ModelSerializer):
     """
     Профиль текущего Mini App пользователя.
 
-    quota — заглушка до apps.billing (шаг с UsageQuota); лимит из FREE_DAILY_LIMIT.
+    quota — из UsageQuota / QuotaService (шаг 1.9).
     """
 
     settings = UserSettingsSerializer(read_only=True)
@@ -53,13 +53,11 @@ class MeSerializer(serializers.ModelSerializer):
         )
 
     def get_quota(self, obj: TelegramUser) -> dict[str, int]:
-        # Пока нет UsageQuota — всегда «полный» дневной лимит free
-        from django.conf import settings
+        from apps.billing.services import QuotaService
 
-        daily_limit = int(getattr(settings, "FREE_DAILY_LIMIT", 5))
-        used = 0
+        snap = QuotaService.get_snapshot(obj)
         return {
-            "daily_limit": daily_limit,
-            "used": used,
-            "remaining": max(daily_limit - used, 0),
+            "daily_limit": snap.daily_limit,
+            "used": snap.used,
+            "remaining": snap.remaining,
         }

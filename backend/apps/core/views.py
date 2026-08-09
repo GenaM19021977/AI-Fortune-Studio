@@ -22,6 +22,7 @@ def api_root(_request: Request) -> Response:
             "personas": "/api/v1/personas/",
             "events": "/api/v1/events/",
             "seasonal": "/api/v1/seasonal/",
+            "generate": "/api/v1/generate/",
             "schema": "/api/v1/schema/",
             "docs": "/api/v1/docs/",
         },

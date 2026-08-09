@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "apps.users.apps.UsersConfig",
     "apps.content.apps.ContentConfig",
     "apps.ai.apps.AiConfig",
-    # "apps.billing",
+    "apps.billing.apps.BillingConfig",
 ]
 
 MIDDLEWARE = [
@@ -108,8 +108,9 @@ BOT_TOKEN = env("BOT_TOKEN", default="")
 # initData старше этого окна (сек) отклоняем; 24ч — как в плане §13.1
 TELEGRAM_AUTH_MAX_AGE_SECONDS = env.int("TELEGRAM_AUTH_MAX_AGE_SECONDS", default=86_400)
 
-# Дневной лимит free (заглушка в /me/ до apps.billing)
+# Дневной лимит free / premium (шаг 1.9 — UsageQuota)
 FREE_DAILY_LIMIT = env.int("FREE_DAILY_LIMIT", default=5)
+PREMIUM_DAILY_LIMIT = env.int("PREMIUM_DAILY_LIMIT", default=999)
 
 # --- AI / LLM (шаг 1.6): без ключа работает шаблонный fallback ---
 GROQ_API_KEY = env("GROQ_API_KEY", default="")
