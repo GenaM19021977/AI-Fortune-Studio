@@ -1,18 +1,41 @@
 /**
- * Дизайн-токены AI Fortune Studio (шаг 1.11 / IMPLEMENTATION_PLAN §9.1).
- *
- * Компоненты берут цвета через Tailwind-классы fortune-* (см. @theme),
- * а не через хардкод hex в JSX.
+ * Дизайн-токены «Techno-Mysticism» (DESIGN.md главной + шаг 1.14).
+ * fortune-* — алиасы для уже существующих ui-компонентов.
  */
 
 @theme {
-  --color-fortune-bg: #0d0618;
-  --color-fortune-surface: #1a0b2e;
-  --color-fortune-card: #241438;
-  --color-fortune-gold: #f5c542;
-  --color-fortune-purple: #7c3aed;
-  --color-fortune-accent: #a855f7;
+  /* Surfaces */
+  --color-aether-bg: #0f0f1a;
+  --color-aether-surface: #12121d;
+  --color-aether-surface-low: #1b1a26;
+  --color-aether-surface-container: #1f1e2a;
+  --color-aether-surface-high: #292935;
+  --color-aether-on-surface: #e3e0f1;
+  --color-aether-on-variant: #d0c5af;
 
-  --font-fortune-display: Georgia, "Times New Roman", serif;
-  --font-fortune-ui: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* Accents */
+  --color-aether-primary: #f2ca50;
+  --color-aether-primary-container: #d4af37;
+  --color-aether-on-primary: #3c2f00;
+  --color-aether-cyan: #00eefc;
+  --color-aether-cyan-dim: #00dbe9;
+  --color-aether-violet: #ce9eff;
+  --color-aether-tertiary: #e1c2ff;
+
+  /* Совместимость с ui/ (Button, Card, Chip) */
+  --color-fortune-bg: #0f0f1a;
+  --color-fortune-surface: #1b1a26;
+  --color-fortune-card: #1f1e2a;
+  --color-fortune-gold: #f2ca50;
+  --color-fortune-purple: #7c3aed;
+  --color-fortune-accent: #ce9eff;
+
+  --font-fortune-display: Inter, system-ui, sans-serif;
+  --font-fortune-ui: Inter, system-ui, sans-serif;
+  --font-label-caps: "Space Grotesk", Inter, system-ui, sans-serif;
+
+  --text-label-caps: 12px;
+  --text-label-caps--line-height: 16px;
+  --text-label-caps--letter-spacing: 0.1em;
+  --text-label-caps--font-weight: 500;
 }

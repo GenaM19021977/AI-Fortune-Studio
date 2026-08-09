@@ -2,84 +2,123 @@ import { Link, useLocation } from 'react-router-dom'
 
 import { useTelegram } from '../../hooks/useTelegram'
 import { cn } from '../../lib/cn'
+import { MaterialIcon } from '../ui/MaterialIcon'
 
 interface NavItem {
   to: string
   label: string
   icon: string
-  /** Совпадение пути: exact для главной */
   match: (pathname: string) => boolean
 }
 
-const NAV_ITEMS: NavItem[] = [
+/** Как в code.html: Home | Create | [FAB spacer] | Gallery | Profile */
+const LEFT_ITEMS: NavItem[] = [
   {
     to: '/',
-    label: 'Главная',
-    icon: '🏠',
+    label: 'Home',
+    icon: 'home',
     match: (p) => p === '/',
   },
   {
     to: '/create',
-    label: 'Создать',
-    icon: '✨',
+    label: 'Create',
+    icon: 'magic_button',
     match: (p) => p.startsWith('/create'),
   },
+]
+
+const RIGHT_ITEMS: NavItem[] = [
   {
     to: '/history',
-    label: 'История',
-    icon: '📜',
+    label: 'Gallery',
+    icon: 'auto_stories',
     match: (p) => p.startsWith('/history') || p.startsWith('/favorites'),
   },
   {
     to: '/profile',
-    label: 'Профиль',
-    icon: '👤',
+    label: 'Profile',
+    icon: 'person',
     match: (p) => p.startsWith('/profile'),
   },
 ]
 
-/**
- * Нижняя навигация Mini App (IMPLEMENTATION_PLAN §9.4).
- * Touch targets ≥ 44px; haptic при переходе.
- */
-export function BottomNav() {
+function NavLink({ item }: { item: NavItem }) {
   const { pathname } = useLocation()
+  const { haptic } = useTelegram()
+  const active = item.match(pathname)
+
+  return (
+    <Link
+      to={item.to}
+      onClick={() => haptic('light')}
+      aria-current={active ? 'page' : undefined}
+      className={cn(
+        'flex min-h-11 flex-1 flex-col items-center justify-center',
+        'active:scale-90 transition-transform duration-200',
+        active
+          ? 'text-aether-primary drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]'
+          : 'text-aether-on-variant/70 hover:text-aether-primary',
+      )}
+    >
+      <MaterialIcon name={item.icon} filled={active} className="text-[22px]" />
+      <span className="font-label-caps mt-1 text-[10px] tracking-wider">{item.label}</span>
+    </Link>
+  )
+}
+
+/**
+ * FAB «Create» — золотой круг над навбаром (DESIGN.md / code.html).
+ */
+export function CreateFab() {
   const { haptic } = useTelegram()
 
   return (
-    <nav
-      aria-label="Основная навигация"
+    <Link
+      to="/create"
+      onClick={() => haptic('light')}
+      aria-label="Создать"
       className={cn(
-        'fixed inset-x-0 bottom-0 z-50 border-t border-purple-500/20',
-        'bg-fortune-surface/90 backdrop-blur-xl',
-        'pb-[max(0.5rem,env(safe-area-inset-bottom))]',
+        'fixed bottom-24 left-1/2 z-50 flex h-16 w-16 -translate-x-1/2 items-center justify-center',
+        'rounded-full bg-gradient-to-b from-[#f2ca50] to-[#d4af37] shadow-2xl',
+        'active:scale-90 transition-transform group',
       )}
     >
-      <div className="mx-auto flex h-16 max-w-lg items-stretch justify-around px-2">
-        {NAV_ITEMS.map((item) => {
-          const active = item.match(pathname)
-          return (
-            <Link
-              key={item.to}
-              to={item.to}
-              onClick={() => haptic('light')}
-              aria-current={active ? 'page' : undefined}
-              className={cn(
-                'flex min-h-11 min-w-16 flex-1 flex-col items-center justify-center gap-0.5',
-                'text-[10px] font-medium uppercase tracking-wide transition-colors',
-                active
-                  ? 'text-fortune-gold drop-shadow-[0_0_8px_rgba(245,197,66,0.35)]'
-                  : 'text-purple-300/55 hover:text-purple-200',
-              )}
-            >
-              <span className="text-lg leading-none" aria-hidden>
-                {item.icon}
-              </span>
-              <span>{item.label}</span>
-            </Link>
-          )
-        })}
-      </div>
-    </nav>
+      <span className="absolute inset-0 rounded-full bg-aether-cyan/40 opacity-40 blur-md group-hover:animate-pulse" />
+      <MaterialIcon
+        name="magic_button"
+        filled
+        className="relative z-10 text-3xl font-bold text-aether-on-primary"
+      />
+    </Link>
+  )
+}
+
+/**
+ * Нижняя навигация + FAB по макету главной.
+ */
+export function BottomNav() {
+  return (
+    <>
+      <CreateFab />
+      <nav
+        aria-label="Основная навигация"
+        className={cn(
+          'fixed inset-x-0 bottom-0 z-50 rounded-t-xl',
+          'border-t border-white/5 bg-aether-surface-container/60 backdrop-blur-2xl',
+          'shadow-[0_-4px_24px_rgba(0,0,0,0.4)]',
+          'pb-[max(0.25rem,env(safe-area-inset-bottom))]',
+        )}
+      >
+        <div className="mx-auto flex h-20 w-full max-w-md items-center justify-around px-4">
+          {LEFT_ITEMS.map((item) => (
+            <NavLink key={item.to} item={item} />
+          ))}
+          <div className="w-12 shrink-0" aria-hidden />
+          {RIGHT_ITEMS.map((item) => (
+            <NavLink key={item.to} item={item} />
+          ))}
+        </div>
+      </nav>
+    </>
   )
 }

@@ -43,7 +43,7 @@ export function PageHeader({
     <header
       className={cn(
         'sticky top-0 z-40 flex items-center gap-3 px-4 py-3',
-        'border-b border-purple-500/10 bg-fortune-bg/80 backdrop-blur-md',
+        'border-b border-white/10 bg-aether-surface/80 backdrop-blur-md',
         'pt-[max(0.75rem,env(safe-area-inset-top))]',
         className,
       )}
@@ -55,7 +55,7 @@ export function PageHeader({
           aria-label="Назад"
           className={cn(
             'flex min-h-11 min-w-11 items-center justify-center rounded-xl',
-            'text-purple-100 transition-colors hover:bg-white/5',
+            'text-aether-on-surface transition-colors hover:bg-white/5',
           )}
         >
           ←
@@ -65,11 +65,11 @@ export function PageHeader({
       )}
 
       <div className="min-w-0 flex-1 text-center">
-        <h1 className="truncate font-fortune-display text-lg font-bold tracking-wide text-purple-50">
+        <h1 className="truncate font-fortune-display text-lg font-bold tracking-wide text-aether-on-surface">
           {title}
         </h1>
         {subtitle && (
-          <p className="truncate text-xs text-purple-300/60">{subtitle}</p>
+          <p className="truncate text-xs text-aether-on-variant/60">{subtitle}</p>
         )}
       </div>
 

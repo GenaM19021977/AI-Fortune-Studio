@@ -1,6 +1,8 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 
 import { FocusLayout, MainLayout } from './components/layout'
+import { SplashScreen } from './components/splash'
+import { useAppSplash } from './hooks/useAppSplash'
 import { CreatePage } from './pages/CreatePage'
 import { DailyPage } from './pages/DailyPage'
 import { FavoritesPage } from './pages/FavoritesPage'
@@ -12,10 +14,17 @@ import { ResultPage } from './pages/ResultPage'
 import { UiKitPage } from './pages/dev/UiKitPage'
 
 /**
- * Роутинг Mini App (IMPLEMENTATION_PLAN §9.2, шаг 1.13).
- * MainLayout — с BottomNav; FocusLayout — мастер / результат / premium.
+ * Корневой роутер + splash при cold start («Открыть студию» в боте).
  */
 function App() {
+  const splash = useAppSplash()
+
+  if (splash.visible) {
+    return (
+      <SplashScreen progress={splash.progress} statusText={splash.statusText} />
+    )
+  }
+
   return (
     <BrowserRouter>
       <Routes>

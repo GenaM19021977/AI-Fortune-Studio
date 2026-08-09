@@ -1,92 +1,122 @@
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 
-import { fetchModes, queryKeys } from '../api'
-import { Button, Card } from '../components/ui'
-import { DEV_MODE_LABEL } from '../config/dev'
+import {
+  fetchDailyFortune,
+  fetchHistory,
+  fetchModes,
+  fetchPersonas,
+  queryKeys,
+} from '../api'
+import {
+  DailyFortuneCard,
+  HomeTopBar,
+  ModeGrid,
+  PersonaCarousel,
+  RecentEchoes,
+} from '../components/home'
 import { useTelegram } from '../hooks/useTelegram'
 
 /**
- * Временная «главная» до шага 1.14 (ModeGrid + DailyFortune).
- * Уже внутри MainLayout + BottomNav.
+ * Главная Mini App (шаг 1.14) — макет Techno-Mysticism из DESIGN.md / code.html.
+ * Данные только с API (modes, daily-fortune, personas, history).
  */
 export function HomePage() {
-  const { userName, isTelegram, isMock, haptic } = useTelegram()
+  const { userName } = useTelegram()
 
   const modesQuery = useQuery({
     queryKey: queryKeys.modes,
     queryFn: fetchModes,
   })
 
-  const telegramStatus = isTelegram
-    ? 'Telegram WebApp'
-    : isMock
-      ? DEV_MODE_LABEL
-      : 'Telegram недоступен'
+  const fortuneQuery = useQuery({
+    queryKey: queryKeys.dailyFortune,
+    queryFn: fetchDailyFortune,
+  })
+
+  const personasQuery = useQuery({
+    queryKey: queryKeys.personas(),
+    queryFn: () => fetchPersonas(),
+  })
+
+  const historyQuery = useQuery({
+    queryKey: queryKeys.history(1),
+    queryFn: () => fetchHistory(1),
+  })
 
   return (
-    <div className="flex flex-1 flex-col items-center px-6 py-10 text-center">
-      <div className="mb-3 text-5xl">🔮</div>
-      <h1 className="gold-text font-fortune-display text-3xl font-bold tracking-wide">
-        AI Fortune Studio
-      </h1>
-      <p className="mt-3 max-w-sm text-sm text-purple-200/80">
-        Привет, {userName}! Персональный AI-генератор поздравлений и предсказаний
-      </p>
+    <div className="relative flex flex-1 flex-col">
+      <HomeTopBar />
 
-      <Card className="mt-6 w-full max-w-sm">
-        <p className="text-xs uppercase tracking-widest text-purple-300/60">Telegram</p>
-        <p
-          className={`mt-2 text-sm ${
-            isTelegram ? 'text-emerald-400' : isMock ? 'text-amber-300' : 'text-rose-400'
-          }`}
-        >
-          {isTelegram ? '✓' : isMock ? '◎' : '✗'} {telegramStatus}
-        </p>
-        <Button className="mt-4" fullWidth onClick={() => haptic('light')}>
-          Проверить haptic
-        </Button>
-      </Card>
-
-      <Card className="mt-4 w-full max-w-sm">
-        <p className="text-xs uppercase tracking-widest text-purple-300/60">
-          API · GET /modes/
-        </p>
-        {modesQuery.isLoading && (
-          <p className="mt-2 text-sm text-purple-300/50">Загрузка режимов…</p>
-        )}
-        {modesQuery.isError && (
-          <p className="mt-2 text-sm text-amber-400">
-            ⚠ {(modesQuery.error as Error).message}
+      <main className="relative z-10 mx-auto w-full max-w-md space-y-8 px-5 pt-4 pb-8">
+        {/* Greeting */}
+        <section>
+          <p className="font-label-caps mb-1 tracking-widest text-aether-primary">
+            Techno-Mysticism
           </p>
-        )}
-        {modesQuery.data && (
-          <ul className="mt-3 space-y-1 text-left text-sm text-purple-100">
-            {modesQuery.data.map((mode) => (
-              <li key={mode.slug}>
-                <Link
-                  to={`/create/${mode.slug}`}
-                  className="flex items-center rounded-lg px-1 py-1.5 hover:bg-white/5"
-                >
-                  <span className="mr-2">{mode.emoji}</span>
-                  {mode.name}
-                  <span className="ml-auto text-xs text-purple-400/60">→</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </Card>
+          <h2 className="text-[28px] leading-9 font-bold text-aether-on-surface">
+            Greetings, {userName}
+          </h2>
+          <p className="mt-1 text-base text-aether-on-variant/80">
+            The cosmos is aligning for your digital reading today.
+          </p>
+        </section>
 
-      <div className="mt-6 flex flex-wrap justify-center gap-3 text-sm">
-        <Link to="/daily" className="text-fortune-gold/80 hover:underline">
-          Предсказание дня
-        </Link>
-        <Link to="/dev/ui" className="text-purple-300/70 hover:underline">
-          UI Kit
-        </Link>
-      </div>
-      <p className="mt-4 text-xs text-purple-400/40">Шаг 1.13 — Layout + роутинг</p>
+        {/* Daily fortune */}
+        <section>
+          <DailyFortuneCard
+            fortune={fortuneQuery.data}
+            isLoading={fortuneQuery.isLoading}
+            isError={fortuneQuery.isError}
+          />
+        </section>
+
+        {/* Modes grid */}
+        <section>
+          <div className="mb-4 flex items-center justify-between">
+            <h3 className="text-2xl font-semibold text-aether-on-surface">
+              Divination Arts
+            </h3>
+            <Link to="/create" className="font-label-caps text-aether-primary">
+              View All
+            </Link>
+          </div>
+          <ModeGrid
+            modes={modesQuery.data ?? []}
+            isLoading={modesQuery.isLoading}
+          />
+        </section>
+
+        {/* Personas as Quick Oracles */}
+        <section>
+          <h3 className="mb-4 text-2xl font-semibold text-aether-on-surface">
+            Quick Oracles
+          </h3>
+          <PersonaCarousel
+            personas={personasQuery.data ?? []}
+            isLoading={personasQuery.isLoading}
+          />
+        </section>
+
+        {/* Recent history */}
+        <section className="pb-4">
+          <div className="mb-4 flex items-center justify-between">
+            <h3 className="text-2xl font-semibold text-aether-on-surface">
+              Your Echoes
+            </h3>
+            <Link
+              to="/history"
+              className="font-label-caps text-aether-on-variant/50"
+            >
+              Recent History
+            </Link>
+          </div>
+          <RecentEchoes
+            items={historyQuery.data?.results.slice(0, 8) ?? []}
+            isLoading={historyQuery.isLoading}
+          />
+        </section>
+      </main>
     </div>
   )
 }

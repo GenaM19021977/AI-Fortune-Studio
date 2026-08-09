@@ -190,6 +190,8 @@ AI-Fortune-Studio/
 - [x] Шаг 1.11 — Frontend дизайн-система (`/dev/ui`: Button, Chip, Card, Skeleton)
 - [x] Шаг 1.12 — API-клиент (TanStack Query, auth headers, `/api/v1/modes/`)
 - [x] Шаг 1.13 — Layout + роутинг (AppShell, BottomNav, маршруты §9.2)
+- [x] Шаг 1.14 — Главная (Techno-Mysticism: DailyFortune, ModeGrid, Oracles, Echoes)
+- [x] Splash / loading screen при открытии Mini App («Открыть студию»)
 - [ ] Фаза 1 — см. [DEVELOPMENT_GUIDE.md](./DEVELOPMENT_GUIDE.md)
 
 ---
