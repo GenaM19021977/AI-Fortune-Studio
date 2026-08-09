@@ -33,3 +33,8 @@ async def cmd_start(message: Message) -> None:
 
 - `BOT_TOKEN`, `WEBAPP_URL` из pydantic-settings / `.env`
 - Polling — dev; Webhook — production
+
+## Язык
+
+- Тексты кнопок и сообщений пользователю — **на русском** (см. `05-ui-locale-ru.mdc`)
+- Название продукта «AI Fortune Studio» не переводить

@@ -192,6 +192,8 @@ AI-Fortune-Studio/
 - [x] Шаг 1.13 — Layout + роутинг (AppShell, BottomNav, маршруты §9.2)
 - [x] Шаг 1.14 — Главная (Techno-Mysticism: DailyFortune, ModeGrid, Oracles, Echoes)
 - [x] Splash / loading screen при открытии Mini App («Открыть студию»)
+- [x] Шаг 1.15 — Zustand store мастера создания
+- [x] Шаг 1.16 — Мастер создания (макет «Экран создания», 4 шага, generate)
 - [ ] Фаза 1 — см. [DEVELOPMENT_GUIDE.md](./DEVELOPMENT_GUIDE.md)
 
 ---

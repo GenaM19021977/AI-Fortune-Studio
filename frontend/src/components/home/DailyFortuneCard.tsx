@@ -61,10 +61,10 @@ export function DailyFortuneCard({
 
       <div className="relative z-10">
         <span className="rounded-full border border-aether-primary/20 bg-aether-primary/10 px-3 py-1 font-label-caps text-aether-primary">
-          Daily Insight
+          Предсказание дня
         </span>
         <h3 className="premium-text-gradient mt-4 text-2xl font-semibold leading-8">
-          {fortune.title || 'Celestial Alignment'}
+          {fortune.title || 'Небесное выравнивание'}
         </h3>
         <p className="mt-2 leading-relaxed text-aether-on-variant">{preview}</p>
         <div className="mt-6">
@@ -72,7 +72,7 @@ export function DailyFortuneCard({
             to="/daily"
             className="inline-flex items-center gap-2 rounded-full bg-aether-primary-container px-6 py-3 font-label-caps text-aether-on-primary shadow-lg transition-transform active:scale-95"
           >
-            Reveal Full Reading
+            Открыть полностью
             <MaterialIcon name="arrow_forward" className="text-sm" />
           </Link>
         </div>

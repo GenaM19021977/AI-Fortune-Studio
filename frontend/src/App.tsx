@@ -34,11 +34,12 @@ function App() {
           <Route path="favorites" element={<FavoritesPage />} />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="daily" element={<DailyPage />} />
+          {/* Макет Create с BottomNav */}
+          <Route path="create" element={<CreatePage />} />
+          <Route path="create/:mode" element={<CreatePage />} />
         </Route>
 
         <Route element={<FocusLayout />}>
-          <Route path="create" element={<CreatePage />} />
-          <Route path="create/:mode" element={<CreatePage />} />
           <Route path="result/:id" element={<ResultPage />} />
           <Route path="premium" element={<PremiumPage />} />
         </Route>

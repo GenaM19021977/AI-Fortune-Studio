@@ -3,15 +3,15 @@ import { useEffect, useState } from 'react'
 import { fetchModes } from '../api'
 
 const SPLASH_MESSAGES = [
-  'Aligning the constellations...',
-  'Consulting the neural network...',
-  'Decrypting ancient scrolls...',
-  'Calibrating cosmic energies...',
-  'Generating your destiny...',
-  'Finalizing the vision...',
+  'Выстраиваем созвездия…',
+  'Совещаемся с нейросетью…',
+  'Расшифровываем древние свитки…',
+  'Калибруем космические энергии…',
+  'Ткём вашу судьбу…',
+  'Завершаем видение…',
 ] as const
 
-const WELCOME_TEXT = 'Welcome to the Future'
+const WELCOME_TEXT = 'Добро пожаловать'
 
 /** Минимальное время показа — не мигает при быстром API */
 const MIN_MS = 2200

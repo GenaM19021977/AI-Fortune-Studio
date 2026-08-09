@@ -35,6 +35,7 @@ export function StepPersona() {
 - HapticFeedback на важных действиях (генерация, share)
 - Минимальная высота кнопок 44px для touch
 - Дизайн-токены из `styles/tokens.css`, не хардкод цветов в компонентах
+- **UI copy только на русском** (кнопки, заголовки, ярлыки) — см. `05-ui-locale-ru.mdc`; исключение: «AI Fortune Studio»
 
 ## Telegram
 

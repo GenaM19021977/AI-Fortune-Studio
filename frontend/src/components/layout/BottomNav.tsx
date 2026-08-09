@@ -15,13 +15,13 @@ interface NavItem {
 const LEFT_ITEMS: NavItem[] = [
   {
     to: '/',
-    label: 'Home',
+    label: 'Главная',
     icon: 'home',
     match: (p) => p === '/',
   },
   {
     to: '/create',
-    label: 'Create',
+    label: 'Создать',
     icon: 'magic_button',
     match: (p) => p.startsWith('/create'),
   },
@@ -30,13 +30,13 @@ const LEFT_ITEMS: NavItem[] = [
 const RIGHT_ITEMS: NavItem[] = [
   {
     to: '/history',
-    label: 'Gallery',
+    label: 'Галерея',
     icon: 'auto_stories',
     match: (p) => p.startsWith('/history') || p.startsWith('/favorites'),
   },
   {
     to: '/profile',
-    label: 'Profile',
+    label: 'Профиль',
     icon: 'person',
     match: (p) => p.startsWith('/profile'),
   },

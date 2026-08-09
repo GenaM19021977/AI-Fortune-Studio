@@ -47,7 +47,7 @@ export function SplashScreen({ progress, statusText }: SplashScreenProps) {
               AI Fortune Studio
             </h1>
             <p className="font-label-caps tracking-[0.2em] text-aether-on-variant/60">
-              Unlocking Destiny
+              Открываем судьбу
             </p>
           </div>
         </div>

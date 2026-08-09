@@ -52,13 +52,13 @@ export function HomePage() {
         {/* Greeting */}
         <section>
           <p className="font-label-caps mb-1 tracking-widest text-aether-primary">
-            Techno-Mysticism
+            Техно-мистика
           </p>
           <h2 className="text-[28px] leading-9 font-bold text-aether-on-surface">
-            Greetings, {userName}
+            Привет, {userName}
           </h2>
           <p className="mt-1 text-base text-aether-on-variant/80">
-            The cosmos is aligning for your digital reading today.
+            Космос уже выстраивается для вашего цифрового чтения сегодня.
           </p>
         </section>
 
@@ -75,10 +75,10 @@ export function HomePage() {
         <section>
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-2xl font-semibold text-aether-on-surface">
-              Divination Arts
+              Искусства прорицания
             </h3>
             <Link to="/create" className="font-label-caps text-aether-primary">
-              View All
+              Все режимы
             </Link>
           </div>
           <ModeGrid
@@ -90,7 +90,7 @@ export function HomePage() {
         {/* Personas as Quick Oracles */}
         <section>
           <h3 className="mb-4 text-2xl font-semibold text-aether-on-surface">
-            Quick Oracles
+            Быстрые оракулы
           </h3>
           <PersonaCarousel
             personas={personasQuery.data ?? []}
@@ -102,13 +102,13 @@ export function HomePage() {
         <section className="pb-4">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-2xl font-semibold text-aether-on-surface">
-              Your Echoes
+              Ваши отголоски
             </h3>
             <Link
               to="/history"
               className="font-label-caps text-aether-on-variant/50"
             >
-              Recent History
+              Недавнее
             </Link>
           </div>
           <RecentEchoes

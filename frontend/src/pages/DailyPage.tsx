@@ -20,7 +20,7 @@ export function DailyPage() {
 
   return (
     <>
-      <PageHeader title="Daily Insight" showBack />
+      <PageHeader title="Предсказание дня" showBack />
       <div className="flex flex-1 flex-col px-5 py-6">
         {fortuneQuery.isLoading && (
           <div className="glass-card gold-glow space-y-4 rounded-[24px] p-6">
@@ -59,7 +59,7 @@ export function DailyPage() {
                 shareText(fortune.share_text || `${fortune.title}\n\n${fortune.body}`)
               }}
             >
-              Share
+              Поделиться
               <MaterialIcon name="ios_share" className="text-sm" />
             </button>
           </article>

@@ -120,3 +120,47 @@ body {
   animation: float 6s ease-in-out infinite;
 }
 
+/* Экран создания (Creation Master) */
+.glass-card-gold {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid #d4af37;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+}
+
+.glow-gold {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+  animation: pulse-gold 2s infinite ease-in-out;
+}
+
+@keyframes pulse-gold {
+  0% {
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+    transform: scale(1.02);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    transform: scale(1);
+  }
+}
+
+.orb-blur {
+  filter: blur(80px);
+  opacity: 0.5;
+}
+
+.form-input-glow:focus {
+  border-bottom-color: #d4af37;
+  outline: none;
+  box-shadow: 0 4px 12px -4px rgba(212, 175, 55, 0.2);
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(0.8) sepia(50%) saturate(1000%) hue-rotate(5deg);
+}
+
