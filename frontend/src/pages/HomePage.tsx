@@ -98,6 +98,40 @@ export function HomePage() {
           />
         </section>
 
+        {/* Studios entry */}
+        <section className="grid grid-cols-3 gap-3">
+          <Link
+            to="/image"
+            className="glass-card flex flex-col gap-2 rounded-[24px] p-3 transition-transform active:scale-[0.98]"
+          >
+            <span className="material-symbols-outlined text-2xl text-aether-primary">
+              image
+            </span>
+            <p className="font-label-caps text-[10px] text-aether-primary">Картинки</p>
+            <p className="text-sm font-semibold text-aether-on-surface">Образы</p>
+          </Link>
+          <Link
+            to="/music"
+            className="glass-card flex flex-col gap-2 rounded-[24px] p-3 transition-transform active:scale-[0.98]"
+          >
+            <span className="material-symbols-outlined text-2xl text-aether-primary">
+              music_note
+            </span>
+            <p className="font-label-caps text-[10px] text-aether-primary">Музыка</p>
+            <p className="text-sm font-semibold text-aether-on-surface">Отголоски</p>
+          </Link>
+          <Link
+            to="/video"
+            className="glass-card premium-border flex flex-col gap-2 rounded-[24px] p-3 transition-transform active:scale-[0.98]"
+          >
+            <span className="material-symbols-outlined text-2xl text-aether-primary">
+              movie_filter
+            </span>
+            <p className="font-label-caps text-[10px] text-aether-primary">Видео</p>
+            <p className="text-sm font-semibold text-aether-on-surface">Кадр</p>
+          </Link>
+        </section>
+
         {/* Recent history */}
         <section className="pb-4">
           <div className="mb-4 flex items-center justify-between">

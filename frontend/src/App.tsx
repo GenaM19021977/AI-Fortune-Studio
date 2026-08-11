@@ -1,23 +1,35 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 
+import { TelegramLoginPage } from './components/auth'
 import { FocusLayout, MainLayout } from './components/layout'
 import { SplashScreen } from './components/splash'
 import { useAppSplash } from './hooks/useAppSplash'
+import { useAuthGateway } from './hooks/useAuthGateway'
 import { CreatePage } from './pages/CreatePage'
 import { DailyPage } from './pages/DailyPage'
 import { FavoritesPage } from './pages/FavoritesPage'
 import { HistoryPage } from './pages/HistoryPage'
 import { HomePage } from './pages/HomePage'
+import { ImageStudioPage } from './pages/ImageStudioPage'
+import { LibraryPage } from './pages/LibraryPage'
+import { MusicStudioPage } from './pages/MusicStudioPage'
 import { PremiumPage } from './pages/PremiumPage'
 import { ProfilePage } from './pages/ProfilePage'
 import { ResultPage } from './pages/ResultPage'
+import { VideoStudioPage } from './pages/VideoStudioPage'
 import { UiKitPage } from './pages/dev/UiKitPage'
 
 /**
- * Корневой роутер + splash при cold start («Открыть студию» в боте).
+ * Порядок старта: gateway (браузер) → splash → приложение.
+ * В Telegram gateway пропускается — initData уже есть.
  */
 function App() {
+  const { showGateway, continueFromGateway } = useAuthGateway()
   const splash = useAppSplash()
+
+  if (showGateway) {
+    return <TelegramLoginPage onContinue={continueFromGateway} />
+  }
 
   if (splash.visible) {
     return (
@@ -30,13 +42,16 @@ function App() {
       <Routes>
         <Route element={<MainLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="library" element={<LibraryPage />} />
           <Route path="history" element={<HistoryPage />} />
           <Route path="favorites" element={<FavoritesPage />} />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="daily" element={<DailyPage />} />
-          {/* Макет Create с BottomNav */}
           <Route path="create" element={<CreatePage />} />
           <Route path="create/:mode" element={<CreatePage />} />
+          <Route path="video" element={<VideoStudioPage />} />
+          <Route path="image" element={<ImageStudioPage />} />
+          <Route path="music" element={<MusicStudioPage />} />
         </Route>
 
         <Route element={<FocusLayout />}>

@@ -9,6 +9,8 @@ interface ImportMetaEnv {
   readonly VITE_DEV_MOCK_TELEGRAM?: string
   /** Базовый URL API; пустой = proxy Vite на localhost:8000 */
   readonly VITE_API_URL?: string
+  /** Username бота без @ — ссылка «Войти через Telegram» */
+  readonly VITE_BOT_USERNAME?: string
 }
 
 interface ImportMeta {

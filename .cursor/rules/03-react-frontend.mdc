@@ -14,6 +14,7 @@ alwaysApply: false
 - `api/` — HTTP-клиент, без бизнес-логики
 - `hooks/useTelegram.ts` — единственная точка TWA SDK
 - `store/` — Zustand только для мастера создания
+- `images/` — **все картинки** Mini App (иконки, иллюстрации, превью); не класть ассеты в произвольные папки
 
 ## Комментарии в компонентах
 
@@ -36,6 +37,7 @@ export function StepPersona() {
 - Минимальная высота кнопок 44px для touch
 - Дизайн-токены из `styles/tokens.css`, не хардкод цветов в компонентах
 - **UI copy только на русском** (кнопки, заголовки, ярлыки) — см. `05-ui-locale-ru.mdc`; исключение: «AI Fortune Studio»
+- Картинки только в `frontend/src/images/`
 
 ## Telegram
 

@@ -14,7 +14,11 @@
 
 import { useEffect, useMemo } from 'react'
 
-import { DEV_MOCK_TELEGRAM, MOCK_TELEGRAM_USER } from '../config/dev'
+import {
+  BOT_OPEN_URL,
+  DEV_MOCK_TELEGRAM,
+  MOCK_TELEGRAM_USER,
+} from '../config/dev'
 import type { TelegramWebApp, TelegramWebAppUser } from '../types/telegram'
 
 /** Тип тактильной отдачи для удобного вызова из UI */
@@ -108,8 +112,7 @@ export function useTelegram(): UseTelegramResult {
    */
   const shareText = (text: string) => {
     const encoded = encodeURIComponent(text)
-    // Ссылку на бота подставим реальную после шага 0.7; пока заглушка
-    const botUrl = encodeURIComponent('https://t.me/ai_fortune_studio_bot')
+    const botUrl = encodeURIComponent(BOT_OPEN_URL)
     const shareUrl = `https://t.me/share/url?url=${botUrl}&text=${encoded}`
 
     if (webApp) {

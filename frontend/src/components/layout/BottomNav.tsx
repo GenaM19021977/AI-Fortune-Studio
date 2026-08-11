@@ -29,10 +29,13 @@ const LEFT_ITEMS: NavItem[] = [
 
 const RIGHT_ITEMS: NavItem[] = [
   {
-    to: '/history',
+    to: '/library',
     label: 'Галерея',
     icon: 'auto_stories',
-    match: (p) => p.startsWith('/history') || p.startsWith('/favorites'),
+    match: (p) =>
+      p.startsWith('/library') ||
+      p.startsWith('/history') ||
+      p.startsWith('/favorites'),
   },
   {
     to: '/profile',

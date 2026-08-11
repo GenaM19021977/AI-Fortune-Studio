@@ -71,6 +71,147 @@ body {
   scrollbar-width: none;
 }
 
+.premium-border {
+  border: 1px solid #d4af37;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.ai-pulse {
+  position: relative;
+}
+
+.ai-pulse::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  border: 1px solid #00f0ff;
+  opacity: 0;
+  animation: pulse-glow 2s infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse-glow {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.02);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-border {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 240, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 240, 255, 0);
+  }
+}
+
+/* Музыкальная студия */
+.wave-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3px;
+  height: 40px;
+}
+
+.wave-bar {
+  width: 3px;
+  background: #f2ca50;
+  border-radius: 2px;
+  animation: wave-anim 1.2s ease-in-out infinite;
+}
+
+.wave-bar.is-paused {
+  animation-play-state: paused;
+}
+
+@keyframes wave-anim {
+  0%,
+  100% {
+    height: 8px;
+    opacity: 0.5;
+  }
+  50% {
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+.glass-panel-featured {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid #d4af37;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+}
+
+.golden-glow {
+  filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.5));
+}
+
+/* Экран входа через Telegram */
+.mystical-glow {
+  background: radial-gradient(
+    circle at 50% 30%,
+    rgba(26, 11, 46, 0.8) 0%,
+    rgba(15, 15, 26, 1) 70%
+  );
+}
+
+.light-ray {
+  top: -20%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0%,
+    rgba(242, 202, 80, 0.05) 15%,
+    transparent 30%,
+    rgba(0, 240, 255, 0.03) 45%,
+    transparent 60%
+  );
+  transform-origin: center;
+  animation: rotate-rays 60s linear infinite;
+  filter: blur(40px);
+}
+
+@keyframes rotate-rays {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.gold-border {
+  border: 1px solid #d4af37;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.timeline-track {
+  background: rgba(255, 255, 255, 0.05);
+  height: 4px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.timeline-progress {
+  background: linear-gradient(90deg, #d4af37, #f2ca50);
+  height: 100%;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
 .font-label-caps {
   font-family: var(--font-label-caps);
   font-size: var(--text-label-caps);

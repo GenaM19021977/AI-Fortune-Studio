@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import { Link } from 'react-router-dom'
 
 import { fetchEvents, queryKeys } from '../../api'
 import { useCreateWizardStore } from '../../store/createWizard'
@@ -213,36 +214,32 @@ export function StepData() {
             Формат результата
           </label>
           <div className="grid grid-cols-3 gap-3">
-            {(
-              [
-                { id: 'text', icon: 'auto_stories', label: 'Текст', enabled: true },
-                { id: 'audio', icon: 'music_note', label: 'Музыка', enabled: false },
-                { id: 'image', icon: 'image', label: 'Картинка', enabled: false },
-              ] as const
-            ).map((opt) => (
-              <div
-                key={opt.id}
-                className={cn(
-                  'flex flex-col items-center justify-center rounded-xl border p-3',
-                  opt.enabled
-                    ? 'border-aether-primary bg-aether-primary/10'
-                    : 'border-[#4d4635] bg-aether-surface-low opacity-50',
-                )}
-              >
-                <MaterialIcon
-                  name={opt.icon}
-                  className={cn(
-                    'mb-1',
-                    opt.enabled ? 'text-aether-primary' : 'text-aether-on-variant',
-                  )}
-                />
-                <span className="font-label-caps text-[10px]">{opt.label}</span>
-                {!opt.enabled && (
-                  <span className="mt-1 text-[9px] text-aether-on-variant/60">скоро</span>
-                )}
-              </div>
-            ))}
+            <div className="flex flex-col items-center justify-center rounded-xl border border-aether-primary bg-aether-primary/10 p-3">
+              <MaterialIcon name="auto_stories" className="mb-1 text-aether-primary" />
+              <span className="font-label-caps text-[10px]">Текст</span>
+            </div>
+            <Link
+              to="/image"
+              className="flex flex-col items-center justify-center rounded-xl border border-aether-primary/30 bg-aether-primary/5 p-3 transition-transform active:scale-95"
+            >
+              <MaterialIcon name="image" className="mb-1 text-aether-primary" />
+              <span className="font-label-caps text-[10px]">Картинка</span>
+            </Link>
+            <Link
+              to="/music"
+              className="flex flex-col items-center justify-center rounded-xl border border-aether-cyan-dim/30 bg-aether-cyan/5 p-3 transition-transform active:scale-95"
+            >
+              <MaterialIcon name="music_note" className="mb-1 text-aether-cyan-dim" />
+              <span className="font-label-caps text-[10px]">Музыка</span>
+            </Link>
           </div>
+          <Link
+            to="/video"
+            className="mt-2 flex items-center justify-center gap-2 rounded-xl border border-white/10 py-3 font-label-caps text-[10px] text-aether-on-variant transition-colors hover:border-aether-primary/30"
+          >
+            <MaterialIcon name="movie_filter" className="text-sm text-aether-primary" />
+            Видео-студия
+          </Link>
         </div>
       </div>
     </div>
