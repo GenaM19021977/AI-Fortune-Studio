@@ -5,6 +5,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { fetchMe, fetchPersonas, queryKeys } from '../../api'
 import { categoryLabel } from '../../lib/personaCategories'
 import { useTelegram } from '../../hooks/useTelegram'
+import { GallerySegmentTabs } from '../community'
 import { MaterialIcon } from '../ui/MaterialIcon'
 import { Skeleton } from '../ui/Skeleton'
 
@@ -123,6 +124,8 @@ export function StylesLibraryPage() {
       </header>
 
       <main className="relative z-10 mx-auto w-full max-w-md space-y-8 px-5 pt-6 pb-8">
+        <GallerySegmentTabs active="library" />
+
         {!showSearchResults && (
           <>
             <section>

@@ -6,6 +6,7 @@ import { SplashScreen } from './components/splash'
 import { useAppSplash } from './hooks/useAppSplash'
 import { useAuthGateway } from './hooks/useAuthGateway'
 import { CreatePage } from './pages/CreatePage'
+import { CommunityPage } from './pages/CommunityPage'
 import { DailyPage } from './pages/DailyPage'
 import { FavoritesPage } from './pages/FavoritesPage'
 import { HistoryPage } from './pages/HistoryPage'
@@ -16,6 +17,7 @@ import { MusicStudioPage } from './pages/MusicStudioPage'
 import { PremiumPage } from './pages/PremiumPage'
 import { ProfilePage } from './pages/ProfilePage'
 import { ResultPage } from './pages/ResultPage'
+import { StoriesPage } from './pages/StoriesPage'
 import { VideoStudioPage } from './pages/VideoStudioPage'
 import { UiKitPage } from './pages/dev/UiKitPage'
 
@@ -43,6 +45,7 @@ function App() {
         <Route element={<MainLayout />}>
           <Route index element={<HomePage />} />
           <Route path="library" element={<LibraryPage />} />
+          <Route path="community" element={<CommunityPage />} />
           <Route path="history" element={<HistoryPage />} />
           <Route path="favorites" element={<FavoritesPage />} />
           <Route path="profile" element={<ProfilePage />} />
@@ -56,6 +59,7 @@ function App() {
 
         <Route element={<FocusLayout />}>
           <Route path="result/:id" element={<ResultPage />} />
+          <Route path="stories" element={<StoriesPage />} />
           <Route path="premium" element={<PremiumPage />} />
         </Route>
 

@@ -34,6 +34,7 @@ const RIGHT_ITEMS: NavItem[] = [
     icon: 'auto_stories',
     match: (p) =>
       p.startsWith('/library') ||
+      p.startsWith('/community') ||
       p.startsWith('/history') ||
       p.startsWith('/favorites'),
   },

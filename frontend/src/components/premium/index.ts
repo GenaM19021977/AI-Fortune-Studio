@@ -1,0 +1,1 @@
+export { PremiumPageView } from './PremiumPageView'
